@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/core/usecases/fetch_token.dart';
 import 'package:bufi_remake/core/util/constants.dart';
-import 'package:bufi_remake/screens/login/domain/usecases/login_user.dart';
+import 'package:bufi_remake/screens/features/login/domain/usecases/login_user.dart';
 
 import 'bloc.dart';
 

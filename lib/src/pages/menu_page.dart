@@ -1,19 +1,19 @@
-
+import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class MenuItems {
-  static const card = MenuItem('Mi Bufi Card', 'assets/svg/tarjeta.svg');
-  static const home = MenuItem('Inicio', 'assets/svg/home.svg');
-  static const explore = MenuItem('Explorar', 'assets/svg/explorar.svg');
-  static const mensaje = MenuItem('Mensajes', 'assets/svg/mensaje.svg');
-  static const pedido = MenuItem('Pedidos', 'assets/svg/pedido.svg');
-  static const vender = MenuItem('Vender', 'assets/svg/vender.svg');
-  static const confi = MenuItem('Configuración', 'assets/svg/confi.svg');
-  static const terminos = MenuItem('Términos y políticas', 'assets/svg/terminos.svg');
-  static const logout = MenuItem('Cerrar Sesión', 'assets/svg/logout.svg');
+  static const card = MenuItem('Mi Bufi Card', 'assets/svg/tarjeta.svg', 1);
+  static const home = MenuItem('Inicio', 'assets/svg/home.svg', 2);
+  static const explore = MenuItem('Explorar', 'assets/svg/explorar.svg', 3);
+  static const mensaje = MenuItem('Mensajes', 'assets/svg/mensaje.svg', 4);
+  static const pedido = MenuItem('Pedidos', 'assets/svg/pedido.svg', 5);
+  static const vender = MenuItem('Vender', 'assets/svg/vender.svg', 6);
+  static const confi = MenuItem('Configuración', 'assets/svg/confi.svg', 7);
+  static const terminos = MenuItem('Términos y políticas', 'assets/svg/terminos.svg', 8);
+  static const logout = MenuItem('Cerrar Sesión', 'assets/svg/logout.svg', 9);
 
   static const all = <MenuItem>[
     card,
@@ -35,6 +35,12 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final widgets = MenuItems.all
+        .map(
+          (item) => construirItem(item,context),
+        )
+        .toList();
+
     return Scaffold(
       backgroundColor: Color(0XFF17314C),
       body: SafeArea(
@@ -59,7 +65,7 @@ class MenuPage extends StatelessWidget {
                   height: ScreenUtil().setHeight(24),
                 ),
                 Text(
-                  'Lincoln Tapullima',
+                  'BufeoTec',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: ScreenUtil().setSp(18),
@@ -71,7 +77,7 @@ class MenuPage extends StatelessWidget {
                   height: ScreenUtil().setHeight(14),
                 ),
                 Text(
-                  'lincolntapullima@gmail.com',
+                  'bufeotec@gmail.com',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: ScreenUtil().setSp(14),
@@ -91,7 +97,9 @@ class MenuPage extends StatelessWidget {
                 SizedBox(
                   height: ScreenUtil().setHeight(20),
                 ),
-                ...MenuItems.all.map(construirItem).toList(),
+                Column(children: widgets,)
+                
+                //...MenuItems.all.map(construirItem).toList(),
                 // Spacer(
                 //   flex: 2,
                 // )
@@ -103,10 +111,15 @@ class MenuPage extends StatelessWidget {
     );
   }
 
-  Widget construirItem(MenuItem item) {
+  Widget construirItem(MenuItem item,BuildContext context) {
     return InkWell(
       onTap: () {
-        onSelectItem!(item);
+        if (item.orden == 9) {
+          Navigator.pushNamedAndRemoveUntil(context, LOGIN_ROUTE, (r) => false);
+        } else {
+          print(item.orden);
+          onSelectItem!(item);
+        }
       },
       child: Container(
         margin: EdgeInsets.only(

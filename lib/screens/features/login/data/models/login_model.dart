@@ -2,7 +2,8 @@
 //
 //     final login = loginFromJson(jsonString);
 
-import 'package:bufi_remake/screens/login/domain/entities/login.dart';
+
+import 'package:bufi_remake/screens/features/login/domain/entities/login.dart';
 
 class LoginModel extends LoginEntities {
   LoginModel(

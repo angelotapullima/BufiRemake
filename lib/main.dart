@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
          
           primarySwatch: Colors.blue,
         ),onGenerateRoute: Routers.generateRoute,
-      initialRoute: LOGIN_ROUTE,
+      initialRoute: SPLASH_ROUTE,
       ),
     );
   }

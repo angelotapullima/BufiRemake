@@ -1,10 +1,10 @@
 import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/core/network/network_info.dart';
-import 'package:bufi_remake/screens/login/data/datasources/login_local_datasource.dart';
-import 'package:bufi_remake/screens/login/data/datasources/login_remote_datasource.dart';
-import 'package:bufi_remake/screens/login/domain/entities/login.dart';
-import 'package:bufi_remake/screens/login/domain/repositories/login_repository.dart';
+import 'package:bufi_remake/screens/features/login/data/datasources/login_local_datasource.dart';
+import 'package:bufi_remake/screens/features/login/data/datasources/login_remote_datasource.dart';
+import 'package:bufi_remake/screens/features/login/domain/entities/login.dart';
+import 'package:bufi_remake/screens/features/login/domain/repositories/login_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class LoginRepositoryImpl implements LoginRepository {

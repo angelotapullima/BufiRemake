@@ -17,3 +17,4 @@ const double DEFAULT_PAGE_PADDING = 20;
 //routes
 const String HOME_ROUTE = '/';
 const String LOGIN_ROUTE = '/login'; 
+const String SPLASH_ROUTE = '/splash'; 

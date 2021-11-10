@@ -1,10 +1,8 @@
 import 'dart:convert';
 
 import 'package:bufi_remake/core/error/exceptions.dart';
-import 'package:bufi_remake/core/error/failures.dart';
-import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
 import 'package:bufi_remake/core/util/constants.dart';
-import 'package:bufi_remake/screens/login/domain/entities/login.dart';
+import 'package:bufi_remake/screens/features/login/domain/entities/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 

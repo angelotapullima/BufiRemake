@@ -2,17 +2,13 @@ import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/core/util/theme.dart';
 import 'package:bufi_remake/core/widgets/custom_snak_bar.dart';
 import 'package:bufi_remake/injection_container.dart';
-import 'package:bufi_remake/screens/login/presentation/blocs/user_login/bloc.dart';
+import 'package:bufi_remake/screens/features/login/presentation/blocs/user_login/user_login_bloc.dart';
+import 'package:bufi_remake/screens/features/login/presentation/blocs/user_login/user_login_event.dart';
+import 'package:bufi_remake/screens/features/login/presentation/blocs/user_login/user_login_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-/* import 'package:clean_architecture_with_bloc_app/core/utils/constants.dart';
-import 'package:clean_architecture_with_bloc_app/core/utils/theme.dart';
-import 'package:clean_architecture_with_bloc_app/core/widgets/custom_snak_bar.dart';
-import 'package:clean_architecture_with_bloc_app/screens/login/presentation/blocs/user_login/bloc.dart';
-
-import '../../../../injection_container.dart'; */
 
 class LoginPage extends StatefulWidget {
   @override
@@ -157,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
               _snackBar!.showErrorSnackBar(state.message);
             });
           }
-          return RaisedButton(
+          return MaterialButton(
             key: Key("login"),
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(4.0),
