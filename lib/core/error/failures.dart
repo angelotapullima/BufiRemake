@@ -11,3 +11,13 @@ class ServerFailure extends Failure {}
 class CacheFailure extends Failure {}
 
 class NoConnectionFailure extends Failure {}
+
+class ApiError extends Failure {
+   ApiError({required this.code,required this.message});
+
+  final String code;
+  final String message;
+
+  @override
+  List<Object> get props => [code,message];
+}

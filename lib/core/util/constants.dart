@@ -16,5 +16,4 @@ const double DEFAULT_PAGE_PADDING = 20;
 
 //routes
 const String HOME_ROUTE = '/';
-const String LOGIN_ROUTE = '/login';
-const String CHANGE_PASSWORD_ROUTE = '/change_password';
+const String LOGIN_ROUTE = '/login'; 

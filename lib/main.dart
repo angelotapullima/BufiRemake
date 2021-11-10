@@ -1,3 +1,5 @@
+import 'package:bufi_remake/core/util/constants.dart';
+import 'package:bufi_remake/core/util/router.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:bufi_remake/src/pages/home_page.dart';
 import 'package:bufi_remake/src/pages/menu_page.dart';
@@ -5,8 +7,14 @@ import 'package:bufi_remake/src/pages/tarjeta_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:logging/logging.dart';
+import 'injection_container.dart' as di; //Dependency injector
 
-void main() {
+
+void main()async {WidgetsFlutterBinding.ensureInitialized();
+  await di
+      .init(); //Inject all the dependencies and wait for it is done (i.e. UI won't built until all the dependencies are injected)
+  _setupLogging();
   runApp(MyApp());
 }
 
@@ -22,11 +30,18 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
          
           primarySwatch: Colors.blue,
-        ),
-        home: MyHomePage (),
+        ),onGenerateRoute: Routers.generateRoute,
+      initialRoute: LOGIN_ROUTE,
       ),
     );
   }
+}
+
+void _setupLogging() {
+  Logger.root.level = Level.ALL;
+  Logger.root.onRecord.listen((rec) {
+    print('${rec.level.name}: ${rec.time}: ${rec.message}');
+  });
 }
 
 class MyHomePage extends StatefulWidget {

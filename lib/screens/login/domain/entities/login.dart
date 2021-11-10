@@ -1,7 +1,11 @@
 
 
+class Login{
 
-// ignore: must_be_immutable
+  String ? code;
+  String ? message;
+  LoginEntities? loginEntities;
+}
 class LoginEntities  {
   LoginEntities({
     this.cU,

@@ -1,6 +1,6 @@
-
-
 import 'package:bufi_remake/core/network/network_info.dart';
+import 'package:bufi_remake/core/usecases/fetch_token.dart';
+import 'package:bufi_remake/screens/login/data/datasources/login_local_datasource.dart';
 import 'package:bufi_remake/screens/login/data/repositories/login_repository_impl.dart';
 import 'package:bufi_remake/screens/login/domain/usecases/login_user.dart';
 import 'package:bufi_remake/screens/login/presentation/blocs/user_login/bloc.dart';
@@ -17,18 +17,29 @@ final sl = GetIt.instance; //sl is referred to as Service Locator
 //Dependency injection
 Future<void> init() async {
   //Blocs
-  sl.registerFactory(
+
+   sl.registerFactory(
     () => UserLoginBloc(
       loginUser: sl(),
+      fetchToken: sl(),
     )..add(CheckLoginStatusEvent()),
   );
 
+  /* sl.registerFactory(
+    () => UserLoginBloc(
+      loginUser: sl(),
+      fetchToken: sl(),
+    )..add(CheckLoginStatusEvent()),
+  ); */
+
   //Use cases
   sl.registerLazySingleton(() => LoginUser(repository: sl()));
+  sl.registerLazySingleton(() => FetchToken(repository: sl()));
 
   //Repositories
   sl.registerLazySingleton<LoginRepository>(
     () => LoginRepositoryImpl(
+      localDataSource: sl(),
       networkInfo: sl(),
       remoteDataSource: sl(),
     ),
@@ -40,11 +51,15 @@ Future<void> init() async {
       client: sl(),
     ),
   );
-  
+  sl.registerLazySingleton<LoginLocalDataSource>(
+    () => LoginLocalDataSourceImpl(
+      sharedPreferences: sl(),
+    ),
+  );
 
   //Core
   sl.registerLazySingleton<NetworkInfo>(
-    () => NetworkInfoImpl( sl()),
+    () => NetworkInfoImpl(sl()),
   );
 
   //External
