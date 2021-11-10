@@ -1,3 +1,4 @@
+import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFF152535),
+      backgroundColor: colorPrimary,
       appBar: AppBar(
-        backgroundColor: Color(0XFF152535),
+        backgroundColor: colorPrimary,
         title: Text('Hola, Bufeo'),
         elevation: 0,
         centerTitle: true,

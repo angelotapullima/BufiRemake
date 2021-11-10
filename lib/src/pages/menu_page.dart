@@ -1,3 +1,4 @@
+import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
@@ -43,7 +44,7 @@ class MenuPage extends StatelessWidget {
         .toList();
 
     return Scaffold(
-      backgroundColor: Color(0XFF17314C),
+      backgroundColor: colorPrimary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
