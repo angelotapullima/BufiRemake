@@ -1,3 +1,4 @@
+import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:flutter/material.dart';
@@ -115,6 +116,7 @@ class MenuPage extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (item.orden == 9) {
+          StorageManager.deleteAllData();
           Navigator.pushNamedAndRemoveUntil(context, LOGIN_ROUTE, (r) => false);
         } else {
           print(item.orden);
