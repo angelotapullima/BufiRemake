@@ -11,7 +11,7 @@ abstract class UserLoginState extends Equatable {
 class NotLoggedState extends UserLoginState {}
 
 //estado de login cargando
-class LoadingState extends UserLoginState {}
+class LoadingState extends UserLoginState {} 
 
 //estado de logueado
 class LoggedState extends UserLoginState {
