@@ -4,13 +4,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 
 class MenuWidget extends StatelessWidget {
-  const MenuWidget({Key key}) : super(key: key);
+  const MenuWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        ZoomDrawer.of(context).toggle();
+        ZoomDrawer.of(context)!.toggle();
       },
       child: Container(
         padding: EdgeInsets.only(

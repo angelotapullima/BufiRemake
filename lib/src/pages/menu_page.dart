@@ -29,9 +29,9 @@ class MenuItems {
 }
 
 class MenuPage extends StatelessWidget {
-  final MenuItem itemSeleccionado;
-  final ValueChanged<MenuItem> onSelectItem;
-  const MenuPage({Key key, @required this.itemSeleccionado, @required this.onSelectItem}) : super(key: key);
+  final MenuItem? itemSeleccionado;
+  final ValueChanged<MenuItem>? onSelectItem;
+  const MenuPage({Key? key, @required this.itemSeleccionado, @required this.onSelectItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,7 @@ class MenuPage extends StatelessWidget {
   Widget construirItem(MenuItem item) {
     return InkWell(
       onTap: () {
-        onSelectItem(item);
+        onSelectItem!(item);
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -142,24 +142,4 @@ class MenuPage extends StatelessWidget {
       ),
     );
   }
-
-  //  Widget construirItem(MenuItem item) => ListTile(
-  //       selected: itemSeleccionado == item,
-  //       selectedTileColor: Color(0XFF152535),
-  //       minLeadingWidth: ScreenUtil().setWidth(19),
-  //       leading: Container(
-  //         child: SvgPicture.asset(item.icon),
-  //       ),
-  //       title: Text(
-  //         item.titulo,
-  //         style: TextStyle(
-  //           color: Colors.white,
-  //           fontSize: ScreenUtil().setSp(16),
-  //           fontWeight: FontWeight.w400,
-  //         ),
-  //       ),
-  //       onTap: () {
-  //         onSelectItem(item);
-  //       },
-  //     );
 }
