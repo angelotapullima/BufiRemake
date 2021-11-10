@@ -39,31 +39,18 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
       login.cU = decodedData['data']['c_u'];
 
       login.idBufipay = decodedData['data']['id_bufipay'];
-
       login.n = decodedData['data']['_n'];
-
       login.uE = decodedData['data']['u_e'];
-
       login.uI = decodedData['data']['u_i'];
-
       login.pC = decodedData['data']['p_c'];
-
       login.pU = decodedData['data']['p_u'];
-
       login.pN = decodedData['data']['p_n'];
-
       login.pP = decodedData['data']['p_p'];
-
       login.pM = decodedData['data']['p_m'];
-
       login.pS = decodedData['data']['p_s'];
-
       login.pD = decodedData['data']['p_d'];
-
       login.ru = decodedData['data']['ru'];
-
       login.rn = decodedData['data']['rn'];
-
       login.tn = decodedData['data']['tn'];
     }
 

@@ -1,4 +1,11 @@
 import 'package:bufi_remake/core/network/network_info.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsCategory_local_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsCategory_remote_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/repositories/productsCategory_repository_impl.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/repositories/productsCategory_repository.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/usecases/get_productsCategory.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/presentation/bloc/productscategory_bloc.dart';
+import 'package:bufi_remake/screens/features/login/presentation/blocs/user_login/user_login_state.dart';
 import 'package:bufi_remake/screens/features/splash/data/datasources/splash_local_datasource.dart';
 import 'package:bufi_remake/screens/features/splash/data/repositories/splash_repository_impl.dart';
 import 'package:bufi_remake/screens/features/splash/domain/repositories/splash_repository.dart';
@@ -21,25 +28,46 @@ final sl = GetIt.instance; //sl is referred to as Service Locator
 
 //Dependency injection
 Future<void> init() async {
+  //################################################
   //Blocs
 
+  //login
   sl.registerFactory(
     () => UserLoginBloc(
       loginUser: sl(),
     ),
   );
 
+  //Splash
   sl.registerFactory(
     () => SplashBloc(
       fetchToken: sl(),
     )..add(CheckLoginStatusEvent()),
   );
 
+  //ProductsCategory
+  sl.registerFactory(
+    () => ProductscategoryBloc(
+      getProductsCategory: sl(),
+    ),
+  );
+
+  //###################################
   //Use cases
+
+  //login
   sl.registerLazySingleton(() => LoginUser(repository: sl()));
+
+  //Splash
   sl.registerLazySingleton(() => FetchToken(repository: sl()));
 
+  //ProductsCategory
+  sl.registerLazySingleton(() => GetProductsCategory(productCategoryRepository: sl()));
+
+  //##################################
   //Repositories
+
+  //login
   sl.registerLazySingleton<LoginRepository>(
     () => LoginRepositoryImpl(
       localDataSource: sl(),
@@ -48,6 +76,7 @@ Future<void> init() async {
     ),
   );
 
+  //Splash
   sl.registerLazySingleton<SplashRepository>(
     () => SplashRepositoryImpl(
       splashLocalDataSource: sl(),
@@ -55,7 +84,19 @@ Future<void> init() async {
     ),
   );
 
+  //ProductsCategory
+  sl.registerLazySingleton<ProductCategoryRepository>(
+    () => ProductCategoryRepositoryImpl(
+      productCategoryLocalDataSource: sl(),
+      productsCategoryRemoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  //###########################################
   //Data sources
+
+  //login
   sl.registerLazySingleton<LoginRemoteDataSource>(
     () => LoginRemoteDataSourceImpl(
       client: sl(),
@@ -67,17 +108,29 @@ Future<void> init() async {
     ),
   );
 
+  //Splash
   sl.registerLazySingleton<SplashLocalDataSource>(
     () => SplashLocalDataSourceImpl(
       sharedPreferences: sl(),
     ),
   );
 
+//ProductsCategory
+  sl.registerLazySingleton<ProductCategoryLocalDataSource>(
+    () => ProductCategoryLocalDataSourceImpl(),
+  );
+
+  sl.registerLazySingleton<ProductsCategoryRemoteDataSource>(
+    () => ProductsCategoryRemoteDataSourceImpl(client: sl()),
+  );
+
+  //########################################################################
   //Core
   sl.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(sl()),
   );
 
+  //########################################################################
   //External
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);

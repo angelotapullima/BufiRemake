@@ -13,6 +13,8 @@ class CategoriesModel extends CategoriesEntities {
           categoryEstado: categoryEstado,
         );
 
+  static List<CategoriesModel> fromJsonList(List<dynamic> json) => json.map((i) => CategoriesModel.fromJson(i)).toList();
+
   factory CategoriesModel.fromJson(Map<String, dynamic> json) => CategoriesModel(
         idCategory: json["idCategory"],
         categoryName: json["categoryName"],

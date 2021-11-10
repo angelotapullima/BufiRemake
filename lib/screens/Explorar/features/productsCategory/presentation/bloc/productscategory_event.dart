@@ -1,4 +1,8 @@
 part of 'productscategory_bloc.dart';
+
 abstract class ProductscategoryEvent extends Equatable {
-  const ProductscategoryEvent();
+  @override
+  List<Object> get props => [];
 }
+
+class GetCategoriesBlocEvent extends ProductscategoryEvent {}
