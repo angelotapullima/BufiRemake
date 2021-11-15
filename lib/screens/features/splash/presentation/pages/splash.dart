@@ -39,6 +39,9 @@ class _SplashState extends State<Splash> {
       buildWhen: (prevState, currState) {
         if (currState is LoggedState) {
           Navigator.pushNamedAndRemoveUntil(context, HOME_ROUTE, (r) => false);
+        }else{
+          Navigator.pushNamedAndRemoveUntil(context, LOGIN_ROUTE, (r) => false);
+        
         }
         return !(currState is LoggedState);
       },

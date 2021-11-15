@@ -115,7 +115,7 @@ Future<void> init() async {
     ),
   );
 
-//ProductsCategory
+//ProductsCategory 
   sl.registerLazySingleton<ProductCategoryLocalDataSource>(
     () => ProductCategoryLocalDataSourceImpl(),
   );
@@ -130,11 +130,11 @@ Future<void> init() async {
     () => NetworkInfoImpl(sl()),
   );
 
+
   //########################################################################
   //External
   final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
   sl.registerLazySingleton(() => InternetConnectionChecker());
-
   sl.registerLazySingleton(() => http.Client());
 }
