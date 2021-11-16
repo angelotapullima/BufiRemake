@@ -89,6 +89,8 @@ Future<void> init() async {
     () => ProductCategoryRepositoryImpl(
       productCategoryLocalDataSource: sl(),
       productsCategoryRemoteDataSource: sl(),
+      productSubCategoryLocalDataSource: sl(),
+      productItemSubCategoryLocalDataSource: sl(),
       networkInfo: sl(),
     ),
   );
@@ -115,7 +117,7 @@ Future<void> init() async {
     ),
   );
 
-//ProductsCategory 
+//ProductsCategory
   sl.registerLazySingleton<ProductCategoryLocalDataSource>(
     () => ProductCategoryLocalDataSourceImpl(),
   );
@@ -129,7 +131,6 @@ Future<void> init() async {
   sl.registerLazySingleton<NetworkInfo>(
     () => NetworkInfoImpl(sl()),
   );
-
 
   //########################################################################
   //External
