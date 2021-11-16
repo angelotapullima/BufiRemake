@@ -13,7 +13,7 @@ class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSour
       '$_id INTEGER PRIMARY KEY, '
       '$_name TEXT, '
       '$_estado TEXT,'
-      '$_img TEXT,';
+      '$_img TEXT)';
   static const String _tableName = 'Category';
   static const String _id = 'id_category';
   static const String _name = 'category_name';
@@ -41,7 +41,7 @@ class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSour
       if (maps.length > 0) list = CategoriesModel.fromJsonList(maps);
       return list;
     } catch (e) {
-      print(" $e Error en la base de datossss");
+      print(" $e Error en la base de datos");
       return [];
     }
   }
