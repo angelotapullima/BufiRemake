@@ -38,22 +38,33 @@ class ProductsCategoryRemoteDataSourceImpl implements ProductsCategoryRemoteData
       categ.categoryEstado = decodedData[i]["category_estado"];
       categories.add(categ);
 
-      SubCategoriesEntities subCateg = SubCategoriesEntities();
-      subCateg.idSubCategory = decodedData[i]["id_subcategory"];
-      subCateg.subCategoryName = decodedData[i]["subcategory_name"];
-      subCateg.idCategory = decodedData[i]["id_category"];
-      subCategories.add(subCateg);
+      var subca = decodedData[i]["subcategorias"];
 
-      ItemSubCateriesEntities itemSubCateg = ItemSubCateriesEntities();
-      itemSubCateg.idItemSubCategory = decodedData[i]["id_itemsubcategory"];
-      itemSubCateg.nameItemSubCategory = decodedData[i]["itemsubcategory_name"];
-      itemSubCateg.imagenItemSubCategory = decodedData[i]["itemsubcategory_img"];
-      itemSubCateg.estadoItemSubCategory = decodedData[i]["itemsubcategory_estado"];
-      itemSubCateg.idSubCategory = decodedData[i]["id_subcategory"];
-      itemSubCategories.add(itemSubCateg);
+      if (subca.length > 0) {
+        for (var x = 0; x < subca.length; x++) {
+          SubCategoriesEntities subCateg = SubCategoriesEntities();
+          subCateg.idSubCategory = subca[x]["id_subcategory"];
+          subCateg.subCategoryName = subca[x]["subcategory_name"];
+          subCateg.idCategory = subca[x]["id_category"];
+          subCategories.add(subCateg);
+
+          var itemSubca = subca[x]["itemsubcategorias"];
+
+          if (itemSubca.length > 0) {
+            for (var y = 0; y < itemSubca.length; y++) {
+              ItemSubCateriesEntities itemSubCateg = ItemSubCateriesEntities();
+              itemSubCateg.idItemSubCategory = itemSubca[y]["id_itemsubcategory"];
+              itemSubCateg.nameItemSubCategory = itemSubca[y]["itemsubcategory_name"];
+              itemSubCateg.imagenItemSubCategory = itemSubca[y]["itemsubcategory_img"];
+              itemSubCateg.estadoItemSubCategory = itemSubca[y]["itemsubcategory_estado"];
+              itemSubCateg.idSubCategory = itemSubca[y]["id_subcategory"];
+              itemSubCategories.add(itemSubCateg);
+            }
+          }
+        }
+      }
     }
-    final DataGeneralEntities returnGeneral =
-        DataGeneralEntities(listCategories: categories, listSubCategories: subCategories, listItemSubCategories: itemSubCategories);
+    final DataGeneralEntities returnGeneral = DataGeneralEntities(listCategories: categories, listSubCategories: subCategories, listItemSubCategories: itemSubCategories);
     // returnGeneral.listCategories = categories;
     // returnGeneral.listSubCategories = subCategories;
     // returnGeneral.listItemSubCategories = itemSubCategories;

@@ -1,9 +1,9 @@
 import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/network/network_info.dart';
-import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsCategory_local_datasource.dart';
-import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsCategory_remote_datasource.dart';
-import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsItemSubCategory_local_datasource.dart';
-import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsSubCategory_local_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/Category/productsCategory_local_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/Category/productsCategory_remote_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/ItemSubcategory/productsItemSubCategory_local_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/Subcategory/productsSubCategory_local_datasource.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/models/categoriesModel.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/models/itemSubCategoriesModel.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/models/subCategoriesModel.dart';
@@ -35,6 +35,7 @@ class ProductCategoryRepositoryImpl implements ProductCategoryRepository {
 
         for (var i = 0; i < remoteListCategory.listCategories.length; i++) {
           var data = remoteListCategory.listCategories[i];
+          
           CategoriesModel cat = CategoriesModel(
             idCategory: data.idCategory,
             categoryName: data.categoryName,

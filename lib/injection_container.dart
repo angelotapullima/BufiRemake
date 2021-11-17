@@ -1,6 +1,8 @@
 import 'package:bufi_remake/core/network/network_info.dart';
-import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsCategory_local_datasource.dart';
-import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/productsCategory_remote_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/Category/productsCategory_local_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/Category/productsCategory_remote_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/ItemSubcategory/productsItemSubCategory_local_datasource.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/Subcategory/productsSubCategory_local_datasource.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/repositories/productsCategory_repository_impl.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/repositories/productsCategory_repository.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/usecases/get_productsCategory.dart';
@@ -120,6 +122,12 @@ Future<void> init() async {
 //ProductsCategory
   sl.registerLazySingleton<ProductCategoryLocalDataSource>(
     () => ProductCategoryLocalDataSourceImpl(),
+  );
+  sl.registerLazySingleton<ProductSubCategoryLocalDatasource>(
+    () => ProductSubCategoryLocalDatasourceImpl(),
+  );
+  sl.registerLazySingleton<ProductItemSubCategoryLocalDataSource>(
+    () => ProductItemSubCategoryLocalDataSourceImpl(),
   );
 
   sl.registerLazySingleton<ProductsCategoryRemoteDataSource>(

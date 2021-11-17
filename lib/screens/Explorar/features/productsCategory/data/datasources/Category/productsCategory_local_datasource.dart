@@ -10,7 +10,7 @@ abstract class ProductCategoryLocalDataSource {
 
 class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSource {
   static const String tableSql = 'CREATE TABLE $_tableName('
-      '$_id INTEGER PRIMARY KEY, '
+      '$_id TEXT PRIMARY KEY, '
       '$_name TEXT, '
       '$_estado TEXT,'
       '$_img TEXT)';

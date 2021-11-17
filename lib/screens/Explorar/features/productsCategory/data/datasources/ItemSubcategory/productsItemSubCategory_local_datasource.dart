@@ -9,11 +9,11 @@ abstract class ProductItemSubCategoryLocalDataSource {
 
 class ProductItemSubCategoryLocalDataSourceImpl implements ProductItemSubCategoryLocalDataSource {
   static const String tableiTEMSubCategorySql = 'CREATE TABLE $_tableName('
-      '$_id INTEGER PRIMARY KEY, '
+      '$_id TEXT PRIMARY KEY, '
       '$_name TEXT, '
       '$_estado TEXT,'
       '$_img TEXT,'
-      '$_id1 INTEGER)';
+      '$_id1 TEXT)';
   static const String _tableName = 'ItemSubCategory';
   static const String _id = 'id_itemsubcategory';
   static const String _name = 'itemsubcategory_name';

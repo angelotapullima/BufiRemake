@@ -11,7 +11,7 @@ class ProductSubCategoryLocalDatasourceImpl implements ProductSubCategoryLocalDa
   static const String tableSubCategorySql = 'CREATE TABLE $_tableName2('
       '$_id2 INTEGER PRIMARY KEY, '
       '$_name2 TEXT, '
-      '$_id INTEGER)';
+      '$_id TEXT)';
   static const String _tableName2 = 'SubCategory';
   static const String _id2 = 'id_subcategory';
   static const String _name2 = 'subcategory_name';
