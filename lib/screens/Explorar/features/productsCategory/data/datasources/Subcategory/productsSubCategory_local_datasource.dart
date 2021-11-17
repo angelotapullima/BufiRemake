@@ -9,18 +9,18 @@ abstract class ProductSubCategoryLocalDatasource {
 
 class ProductSubCategoryLocalDatasourceImpl implements ProductSubCategoryLocalDatasource {
   static const String tableSubCategorySql = 'CREATE TABLE $_tableName2('
-      '$_id2 INTEGER PRIMARY KEY, '
+      '$_id2 TEXT PRIMARY KEY, '
       '$_name2 TEXT, '
       '$_id TEXT)';
   static const String _tableName2 = 'SubCategory';
-  static const String _id2 = 'id_subcategory';
-  static const String _name2 = 'subcategory_name';
-  static const String _id = 'id_category';
+  static const String _id2 = 'idSubCategory';
+  static const String _name2 = 'nameSubCategory';
+  static const String _id = 'idCategory';
   @override
   Future<void> insertSubCategory(SubCategoriesModel subCategory) async {
     try {
       final Database db = await getDatabase();
-      await db.rawInsert("INSERT OR REPLACE INTO SubCategory (id_subcategory,subcategory_name,id_category) "
+      await db.rawInsert("INSERT OR REPLACE INTO SubCategory (idSubCategory,nameSubCategory,idCategory) "
           "VALUES('${subCategory.idSubCategory}', '${subCategory.subCategoryName}', '${subCategory.idCategory}')");
     } catch (e) {
       print("$e Error en la tabla SubCategoria ");
@@ -32,7 +32,7 @@ class ProductSubCategoryLocalDatasourceImpl implements ProductSubCategoryLocalDa
     try {
       final Database db = await getDatabase();
       List<SubCategoriesModel> list = [];
-      List<Map> maps = await db.rawQuery("SELECT * FROM SubCategory WHERE id_subcategory ='$idCategory' order by id_subcategory");
+      List<Map> maps = await db.rawQuery("SELECT * FROM SubCategory WHERE idCategory ='$idCategory' order by idSubCategory");
 
       if (maps.length > 0) list = SubCategoriesModel.fromJsonList(maps);
       return list;

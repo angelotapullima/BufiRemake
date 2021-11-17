@@ -3,19 +3,20 @@ import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/en
 class SubCategoriesModel extends SubCategoriesEntities {
   SubCategoriesModel({
     required String? idSubCategory,
-    required String? nameCategory,
+    required String? nameSubCategory,
     required String? idCategory,
   }) : super(
           idSubCategory: idSubCategory,
-          subCategoryName: nameCategory,
+          subCategoryName: nameSubCategory,
           idCategory: idCategory,
         );
 
   static List<SubCategoriesModel> fromJsonList(List<dynamic> json) => json.map((i) => SubCategoriesModel.fromJson(i)).toList();
 
-  factory SubCategoriesModel.fromJson(Map<dynamic, String> json) => SubCategoriesModel(
+  factory SubCategoriesModel.fromJson(Map<dynamic, dynamic> json) => SubCategoriesModel(
         idSubCategory: json["idSubCategory"],
-        nameCategory: json["nameCategory"],
+        nameSubCategory: json["nameSubCategory"],
         idCategory: json["idCategory"],
       );
 }
+ 

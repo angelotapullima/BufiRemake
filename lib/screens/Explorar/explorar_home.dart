@@ -3,6 +3,7 @@ import 'package:bufi_remake/screens/Explorar/features/productsCategory/presentat
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import 'features/Company/presentation/pages/companyExplorer.dart';
 import 'features/ServicesCategory/presentation/pages/servicesCategory.dart';
@@ -15,7 +16,6 @@ class ExplorarHome extends StatefulWidget {
 }
 
 class _ExplorarHomeState extends State<ExplorarHome> {
-  final _cargando = ChangeBottomExplorer();
   List<Widget> pageList = [];
 
   @override
@@ -30,10 +30,12 @@ class _ExplorarHomeState extends State<ExplorarHome> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ChangeBottomExplorer>(context, listen: false);
     return Scaffold(
-      body: AnimatedBuilder(
-        animation: _cargando,
-        builder: (_, data) {
+      backgroundColor: colorPrimary,
+      body: ValueListenableBuilder<int>(
+        valueListenable: provider._pagina,
+        builder: (_, value, __) {
           return Stack(
             children: [
               Container(
@@ -41,7 +43,7 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                   bottom: kBottomNavigationBarHeight + ScreenUtil().setHeight(10),
                 ),
                 child: IndexedStack(
-                  index: _cargando.page,
+                  index: value,
                   children: pageList,
                 ),
               ),
@@ -64,7 +66,7 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
+                        color: Colors.transparent.withOpacity(0.5),
                         spreadRadius: 5,
                         blurRadius: 7,
                         offset: Offset(0, 3), // changes position of shadow
@@ -77,7 +79,7 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                     children: [
                       InkWell(
                         onTap: () {
-                          _cargando.changePage(0);
+                          provider.changePage(0);
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +87,7 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                             Container(
                               height: ScreenUtil().setSp(35),
                               width: ScreenUtil().setSp(35),
-                              child: (_cargando.page == 0)
+                              child: (value == 0)
                                   ? SvgPicture.asset(
                                       'assets/svg/tabExplorer/box_product_b.svg',
                                     )
@@ -93,13 +95,12 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                                       'assets/svg/tabExplorer/box_product_w.svg',
                                     ), //Imagsset('assets/logo_largo.svg'),
                             ),
-                             
                           ],
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          _cargando.changePage(1);
+                          provider.changePage(1);
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +108,7 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                             Container(
                               height: ScreenUtil().setSp(35),
                               width: ScreenUtil().setSp(35),
-                              child: (_cargando.page == 1)
+                              child: (value == 1 )
                                   ? SvgPicture.asset(
                                       'assets/svg/tabExplorer/tool_services_b.svg',
                                     )
@@ -115,13 +116,12 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                                       'assets/svg/tabExplorer/tool_services_w.svg',
                                     ), //Imagsset('assets/logo_largo.svg'),
                             ),
-                             
                           ],
                         ),
                       ),
                       InkWell(
                         onTap: () {
-                          _cargando.changePage(2);
+                          provider.changePage(2);
                         },
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -129,7 +129,7 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                             Container(
                               height: ScreenUtil().setSp(35),
                               width: ScreenUtil().setSp(35),
-                              child: (_cargando.page == 2)
+                              child: (value == 2)
                                   ? SvgPicture.asset(
                                       'assets/svg/tabExplorer/company_b.svg',
                                     )
@@ -137,7 +137,6 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                                       'assets/svg/tabExplorer/company_w.svg',
                                     ), //Imagsset('assets/logo_largo.svg'),
                             ),
-                             
                           ],
                         ),
                       ),
@@ -154,10 +153,12 @@ class _ExplorarHomeState extends State<ExplorarHome> {
 }
 
 class ChangeBottomExplorer extends ChangeNotifier {
-  int page = 0;
+  ValueNotifier<int> page = ValueNotifier(0);
+  ValueNotifier<int> get _pagina => this.page;
 
   void changePage(int index) {
-    page = index;
+    print('index $index');
+    page.value = index;
     notifyListeners();
   }
 }

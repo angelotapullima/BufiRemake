@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:logging/logging.dart';
+import 'package:provider/provider.dart';
 import 'injection_container.dart' as di; //Dependency injector
 
 void main() async {
@@ -22,16 +23,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      builder: () => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Bufi',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+    return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ChangeBottomExplorer>(
+            create: (_) => ChangeBottomExplorer(),
+          ),
+           
+        ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        builder: () => MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Bufi',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          onGenerateRoute: Routers.generateRoute,
+          initialRoute: SPLASH_ROUTE,
         ),
-        onGenerateRoute: Routers.generateRoute,
-        initialRoute: SPLASH_ROUTE,
       ),
     );
   }

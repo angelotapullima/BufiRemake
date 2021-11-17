@@ -32,7 +32,7 @@ class UserLoginBloc extends Bloc<UserLoginEvent, UserLoginState> {
         yield LoggedState(code: success.code);
       });
     } else if (event is SkipLoginEvent) {
-      yield LoggedState(code: '112');
+      yield LoggedState(code:'11');
     }
   }
 }

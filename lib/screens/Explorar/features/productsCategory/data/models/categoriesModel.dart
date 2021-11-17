@@ -19,6 +19,6 @@ class CategoriesModel extends CategoriesEntities {
         idCategory: json["idCategory"],
         categoryName: json["categoryName"],
         categoryImage: json["categoryImage"],
-        categoryEstado: json["hair_color"],
+        categoryEstado: json["categoryEstado"],
       );
 }

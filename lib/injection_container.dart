@@ -6,8 +6,6 @@ import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/data
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/repositories/productsCategory_repository_impl.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/repositories/productsCategory_repository.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/usecases/get_productsCategory.dart';
-import 'package:bufi_remake/screens/Explorar/features/productsCategory/presentation/bloc/productscategory_bloc.dart';
-import 'package:bufi_remake/screens/features/login/presentation/blocs/user_login/user_login_state.dart';
 import 'package:bufi_remake/screens/features/splash/data/datasources/splash_local_datasource.dart';
 import 'package:bufi_remake/screens/features/splash/data/repositories/splash_repository_impl.dart';
 import 'package:bufi_remake/screens/features/splash/domain/repositories/splash_repository.dart';
@@ -24,6 +22,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
 
+import 'screens/Explorar/features/productsCategory/domain/usecases/get_productsSubcategory.dart';
+import 'screens/Explorar/features/productsCategory/presentation/bloc/Categories/categories_bloc.dart';
 import 'screens/features/login/presentation/blocs/user_login/user_login_bloc.dart';
 
 final sl = GetIt.instance; //sl is referred to as Service Locator
@@ -47,12 +47,14 @@ Future<void> init() async {
     )..add(CheckLoginStatusEvent()),
   );
 
-  //ProductsCategory
+  //Category
   sl.registerFactory(
-    () => ProductscategoryBloc(
+    () => CategoriesBloc(
       getProductsCategory: sl(),
+      getProductsSubCategory: sl(),
     ),
   );
+
 
   //###################################
   //Use cases
@@ -65,6 +67,7 @@ Future<void> init() async {
 
   //ProductsCategory
   sl.registerLazySingleton(() => GetProductsCategory(productCategoryRepository: sl()));
+  sl.registerLazySingleton(() => GetProductsSubCategory(productCategoryRepository: sl()));
 
   //##################################
   //Repositories
