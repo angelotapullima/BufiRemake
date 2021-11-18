@@ -8,6 +8,8 @@ abstract class ProductSubCategoryLocalDatasource {
 }
 
 class ProductSubCategoryLocalDatasourceImpl implements ProductSubCategoryLocalDatasource {
+  final dbprovider = DatabaseHelper.instance;
+
   static const String tableSubCategorySql = 'CREATE TABLE $_tableName2('
       '$_id2 TEXT PRIMARY KEY, '
       '$_name2 TEXT, '
@@ -19,7 +21,7 @@ class ProductSubCategoryLocalDatasourceImpl implements ProductSubCategoryLocalDa
   @override
   Future<void> insertSubCategory(SubCategoriesModel subCategory) async {
     try {
-      final Database db = await getDatabase();
+      final Database db = await dbprovider.getDatabase();
       await db.rawInsert("INSERT OR REPLACE INTO SubCategory (idSubCategory,nameSubCategory,idCategory) "
           "VALUES('${subCategory.idSubCategory}', '${subCategory.subCategoryName}', '${subCategory.idCategory}')");
     } catch (e) {
@@ -30,7 +32,7 @@ class ProductSubCategoryLocalDatasourceImpl implements ProductSubCategoryLocalDa
   @override
   Future<List<SubCategoriesModel>> getSubCategories(String idCategory) async {
     try {
-      final Database db = await getDatabase();
+      final Database db = await dbprovider.getDatabase();
       List<SubCategoriesModel> list = [];
       List<Map> maps = await db.rawQuery("SELECT * FROM SubCategory WHERE idCategory ='$idCategory' order by idSubCategory");
 

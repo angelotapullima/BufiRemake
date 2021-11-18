@@ -1,3 +1,7 @@
+
+
+
+
 import 'package:bufi_remake/core/database/databd_config.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/models/categoriesModel.dart';
 import 'package:sqflite/sqflite.dart';
@@ -9,6 +13,9 @@ abstract class ProductCategoryLocalDataSource {
 }
 
 class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSource {
+
+  final dbprovider = DatabaseHelper.instance;
+
   static const String tableSql = 'CREATE TABLE $_tableName('
       '$_id TEXT PRIMARY KEY, '
       '$_name TEXT, '
@@ -23,7 +30,7 @@ class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSour
   @override
   Future<void> insertCategory(CategoriesModel category) async {
     try {
-      final Database db = await getDatabase();
+      final Database db = await dbprovider.getDatabase();
       await db.rawInsert("INSERT OR REPLACE INTO Category (idCategory,categoryName,categoryEstado,categoryImage) "
           "VALUES('${category.idCategory}', '${category.categoryName}', '${category.categoryEstado}', '${category.categoryImage}')");
     } catch (e) {
@@ -34,7 +41,8 @@ class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSour
   @override
   Future<List<CategoriesModel>> getCategories() async {
     try {
-      final Database db = await getDatabase();
+      
+      final Database db = await dbprovider.getDatabase();
       List<CategoriesModel> list = [];
       List<Map> maps = await db.rawQuery("SELECT * FROM Category order by idCategory");
 

@@ -8,6 +8,9 @@ abstract class ProductItemSubCategoryLocalDataSource {
 }
 
 class ProductItemSubCategoryLocalDataSourceImpl implements ProductItemSubCategoryLocalDataSource {
+
+  final dbprovider = DatabaseHelper.instance;
+
   static const String tableiTEMSubCategorySql = 'CREATE TABLE $_tableName('
       '$_id TEXT PRIMARY KEY, '
       '$_name TEXT, '
@@ -24,7 +27,9 @@ class ProductItemSubCategoryLocalDataSourceImpl implements ProductItemSubCategor
   @override
   Future<void> insertItemSubCategory(ItemSubCategoriesModel itemSubCategory) async {
     try {
-      final Database db = await getDatabase();
+      
+
+      final Database db = await dbprovider.getDatabase();
       await db.rawInsert(
           "INSERT OR REPLACE INTO ItemSubCategory (id_itemsubcategory,itemsubcategory_name,itemsubcategory_img,itemsubcategory_estado,id_subcategory) "
           "VALUES('${itemSubCategory.idItemSubCategory}', '${itemSubCategory.nameItemSubCategory}', '${itemSubCategory.imagenItemSubCategory}', '${itemSubCategory.estadoItemSubCategory}', '${itemSubCategory.idSubCategory}')");
@@ -36,7 +41,9 @@ class ProductItemSubCategoryLocalDataSourceImpl implements ProductItemSubCategor
   @override
   Future<List<ItemSubCategoriesModel>> getItemSubCategories(String idSubCategory) async {
     try {
-      final Database db = await getDatabase();
+      
+
+      final Database db = await dbprovider.getDatabase();
       List<ItemSubCategoriesModel> list = [];
       List<Map> maps = await db.rawQuery("SELECT * FROM ItemSubCategory WHERE id_subcategory='$idSubCategory' order by id_itemsubcategory");
 
