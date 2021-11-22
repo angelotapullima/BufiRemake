@@ -5,6 +5,7 @@ import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/data
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/datasources/Subcategory/productsSubCategory_local_datasource.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/data/repositories/productsCategory_repository_impl.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/repositories/productsCategory_repository.dart';
+import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/usecases/get_productitemSubCategory.dart';
 import 'package:bufi_remake/screens/Explorar/features/productsCategory/domain/usecases/get_productsCategory.dart';
 import 'package:bufi_remake/screens/features/splash/data/datasources/splash_local_datasource.dart';
 import 'package:bufi_remake/screens/features/splash/data/repositories/splash_repository_impl.dart';
@@ -52,6 +53,7 @@ Future<void> init() async {
     () => CategoriesBloc(
       getProductsCategory: sl(),
       getProductsSubCategory: sl(),
+      getProductsItemSubCategory: sl(),
     ),
   );
 
@@ -68,6 +70,7 @@ Future<void> init() async {
   //ProductsCategory
   sl.registerLazySingleton(() => GetProductsCategory(productCategoryRepository: sl()));
   sl.registerLazySingleton(() => GetProductsSubCategory(productCategoryRepository: sl()));
+  sl.registerLazySingleton(() => GetProductsItemSubCategory(productCategoryRepository: sl()));
 
   //##################################
   //Repositories

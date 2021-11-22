@@ -16,16 +16,6 @@ class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSour
 
   final dbprovider = DatabaseHelper.instance;
 
-  static const String tableSql = 'CREATE TABLE $_tableName('
-      '$_id TEXT PRIMARY KEY, '
-      '$_name TEXT, '
-      '$_estado TEXT,'
-      '$_img TEXT)';
-  static const String _tableName = 'Category';
-  static const String _id = 'idCategory';
-  static const String _name = 'categoryName';
-  static const String _estado = 'categoryEstado';
-  static const String _img = 'categoryImage';
 
   @override
   Future<void> insertCategory(CategoriesModel category) async {

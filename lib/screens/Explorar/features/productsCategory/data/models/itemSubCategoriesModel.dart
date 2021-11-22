@@ -17,7 +17,7 @@ class ItemSubCategoriesModel extends ItemSubCateriesEntities {
 
   static List<ItemSubCategoriesModel> fromJsonList(List<dynamic> json) => json.map((i) => ItemSubCategoriesModel.fromJson(i)).toList();
 
-  factory ItemSubCategoriesModel.fromJson(Map<dynamic, String> json) => ItemSubCategoriesModel(
+  factory ItemSubCategoriesModel.fromJson(Map<dynamic, dynamic> json) => ItemSubCategoriesModel(
         idItemSubCategory: json["idItemSubCategory"],
         nameItemSubCategory: json["nameItemSubCategory"],
         imagenItemSubCategory: json["imagenItemSubCategory"],

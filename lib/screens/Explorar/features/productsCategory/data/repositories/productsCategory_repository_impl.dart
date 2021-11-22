@@ -29,7 +29,7 @@ class ProductCategoryRepositoryImpl implements ProductCategoryRepository {
 
   @override
   Future<Either<Failure, List<CategoriesEntities>>> getCategories() async {
-    if (!await networkInfo!.isConnected) {
+    if (await networkInfo!.isConnected) {
       try {
         final remoteListCategory = await productsCategoryRemoteDataSource!.getCategories();
 
@@ -90,6 +90,16 @@ class ProductCategoryRepositoryImpl implements ProductCategoryRepository {
     try {
       final localListSubCategory = await productSubCategoryLocalDataSource!.getSubCategories(idCategory!);
       return Right(localListSubCategory);
+    } on CacheException {
+      return Left(CacheFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<ItemSubCategoriesModel>>> getitemSubCategories(String? idSubCategory)async {
+     try {
+      final localListItemSubCategory = await productItemSubCategoryLocalDataSource!.getItemSubCategories(idSubCategory!);
+      return Right(localListItemSubCategory);
     } on CacheException {
       return Left(CacheFailure());
     }

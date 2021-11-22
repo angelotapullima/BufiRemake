@@ -10,14 +10,6 @@ abstract class ProductSubCategoryLocalDatasource {
 class ProductSubCategoryLocalDatasourceImpl implements ProductSubCategoryLocalDatasource {
   final dbprovider = DatabaseHelper.instance;
 
-  static const String tableSubCategorySql = 'CREATE TABLE $_tableName2('
-      '$_id2 TEXT PRIMARY KEY, '
-      '$_name2 TEXT, '
-      '$_id TEXT)';
-  static const String _tableName2 = 'SubCategory';
-  static const String _id2 = 'idSubCategory';
-  static const String _name2 = 'nameSubCategory';
-  static const String _id = 'idCategory';
   @override
   Future<void> insertSubCategory(SubCategoriesModel subCategory) async {
     try {

@@ -30,6 +30,17 @@ class ListaSubCategorias extends CategoriesState {
   List<Object> get props => [listSubCategories,nombreCategoria];
 }
 
+class ListaItemSubCategorias extends CategoriesState {
+  final String idCategory;
+
+  final List<ItemSubCategoriesModel> listItemSubCategories;
+  final String nombreSubCategoria;
+  ListaItemSubCategorias({required this.idCategory, required this.listItemSubCategories, required this.nombreSubCategoria});
+
+  @override
+  List<Object> get props => [idCategory,listItemSubCategories,nombreSubCategoria];
+}
+
 class Error extends CategoriesState {
   final String message;
 
