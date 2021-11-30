@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:bufi_remake/core/error/failures.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/data/models/itemSubCategoriesModel.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/data/models/subCategoriesModel.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/categoriesEntities.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/usecases/get_productitemSubCategory.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/usecases/get_productsCategory.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/usecases/get_productsSubcategory.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/models/itemSubCategoriesModel.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/models/subCategoriesModel.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/categoriesEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/usecases/get_productitemSubCategory.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/usecases/get_productsCategory.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/usecases/get_productsSubcategory.dart';
 import 'package:equatable/equatable.dart';
 
 part 'categories_event.dart';

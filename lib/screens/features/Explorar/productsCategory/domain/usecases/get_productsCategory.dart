@@ -1,7 +1,7 @@
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/core/usecases/usecase.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/categoriesEntities.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/repositories/productsCategory_repository.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/categoriesEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/repositories/productsCategory_repository.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 

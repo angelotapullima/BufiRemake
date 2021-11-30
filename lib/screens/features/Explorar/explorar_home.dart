@@ -1,12 +1,12 @@
 import 'package:bufi_remake/core/config/colors.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/presentation/pages/productsCategory.dart';
+import 'package:bufi_remake/screens/features/Explorar/Company/presentation/pages/companyExplorer.dart';
+import 'package:bufi_remake/screens/features/Explorar/ServicesCategory/presentation/pages/servicesCategory.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/presentation/pages/productsCategory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import 'features/Company/presentation/pages/companyExplorer.dart';
-import 'features/ServicesCategory/presentation/pages/servicesCategory.dart';
 
 class ExplorarHome extends StatefulWidget {
   const ExplorarHome({Key? key}) : super(key: key);

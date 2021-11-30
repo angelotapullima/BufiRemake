@@ -1,7 +1,7 @@
 import 'package:bufi_remake/core/error/failures.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/data/models/itemSubCategoriesModel.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/data/models/subCategoriesModel.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/categoriesEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/models/itemSubCategoriesModel.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/models/subCategoriesModel.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/categoriesEntities.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class ProductCategoryRepository {

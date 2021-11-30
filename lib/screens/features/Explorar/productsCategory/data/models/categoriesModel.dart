@@ -1,6 +1,6 @@
 
 
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/categoriesEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/categoriesEntities.dart';
 
 class CategoriesModel extends CategoriesEntities {
   CategoriesModel({

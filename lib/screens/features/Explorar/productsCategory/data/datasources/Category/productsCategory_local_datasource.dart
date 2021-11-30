@@ -3,7 +3,7 @@
 
 
 import 'package:bufi_remake/core/database/databd_config.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/data/models/categoriesModel.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/models/categoriesModel.dart';
 import 'package:sqflite/sqflite.dart';
 
 abstract class ProductCategoryLocalDataSource {

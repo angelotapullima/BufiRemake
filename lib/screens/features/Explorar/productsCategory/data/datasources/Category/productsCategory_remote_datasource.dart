@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/util/constants.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/categoriesEntities.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/dataGeneralEntities.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/itemSubCategoriesEntities.dart';
-import 'package:bufi_remake/screens/features/Explorar/features/productsCategory/domain/entities/subCategoriesEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/categoriesEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/dataGeneralEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/itemSubCategoriesEntities.dart';
+import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/entities/subCategoriesEntities.dart';
 import 'package:http/http.dart' as http;
 
 abstract class ProductsCategoryRemoteDataSource {
