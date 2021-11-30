@@ -1,30 +1,31 @@
+
 import 'package:bufi_remake/core/network/network_info.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/datasources/Category/productsCategory_local_datasource.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/datasources/Category/productsCategory_remote_datasource.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/datasources/ItemSubcategory/productsItemSubCategory_local_datasource.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/datasources/Subcategory/productsSubCategory_local_datasource.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/data/repositories/productsCategory_repository_impl.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/repositories/productsCategory_repository.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/usecases/get_productitemSubCategory.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/usecases/get_productsCategory.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/domain/usecases/get_productsSubcategory.dart';
-import 'package:bufi_remake/screens/features/Explorar/productsCategory/presentation/bloc/Categories/categories_bloc.dart';
-import 'package:bufi_remake/screens/features/splash/data/datasources/splash_local_datasource.dart';
-import 'package:bufi_remake/screens/features/splash/data/repositories/splash_repository_impl.dart';
-import 'package:bufi_remake/screens/features/splash/domain/repositories/splash_repository.dart';
-import 'package:bufi_remake/screens/features/splash/domain/usecases/fetch_token.dart';
-import 'package:bufi_remake/screens/features/login/data/datasources/login_local_datasource.dart';
-import 'package:bufi_remake/screens/features/login/data/datasources/login_remote_datasource.dart';
-import 'package:bufi_remake/screens/features/login/data/repositories/login_repository_impl.dart';
-import 'package:bufi_remake/screens/features/login/domain/repositories/login_repository.dart';
-import 'package:bufi_remake/screens/features/login/domain/usecases/login_user.dart';
-import 'package:bufi_remake/screens/features/splash/presentation/bloc/splas_bloc/splash_bloc.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Category/productsCategory_local_datasource.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Category/productsCategory_remote_datasource.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/ItemSubcategory/productsItemSubCategory_local_datasource.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Subcategory/productsSubCategory_local_datasource.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/repositories/productsCategory_repository_impl.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/repositories/productsCategory_repository.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_productitemSubCategory.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_productsCategory.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_productsSubcategory.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/presentation/bloc/Categories/categories_bloc.dart';
+import 'package:bufi_remake/features/splash/data/datasources/splash_local_datasource.dart';
+import 'package:bufi_remake/features/splash/data/repositories/splash_repository_impl.dart';
+import 'package:bufi_remake/features/splash/domain/repositories/splash_repository.dart';
+import 'package:bufi_remake/features/splash/domain/usecases/fetch_token.dart';
+import 'package:bufi_remake/features/login/data/datasources/login_local_datasource.dart';
+import 'package:bufi_remake/features/login/data/datasources/login_remote_datasource.dart';
+import 'package:bufi_remake/features/login/data/repositories/login_repository_impl.dart';
+import 'package:bufi_remake/features/login/domain/repositories/login_repository.dart';
+import 'package:bufi_remake/features/login/domain/usecases/login_user.dart';
+import 'package:bufi_remake/features/splash/presentation/bloc/splas_bloc/splash_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
-import 'screens/features/login/presentation/blocs/user_login/user_login_bloc.dart';
+import 'features/login/presentation/blocs/user_login/user_login_bloc.dart';
 
 final sl = GetIt.instance; //sl is referred to as Service Locator
 
