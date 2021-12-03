@@ -4,7 +4,7 @@ import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 
-abstract class ProductCategoryRepository {
+abstract class ExplorarRepository {
   Future<Either<Failure, List<CategoriesEntities>>> getCategories();
   Future<Either<Failure, List<SubCategoriesModel>>> getSubCategories(String ? idCategory);
   Future<Either<Failure, List<ItemSubCategoriesModel>>> getitemSubCategories(String ? idSubCategory);

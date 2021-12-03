@@ -1,7 +1,7 @@
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/itemSubCategoriesModel.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/subCategoriesModel.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/categoriesEntities.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/presentation/bloc/Categories/categories_bloc.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/presentation/bloc/Categories/explorar_bloc.dart';
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/core/widgets/connection_error.dart';
 import 'package:bufi_remake/core/widgets/progress.dart';
@@ -25,9 +25,9 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
     return Scaffold(
       backgroundColor: colorPrimary,
       body: BlocProvider(
-        create: (_) => sl<CategoriesBloc>()..add(GetCategoriesBlocEvent()),
+        create: (_) => sl<ExplorarBloc>()..add(GetCategoriesBlocEvent()),
         child: Center(
-          child: BlocBuilder<CategoriesBloc, CategoriesState>(
+          child: BlocBuilder<ExplorarBloc, ExplorarState>(
             builder: (context, state) {
               if (state is Empty) {
                 return SizedBox(
@@ -59,7 +59,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
                       centerTitle: true,
                       leading: BackButton(
                         onPressed: () {
-                          BlocProvider.of<CategoriesBloc>(context).add(
+                          BlocProvider.of<ExplorarBloc>(context).add(
                             GetCategoriesBlocEvent(),
                           );
                         },
@@ -79,7 +79,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
                       leading: BackButton(
                         onPressed: () {
                           print(state.idCategory);
-                          BlocProvider.of<CategoriesBloc>(context).add(
+                          BlocProvider.of<ExplorarBloc>(context).add(
                             GetSubCategoriesBlocEvent( state.idCategory,state.nombreSubCategoria),
                           );
                         },
@@ -106,7 +106,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            BlocProvider.of<CategoriesBloc>(context).add(
+            BlocProvider.of<ExplorarBloc>(context).add(
               GetSubCategoriesBlocEvent(
                 '${list[index].idCategory}',
                 '${list[index].categoryName}',
@@ -152,7 +152,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            BlocProvider.of<CategoriesBloc>(context).add(
+            BlocProvider.of<ExplorarBloc>(context).add(
               GetItemSubCategoriesBlocEvent(
                 '${list[index].idCategory}',
                 '${list[index].subCategoryName}',

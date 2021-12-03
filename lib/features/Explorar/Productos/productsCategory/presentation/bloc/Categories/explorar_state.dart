@@ -1,17 +1,17 @@
-part of 'categories_bloc.dart';
+part of 'explorar_bloc.dart';
 
-abstract class CategoriesState extends Equatable {
+abstract class ExplorarState extends Equatable {
   @override
   List<Object> get props => [];
 }
 
-class ProductscategoryInitial extends CategoriesState {}
+class ProductscategoryInitial extends ExplorarState {}
 
-class Empty extends CategoriesState {}
+class Empty extends ExplorarState {}
 
-class Loading extends CategoriesState {}
+class Loading extends ExplorarState {}
 
-class ListaCategorias extends CategoriesState {
+class ListaCategorias extends ExplorarState {
   final List<CategoriesEntities> listCategories;
 
   ListaCategorias({required this.listCategories});
@@ -20,7 +20,7 @@ class ListaCategorias extends CategoriesState {
   List<Object> get props => [listCategories];
 }
 
-class ListaSubCategorias extends CategoriesState {
+class ListaSubCategorias extends ExplorarState {
   final List<SubCategoriesModel> listSubCategories;
   final String nombreCategoria;
 
@@ -30,7 +30,7 @@ class ListaSubCategorias extends CategoriesState {
   List<Object> get props => [listSubCategories,nombreCategoria];
 }
 
-class ListaItemSubCategorias extends CategoriesState {
+class ListaItemSubCategorias extends ExplorarState {
   final String idCategory;
 
   final List<ItemSubCategoriesModel> listItemSubCategories;
@@ -41,7 +41,7 @@ class ListaItemSubCategorias extends CategoriesState {
   List<Object> get props => [idCategory,listItemSubCategories,nombreSubCategoria];
 }
 
-class Error extends CategoriesState {
+class Error extends ExplorarState {
   final String message;
 
   Error({required this.message});

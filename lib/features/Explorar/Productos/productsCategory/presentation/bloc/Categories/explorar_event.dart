@@ -1,22 +1,22 @@
-part of 'categories_bloc.dart';
+part of 'explorar_bloc.dart';
 
-abstract class CategoriesEvent extends Equatable {
+abstract class ExplorarEvent extends Equatable {
   @override
   List<Object> get props => [];
 
   get idCategory => null;
 }
 
-class GetCategoriesBlocEvent extends CategoriesEvent {}
+class GetCategoriesBlocEvent extends ExplorarEvent {}
 
-class GetSubCategoriesBlocEvent extends CategoriesEvent {
+class GetSubCategoriesBlocEvent extends ExplorarEvent {
   final String idCategory;
   final String nombreCategoria;
 
   GetSubCategoriesBlocEvent(this.idCategory, this.nombreCategoria);
 }
 
-class GetItemSubCategoriesBlocEvent extends CategoriesEvent {
+class GetItemSubCategoriesBlocEvent extends ExplorarEvent {
   final String idCategory;
   final String nombreSubCategoria;
   final String idSubCategory;

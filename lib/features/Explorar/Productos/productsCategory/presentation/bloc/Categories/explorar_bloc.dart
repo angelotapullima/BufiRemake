@@ -1,29 +1,26 @@
 import 'package:bloc/bloc.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/subCategoriesModel.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_productitemSubCategory.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_productsCategory.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_productsSubcategory.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_itemSubCategory.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_category.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/usecases/get_subcategory.dart';
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/categoriesEntities.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/categoriesEntities.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/categoriesEntities.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/itemSubCategoriesModel.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/categoriesEntities.dart';
 import 'package:equatable/equatable.dart';
 
-part 'categories_event.dart';
-part 'categories_state.dart';
+part 'explorar_event.dart';
+part 'explorar_state.dart';
 
-class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
-  final GetProductsCategory getProductsCategory;
-  final GetProductsSubCategory getProductsSubCategory;
-  final GetProductsItemSubCategory getProductsItemSubCategory;
+class ExplorarBloc extends Bloc<ExplorarEvent, ExplorarState> {
+  final GetCategory getProductsCategory;
+  final GetSubCategory getProductsSubCategory;
+  final GetItemSubCategory getProductsItemSubCategory;
 
-  CategoriesBloc({required this.getProductsItemSubCategory, required this.getProductsSubCategory, required this.getProductsCategory}) : super(ProductscategoryInitial());
+  ExplorarBloc({required this.getProductsItemSubCategory, required this.getProductsSubCategory, required this.getProductsCategory}) : super(ProductscategoryInitial());
 
   @override
-  Stream<CategoriesState> mapEventToState(
-    CategoriesEvent event,
+  Stream<ExplorarState> mapEventToState(
+    ExplorarEvent event,
   ) async* {
     if (event is GetCategoriesBlocEvent) {
       yield Loading();

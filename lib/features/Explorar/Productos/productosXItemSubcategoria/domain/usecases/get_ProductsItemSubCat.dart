@@ -1,12 +1,6 @@
 
 
-
-
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/itemSubCategoriesModel.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/repositories/productsCategory_repository.dart';
-import 'package:bufi_remake/core/error/failures.dart';
-import 'package:bufi_remake/core/usecases/usecase.dart';
-import 'package:dartz/dartz.dart';
+/* 
 
 class GetProductsItemSubCategory implements UseCase<List<ItemSubCategoriesModel>, ItemSubcategoryParams> {
   final ProductCategoryRepository? productCategoryRepository;
@@ -26,3 +20,7 @@ class ItemSubcategoryParams {
 
   List<Object?> get props => [idSubCategory];
 }
+
+
+
+ */

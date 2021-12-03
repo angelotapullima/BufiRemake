@@ -8,11 +8,11 @@ import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:http/http.dart' as http;
 
-abstract class ProductsCategoryRemoteDataSource {
+abstract class ExplorarRemoteDataSource {
   Future<DataGeneralEntities> getCategories();
 }
 
-class ProductsCategoryRemoteDataSourceImpl implements ProductsCategoryRemoteDataSource {
+class ProductsCategoryRemoteDataSourceImpl implements ExplorarRemoteDataSource {
   final http.Client? client;
 
   ProductsCategoryRemoteDataSourceImpl({required this.client});

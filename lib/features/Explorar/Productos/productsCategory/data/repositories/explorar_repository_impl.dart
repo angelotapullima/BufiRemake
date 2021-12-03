@@ -1,24 +1,24 @@
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Category/productsCategory_local_datasource.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Category/productsCategory_remote_datasource.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Category/explorar_local_datasource.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Category/explorar_remote_datasource.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/ItemSubcategory/productsItemSubCategory_local_datasource.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/datasources/Subcategory/productsSubCategory_local_datasource.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/categoriesModel.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/itemSubCategoriesModel.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/subCategoriesModel.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/categoriesEntities.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/repositories/productsCategory_repository.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/repositories/explorar_repository.dart';
 import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/network/network_info.dart';import 'package:bufi_remake/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 
-class ProductCategoryRepositoryImpl implements ProductCategoryRepository {
-  final ProductCategoryLocalDataSource? productCategoryLocalDataSource;
+class ExplorarRepositoryImpl implements ExplorarRepository {
+  final ExplorarLocalDataSource? productCategoryLocalDataSource;
   final ProductSubCategoryLocalDatasource? productSubCategoryLocalDataSource;
   final ProductItemSubCategoryLocalDataSource? productItemSubCategoryLocalDataSource;
-  final ProductsCategoryRemoteDataSource? productsCategoryRemoteDataSource;
+  final ExplorarRemoteDataSource? productsCategoryRemoteDataSource;
   final NetworkInfo? networkInfo;
 
-  ProductCategoryRepositoryImpl({
+  ExplorarRepositoryImpl({
     required this.productCategoryLocalDataSource,
     required this.productItemSubCategoryLocalDataSource,
     required this.productSubCategoryLocalDataSource,

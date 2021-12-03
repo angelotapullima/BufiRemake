@@ -3,15 +3,15 @@
 
 
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/models/subCategoriesModel.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/repositories/productsCategory_repository.dart';
+import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/repositories/explorar_repository.dart';
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/core/usecases/usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class GetProductsSubCategory implements UseCase<List<SubCategoriesModel>, SubcategoryParams> {
-  final ProductCategoryRepository? productCategoryRepository;
+class GetSubCategory implements UseCase<List<SubCategoriesModel>, SubcategoryParams> {
+  final ExplorarRepository? productCategoryRepository;
 
-  GetProductsSubCategory({this.productCategoryRepository});
+  GetSubCategory({this.productCategoryRepository});
 
   @override
   Future<Either<Failure, List<SubCategoriesModel>>> call(SubcategoryParams params) async {

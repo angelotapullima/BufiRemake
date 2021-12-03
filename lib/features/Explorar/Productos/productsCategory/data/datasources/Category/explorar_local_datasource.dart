@@ -6,13 +6,13 @@ import 'package:bufi_remake/features/Explorar/Productos/productsCategory/data/mo
 import 'package:bufi_remake/core/database/databd_config.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class ProductCategoryLocalDataSource {
+abstract class ExplorarLocalDataSource {
   Future<List<CategoriesModel>> getCategories();
 
   Future<void> insertCategory(CategoriesModel category);
 }
 
-class ProductCategoryLocalDataSourceImpl implements ProductCategoryLocalDataSource {
+class ProductCategoryLocalDataSourceImpl implements ExplorarLocalDataSource {
 
   final dbprovider = DatabaseHelper.instance;
 
