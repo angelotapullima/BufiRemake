@@ -1,6 +1,6 @@
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/core/util/router.dart';
-import 'package:bufi_remake/features/Explorar/explorar_home.dart';
+import 'package:bufi_remake/features/presentation/Explorar/explorar_home.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:bufi_remake/src/pages/home_page.dart';
 import 'package:bufi_remake/src/pages/menu_page.dart';

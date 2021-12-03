@@ -1,6 +1,7 @@
+
+import 'package:bufi_remake/features/presentation/Splash/pages/splash.dart';
+import 'package:bufi_remake/features/presentation/login/page/login.dart';
 import 'package:bufi_remake/main.dart';
-import 'package:bufi_remake/features/login/presentation/page/login.dart';
-import 'package:bufi_remake/features/splash/presentation/pages/splash.dart';
 import 'package:flutter/material.dart'; 
 import 'constants.dart';
 

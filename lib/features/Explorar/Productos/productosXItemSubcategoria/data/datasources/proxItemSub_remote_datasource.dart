@@ -1,4 +1,4 @@
-import 'dart:convert';
+/* import 'dart:convert';
 
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/categoriesEntities.dart';
 import 'package:bufi_remake/features/Explorar/Productos/productsCategory/domain/entities/dataGeneralEntities.dart';
@@ -14,7 +14,7 @@ abstract class ProXItemSubRemoteDataSource {
 
 class ProXItemSubRemoteDataSourceImpl implements ProXItemSubRemoteDataSource {
   final http.Client? client;
-
+/*  */
   ProXItemSubRemoteDataSourceImpl({required this.client});
 
   @override
@@ -42,3 +42,4 @@ class ProXItemSubRemoteDataSourceImpl implements ProXItemSubRemoteDataSource {
     return returnGeneral;
   }
 }
+ */
