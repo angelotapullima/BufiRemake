@@ -1,22 +1,22 @@
 
-import 'package:bufi_remake/features/data/datasources/Explorar/Category/explorar_local_datasource.dart';
-import 'package:bufi_remake/features/data/datasources/Explorar/Category/explorar_remote_datasource.dart';
-import 'package:bufi_remake/features/data/datasources/Explorar/ItemSubcategory/productsItemSubCategory_local_datasource.dart';
-import 'package:bufi_remake/features/data/datasources/Explorar/Subcategory/productsSubCategory_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorar_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorar_remote_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/ItemSubcategory/itemSubCategory_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/Subcategory/subCategory_local_datasource.dart';
 import 'package:bufi_remake/features/data/models/Explorar/Category/categoriesModel.dart';
 import 'package:bufi_remake/features/data/models/Explorar/ItemSubcategory/itemSubCategoriesModel.dart';
 import 'package:bufi_remake/features/data/models/Explorar/SubCategory/subCategoriesModel.dart';
-import 'package:bufi_remake/features/domain/entities/Explorar/categoriesEntities.dart';
+import 'package:bufi_remake/features/domain/entities/Explorer/categoriesEntities.dart';
 import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/network/network_info.dart';
 import 'package:bufi_remake/core/error/failures.dart';
-import 'package:bufi_remake/features/domain/repositories/Explorar/explorar_repository.dart';
+import 'package:bufi_remake/features/domain/repositories/Explorer/explorar_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class ExplorarRepositoryImpl implements ExplorarRepository {
   final ExplorarLocalDataSource? productCategoryLocalDataSource;
-  final ProductSubCategoryLocalDatasource? productSubCategoryLocalDataSource;
-  final ProductItemSubCategoryLocalDataSource? productItemSubCategoryLocalDataSource;
+  final SubCategoryLocalDatasourceImpl? productSubCategoryLocalDataSource;
+  final ItemSubCategoryLocalDataSource? productItemSubCategoryLocalDataSource;
   final ExplorarRemoteDataSource? productsCategoryRemoteDataSource;
   final NetworkInfo? networkInfo;
 
