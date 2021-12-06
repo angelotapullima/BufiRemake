@@ -1,4 +1,4 @@
-import 'package:bufi_remake/features/data/models/Explorar/ProductoPorItemSubcategoria/productoModel.dart';
+/* import 'package:bufi_remake/features/data/models/Explorer/ProductoPorItemSubcategoria/productoModel.dart';
 import 'package:bufi_remake/core/database/databd_config.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -46,3 +46,4 @@ class ProXItemSubLocalDataSourceImpl implements ProXItemSubLocalDataSource {
     }
   }
 }
+ */

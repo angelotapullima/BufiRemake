@@ -2,7 +2,7 @@
 
 
 
-import 'package:bufi_remake/features/data/models/Explorar/Category/categoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/Category/categoriesModel.dart';
 import 'package:bufi_remake/core/database/databd_config.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -12,7 +12,7 @@ abstract class ExplorarLocalDataSource {
   Future<void> insertCategory(CategoriesModel category);
 }
 
-class ProductCategoryLocalDataSourceImpl implements ExplorarLocalDataSource {
+class ExplorarLocalDataSourceImpl implements ExplorarLocalDataSource {
 
   final dbprovider = DatabaseHelper.instance;
 

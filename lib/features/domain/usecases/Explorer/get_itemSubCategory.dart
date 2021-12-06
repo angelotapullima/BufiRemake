@@ -2,20 +2,20 @@
 
 
 
-import 'package:bufi_remake/features/data/models/Explorar/ItemSubcategory/itemSubCategoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/ItemSubcategory/itemSubCategoriesModel.dart';
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/core/usecases/usecase.dart';
-import 'package:bufi_remake/features/domain/repositories/Explorer/explorar_repository.dart';
+import 'package:bufi_remake/features/domain/repositories/Explorer/explorer_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class GetItemSubCategory implements UseCase<List<ItemSubCategoriesModel>, ItemSubcategoryParams> {
-  final ExplorarRepository? productCategoryRepository;
+  final ExplorerRepository? explorerRepository;
 
-  GetItemSubCategory({this.productCategoryRepository});
+  GetItemSubCategory({this.explorerRepository});
 
   @override
   Future<Either<Failure, List<ItemSubCategoriesModel>>> call(ItemSubcategoryParams params) async {
-    return await productCategoryRepository!.getitemSubCategories(params.idSubCategory);
+    return await explorerRepository!.getitemSubCategories(params.idSubCategory);
   }
 }
 

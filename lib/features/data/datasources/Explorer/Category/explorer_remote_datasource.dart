@@ -15,10 +15,10 @@ abstract class ExplorarRemoteDataSource {
   Future<DataGeneralEntities> getCategories();
 }
 
-class ProductsCategoryRemoteDataSourceImpl implements ExplorarRemoteDataSource {
+class ExplorarLocalDataSourceImplDataSourceImpl implements ExplorarRemoteDataSource {
   final http.Client? client;
 
-  ProductsCategoryRemoteDataSourceImpl({required this.client});
+  ExplorarLocalDataSourceImplDataSourceImpl({required this.client});
 
   @override
   Future<DataGeneralEntities> getCategories() async {

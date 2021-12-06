@@ -1,30 +1,30 @@
 
-import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorar_local_datasource.dart';
-import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorar_remote_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorer_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorer_remote_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Explorer/ItemSubcategory/itemSubCategory_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Explorer/Subcategory/subCategory_local_datasource.dart';
-import 'package:bufi_remake/features/data/models/Explorar/Category/categoriesModel.dart';
-import 'package:bufi_remake/features/data/models/Explorar/ItemSubcategory/itemSubCategoriesModel.dart';
-import 'package:bufi_remake/features/data/models/Explorar/SubCategory/subCategoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/Category/categoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/ItemSubcategory/itemSubCategoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/SubCategory/subCategoriesModel.dart';
 import 'package:bufi_remake/features/domain/entities/Explorer/categoriesEntities.dart';
 import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/network/network_info.dart';
 import 'package:bufi_remake/core/error/failures.dart';
-import 'package:bufi_remake/features/domain/repositories/Explorer/explorar_repository.dart';
+import 'package:bufi_remake/features/domain/repositories/Explorer/explorer_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class ExplorarRepositoryImpl implements ExplorarRepository {
-  final ExplorarLocalDataSource? productCategoryLocalDataSource;
-  final SubCategoryLocalDatasourceImpl? productSubCategoryLocalDataSource;
-  final ItemSubCategoryLocalDataSource? productItemSubCategoryLocalDataSource;
-  final ExplorarRemoteDataSource? productsCategoryRemoteDataSource;
+class ExplorerRepositoryImpl implements ExplorerRepository {
+  final ExplorarLocalDataSource? explorarLocalDataSource;
+  final SubCategoryLocalDatasource? subCategoryLocalDatasource;
+  final ItemSubCategoryLocalDataSource? itemSubCategoryLocalDataSource;
+  final ExplorarRemoteDataSource? explorarRemoteDataSource;
   final NetworkInfo? networkInfo;
 
-  ExplorarRepositoryImpl({
-    required this.productCategoryLocalDataSource,
-    required this.productItemSubCategoryLocalDataSource,
-    required this.productSubCategoryLocalDataSource,
-    required this.productsCategoryRemoteDataSource,
+  ExplorerRepositoryImpl({
+    required this.explorarLocalDataSource,
+    required this.itemSubCategoryLocalDataSource,
+    required this.subCategoryLocalDatasource,
+    required this.explorarRemoteDataSource,
     required this.networkInfo,
   });
 
@@ -32,7 +32,7 @@ class ExplorarRepositoryImpl implements ExplorarRepository {
   Future<Either<Failure, List<CategoriesEntities>>> getCategories() async {
     if (await networkInfo!.isConnected) {
       try {
-        final remoteListCategory = await productsCategoryRemoteDataSource!.getCategories();
+        final remoteListCategory = await explorarRemoteDataSource!.getCategories();
 
         for (var i = 0; i < remoteListCategory.listCategories.length; i++) {
           var data = remoteListCategory.listCategories[i];
@@ -44,7 +44,7 @@ class ExplorarRepositoryImpl implements ExplorarRepository {
             categoryEstado: data.categoryEstado,
           );
 
-          await productCategoryLocalDataSource!.insertCategory(cat);
+          await explorarLocalDataSource!.insertCategory(cat);
         }
 
         for (var i = 0; i < remoteListCategory.listSubCategories.length; i++) {
@@ -55,7 +55,7 @@ class ExplorarRepositoryImpl implements ExplorarRepository {
             idCategory: data.idCategory,
           );
 
-          await productSubCategoryLocalDataSource!.insertSubCategory(subCat);
+          await subCategoryLocalDatasource!.insertSubCategory(subCat);
         }
 
         for (var i = 0; i < remoteListCategory.listItemSubCategories.length; i++) {
@@ -69,7 +69,7 @@ class ExplorarRepositoryImpl implements ExplorarRepository {
             idSubCategory: data.idSubCategory,
           );
 
-          await productItemSubCategoryLocalDataSource!.insertItemSubCategory(itemSubCat);
+          await itemSubCategoryLocalDataSource!.insertItemSubCategory(itemSubCat);
         }
 
         return Right(remoteListCategory.listCategories);
@@ -78,7 +78,7 @@ class ExplorarRepositoryImpl implements ExplorarRepository {
       }
     } else {
       try {
-        final localListCategory = await productCategoryLocalDataSource!.getCategories();
+        final localListCategory = await explorarLocalDataSource!.getCategories();
         return Right(localListCategory);
       } on CacheException {
         return Left(CacheFailure());
@@ -89,7 +89,7 @@ class ExplorarRepositoryImpl implements ExplorarRepository {
   @override
   Future<Either<Failure, List<SubCategoriesModel>>> getSubCategories(String? idCategory) async {
     try {
-      final localListSubCategory = await productSubCategoryLocalDataSource!.getSubCategories(idCategory!);
+      final localListSubCategory = await subCategoryLocalDatasource!.getSubCategories(idCategory!);
       return Right(localListSubCategory);
     } on CacheException {
       return Left(CacheFailure());
@@ -99,7 +99,7 @@ class ExplorarRepositoryImpl implements ExplorarRepository {
   @override
   Future<Either<Failure, List<ItemSubCategoriesModel>>> getitemSubCategories(String? idSubCategory)async {
      try {
-      final localListItemSubCategory = await productItemSubCategoryLocalDataSource!.getItemSubCategories(idSubCategory!);
+      final localListItemSubCategory = await itemSubCategoryLocalDataSource!.getItemSubCategories(idSubCategory!);
       return Right(localListItemSubCategory);
     } on CacheException {
       return Left(CacheFailure());

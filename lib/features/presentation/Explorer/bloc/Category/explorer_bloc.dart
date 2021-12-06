@@ -1,36 +1,30 @@
-
-
-
+import 'package:bloc/bloc.dart';
 import 'package:bufi_remake/core/error/failures.dart';
-import 'package:bufi_remake/features/data/models/Explorar/ItemSubcategory/itemSubCategoriesModel.dart';
-import 'package:bufi_remake/features/data/models/Explorar/SubCategory/subCategoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/ItemSubcategory/itemSubCategoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/SubCategory/subCategoriesModel.dart';
 import 'package:bufi_remake/features/domain/entities/Explorer/categoriesEntities.dart';
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_category.dart';
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_itemSubCategory.dart';
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_subcategory.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
+part 'explorer_event.dart';
+part 'explorer_state.dart';
 
-part 'explorar_event.dart';
-part 'explorar_state.dart';
-
-class ExplorarBloc extends Bloc<ExplorarEvent, ExplorarState> {
+class ExplorerBloc extends Bloc<ExplorerEvent, ExplorerState> {
   final GetCategory getProductsCategory;
   final GetSubCategory getProductsSubCategory;
   final GetItemSubCategory getProductsItemSubCategory;
 
-  ExplorarBloc({
+  ExplorerBloc({
     required this.getProductsItemSubCategory,
     required this.getProductsSubCategory,
     required this.getProductsCategory,
-  }) : super(
-          ProductscategoryInitial(),
-        );
+  }) : super(ExplorerInitial());
 
   @override
-  Stream<ExplorarState> mapEventToState(
-    ExplorarEvent event,
+  Stream<ExplorerState> mapEventToState(
+    ExplorerEvent event,
   ) async* {
     if (event is GetCategoriesBlocEvent) {
       yield Loading();

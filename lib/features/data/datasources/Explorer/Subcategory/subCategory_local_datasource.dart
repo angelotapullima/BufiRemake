@@ -1,4 +1,4 @@
-import 'package:bufi_remake/features/data/models/Explorar/SubCategory/subCategoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/SubCategory/subCategoriesModel.dart';
 import 'package:bufi_remake/core/database/databd_config.dart';
 import 'package:sqflite/sqflite.dart';
 

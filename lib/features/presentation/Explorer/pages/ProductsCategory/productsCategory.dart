@@ -1,18 +1,19 @@
-import 'package:bufi_remake/features/data/models/Explorar/ItemSubcategory/itemSubCategoriesModel.dart';
-import 'package:bufi_remake/features/data/models/Explorar/SubCategory/subCategoriesModel.dart';
+
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/core/widgets/connection_error.dart';
 import 'package:bufi_remake/core/widgets/progress.dart';
 import 'package:bufi_remake/core/widgets/unknown_error.dart';
+import 'package:bufi_remake/features/data/models/Explorer/ItemSubcategory/itemSubCategoriesModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/SubCategory/subCategoriesModel.dart';
 import 'package:bufi_remake/features/domain/entities/Explorer/categoriesEntities.dart';
-import 'package:bufi_remake/features/presentation/Explorer/bloc/category/explorar_bloc.dart';
+import 'package:bufi_remake/features/presentation/Explorer/bloc/Category/explorer_bloc.dart';
 import 'package:bufi_remake/features/presentation/Explorer/pages/ProductosPorItemSubcategoria/productosPorItemSubcategoriaPage.dart';
-import 'package:bufi_remake/injection_container.dart';
 import 'package:bufi_remake/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../injection_container.dart';
 class ProductCategoryPage extends StatefulWidget {
   const ProductCategoryPage({Key? key}) : super(key: key);
 
@@ -26,9 +27,9 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
     return Scaffold(
       backgroundColor: colorPrimary,
       body: BlocProvider(
-        create: (_) => sl<ExplorarBloc>()..add(GetCategoriesBlocEvent()),
+        create: (_) => sl<ExplorerBloc>()..add(GetCategoriesBlocEvent()),
         child: Center(
-          child: BlocBuilder<ExplorarBloc, ExplorarState>(
+          child: BlocBuilder<ExplorerBloc, ExplorerState>(
             builder: (context, state) {
               if (state is Empty) {
                 return SizedBox(
@@ -60,7 +61,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
                       centerTitle: true,
                       leading: BackButton(
                         onPressed: () {
-                          BlocProvider.of<ExplorarBloc>(context).add(
+                          BlocProvider.of<ExplorerBloc>(context).add(
                             GetCategoriesBlocEvent(),
                           );
                         },
@@ -80,8 +81,8 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
                       leading: BackButton(
                         onPressed: () {
                           print(state.idCategory);
-                          BlocProvider.of<ExplorarBloc>(context).add(
-                            GetSubCategoriesBlocEvent(state.idCategory, state.nombreSubCategoria),
+                          BlocProvider.of<ExplorerBloc>(context).add(
+                            GetSubCategoriesBlocEvent( state.idCategory,state.nombreSubCategoria),
                           );
                         },
                       ),
@@ -107,7 +108,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            BlocProvider.of<ExplorarBloc>(context).add(
+            BlocProvider.of<ExplorerBloc>(context).add(
               GetSubCategoriesBlocEvent(
                 '${list[index].idCategory}',
                 '${list[index].categoryName}',
@@ -153,7 +154,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
       itemBuilder: (context, index) {
         return InkWell(
           onTap: () {
-            BlocProvider.of<ExplorarBloc>(context).add(
+            BlocProvider.of<ExplorerBloc>(context).add(
               GetItemSubCategoriesBlocEvent(
                 '${list[index].idCategory}',
                 '${list[index].subCategoryName}',
@@ -203,33 +204,23 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
           color: colorPrimary,
           child: Column(
             children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductosPorItemSubcategoriaPage(),
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: ScreenUtil().setWidth(10),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      '${list[index].nameItemSubCategory}',
+                      style: TextStyle(color: Colors.white),
                     ),
-                  );
-                },
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: ScreenUtil().setWidth(10),
-                  ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        '${list[index].nameItemSubCategory}',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      Spacer(),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                      ),
-                    ],
-                  ),
+                    Spacer(),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                    ),
+                  ],
                 ),
               ),
               Divider(thickness: .5, color: Colors.white)

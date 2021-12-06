@@ -1,15 +1,15 @@
 import 'package:bufi_remake/core/network/network_info.dart';
-import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorar_local_datasource.dart';
-import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorar_remote_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorer_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorer_remote_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Explorer/ItemSubcategory/itemSubCategory_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Explorer/Subcategory/subCategory_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Splash/splash_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/login/login_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/login/login_remote_datasource.dart';
-import 'package:bufi_remake/features/data/repositories/Explorar/explorar_repository_impl.dart';
+import 'package:bufi_remake/features/data/repositories/Explorer/explorer_repository_impl.dart';
 import 'package:bufi_remake/features/data/repositories/Splash/splash_repository_impl.dart';
 import 'package:bufi_remake/features/data/repositories/login/login_repository_impl.dart';
-import 'package:bufi_remake/features/domain/repositories/Explorer/explorar_repository.dart';
+import 'package:bufi_remake/features/domain/repositories/Explorer/explorer_repository.dart';
 import 'package:bufi_remake/features/domain/repositories/Splash/splash_repository.dart';
 import 'package:bufi_remake/features/domain/repositories/login/login_repository.dart';
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_category.dart';
@@ -17,7 +17,7 @@ import 'package:bufi_remake/features/domain/usecases/Explorer/get_itemSubCategor
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_subcategory.dart';
 import 'package:bufi_remake/features/domain/usecases/Splash/fetch_token.dart';
 import 'package:bufi_remake/features/domain/usecases/login/login_user.dart';
-import 'package:bufi_remake/features/presentation/Explorer/bloc/category/explorar_bloc.dart';
+import 'package:bufi_remake/features/presentation/Explorer/bloc/Category/explorer_bloc.dart';
 import 'package:bufi_remake/features/presentation/Splash/bloc/splas_bloc/splash_bloc.dart';
 import 'package:bufi_remake/features/presentation/login/blocs/user_login/user_login_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -25,6 +25,8 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
+
+import 'features/domain/usecases/Explorer/get_category.dart';
 
 final sl = GetIt.instance; //sl is referred to as Service Locator
 
@@ -49,7 +51,7 @@ Future<void> init() async {
 
   //Category
   sl.registerFactory(
-    () => ExplorarBloc(
+    () => ExplorerBloc(
       getProductsCategory: sl(),
       getProductsSubCategory: sl(),
       getProductsItemSubCategory: sl(),
@@ -66,9 +68,9 @@ Future<void> init() async {
   sl.registerLazySingleton(() => FetchToken(repository: sl()));
 
   //ProductsCategory
-  sl.registerLazySingleton(() => GetCategory(productCategoryRepository: sl()));
-  sl.registerLazySingleton(() => GetSubCategory(productCategoryRepository: sl()));
-  sl.registerLazySingleton(() => GetItemSubCategory(productCategoryRepository: sl()));
+  sl.registerLazySingleton(() => GetCategory(explorerRepository: sl()));
+  sl.registerLazySingleton(() => GetSubCategory(explorerRepository: sl()));
+  sl.registerLazySingleton(() => GetItemSubCategory(explorerRepository: sl()));
 
   //##################################
   //Repositories
@@ -91,12 +93,12 @@ Future<void> init() async {
   );
 
   //ProductsCategory
-  sl.registerLazySingleton<ExplorarRepository>(
-    () => ExplorarRepositoryImpl(
-      productCategoryLocalDataSource: sl(),
-      productsCategoryRemoteDataSource: sl(),
-      productSubCategoryLocalDataSource: sl(),
-      productItemSubCategoryLocalDataSource: sl(),
+  sl.registerLazySingleton<ExplorerRepository>(
+    () => ExplorerRepositoryImpl(
+      subCategoryLocalDatasource: sl(),
+      explorarLocalDataSource: sl(),
+      itemSubCategoryLocalDataSource: sl(),
+      explorarRemoteDataSource: sl(),
       networkInfo: sl(),
     ),
   );
@@ -125,7 +127,7 @@ Future<void> init() async {
 
 //ProductsCategory
   sl.registerLazySingleton<ExplorarLocalDataSource>(
-    () => ProductCategoryLocalDataSourceImpl(),
+    () => ExplorarLocalDataSourceImpl(),
   );
   sl.registerLazySingleton<SubCategoryLocalDatasource>(
     () => SubCategoryLocalDatasourceImpl(),
@@ -135,7 +137,7 @@ Future<void> init() async {
   );
 
   sl.registerLazySingleton<ExplorarRemoteDataSource>(
-    () => ProductsCategoryRemoteDataSourceImpl(client: sl()),
+    () => ExplorarLocalDataSourceImplDataSourceImpl(client: sl()),
   );
 
   //########################################################################
