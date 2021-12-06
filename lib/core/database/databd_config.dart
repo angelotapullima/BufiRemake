@@ -15,6 +15,7 @@ class DatabaseHelper {
       db.execute(tableItemSubCategorySql);
       db.execute(tableSubCategorySql);
       db.execute(tableProductoSql);
+      db.execute(tablePublicidadSql);
       //db.execute(VehiclesLocalDataSourceImpl.tableSql); */
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
@@ -58,4 +59,14 @@ class DatabaseHelper {
       'productoUpdated VARCHAR,'
       'productoStatus VARCHAR,'
       'productoFavourite VARCHAR)';
+
+  static const String tablePublicidadSql = 'CREATE TABLE Publicidad('
+      'idPublicidad TEXT PRIMARY KEY, '
+      'idCity TEXT, '
+      'idSubsidiary TEXT,'
+      'publicidadImagen TEXT,'
+      'publicidadOrden TEXT,'
+      'publicidadDateTime TEXT,'
+      'publicidadEstado TEXT,'
+      'idPago TEXT)';
 }
