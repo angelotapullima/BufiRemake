@@ -5,7 +5,7 @@ import 'package:bufi_remake/core/widgets/connection_error.dart';
 import 'package:bufi_remake/core/widgets/progress.dart';
 import 'package:bufi_remake/core/widgets/unknown_error.dart';
 import 'package:bufi_remake/features/domain/entities/Explorar/categoriesEntities.dart';
-import 'package:bufi_remake/features/presentation/Explorar/bloc/Categories/explorar_bloc.dart';
+import 'package:bufi_remake/features/presentation/Explorar/bloc/categories/explorar_bloc.dart';
 import 'package:bufi_remake/injection_container.dart';
 import 'package:bufi_remake/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';

@@ -2,12 +2,12 @@ import 'package:bufi_remake/features/data/models/Explorar/ItemSubcategory/itemSu
 import 'package:bufi_remake/core/database/databd_config.dart';
 import 'package:sqflite/sqflite.dart';
 
-abstract class ProductItemSubCategoryLocalDataSource {
+abstract class ItemSubCategoryLocalDataSource {
   Future<void> insertItemSubCategory(ItemSubCategoriesModel itemSubCategory);
   Future<List<ItemSubCategoriesModel>> getItemSubCategories(String idSubCategory);
 }
 
-class ProductItemSubCategoryLocalDataSourceImpl implements ProductItemSubCategoryLocalDataSource {
+class ItemSubCategoryLocalDataSourceImpl implements ItemSubCategoryLocalDataSource {
 
   final dbprovider = DatabaseHelper.instance;
 

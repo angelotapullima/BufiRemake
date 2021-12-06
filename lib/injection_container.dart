@@ -1,8 +1,8 @@
 import 'package:bufi_remake/core/network/network_info.dart';
 import 'package:bufi_remake/features/data/datasources/Explorar/Category/explorar_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Explorar/Category/explorar_remote_datasource.dart';
-import 'package:bufi_remake/features/data/datasources/Explorar/ItemSubcategory/productsItemSubCategory_local_datasource.dart';
-import 'package:bufi_remake/features/data/datasources/Explorar/Subcategory/productsSubCategory_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorar/ItemSubcategory/itemSubCategory_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorar/Subcategory/subCategory_local_datasource.dart';
 import 'package:bufi_remake/features/data/repositories/Explorar/explorar_repository_impl.dart';
 import 'package:bufi_remake/features/data/datasources/Splash/splash_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/login/login_local_datasource.dart';
@@ -17,7 +17,7 @@ import 'package:bufi_remake/features/domain/usecases/Explorar/get_itemSubCategor
 import 'package:bufi_remake/features/domain/usecases/Explorar/get_subcategory.dart';
 import 'package:bufi_remake/features/domain/usecases/Splash/fetch_token.dart';
 import 'package:bufi_remake/features/domain/usecases/login/login_user.dart';
-import 'package:bufi_remake/features/presentation/Explorar/bloc/Categories/explorar_bloc.dart';
+import 'package:bufi_remake/features/presentation/Explorar/bloc/categories/explorar_bloc.dart';
 import 'package:bufi_remake/features/presentation/Splash/bloc/splas_bloc/splash_bloc.dart';
 import 'package:bufi_remake/features/presentation/login/blocs/user_login/user_login_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -127,11 +127,11 @@ Future<void> init() async {
   sl.registerLazySingleton<ExplorarLocalDataSource>(
     () => ProductCategoryLocalDataSourceImpl(),
   );
-  sl.registerLazySingleton<ProductSubCategoryLocalDatasource>(
-    () => ProductSubCategoryLocalDatasourceImpl(),
+  sl.registerLazySingleton<SubCategoryLocalDatasource>(
+    () => SubCategoryLocalDatasourceImpl(),
   );
-  sl.registerLazySingleton<ProductItemSubCategoryLocalDataSource>(
-    () => ProductItemSubCategoryLocalDataSourceImpl(),
+  sl.registerLazySingleton<ItemSubCategoryLocalDataSource>(
+    () => ItemSubCategoryLocalDataSourceImpl(),
   );
 
   sl.registerLazySingleton<ExplorarRemoteDataSource>(

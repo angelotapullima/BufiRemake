@@ -1,7 +1,7 @@
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/core/usecases/usecase.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productosXItemSubcategoria/data/models/productoModel.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productosXItemSubcategoria/domain/repositories/proxItemSub_repository.dart';
+import 'package:bufi_remake/features/data/models/Explorar/ProductoPorItemSubcategoria/productoModel.dart';
+import 'package:bufi_remake/features/domain/repositories/Explorar/productosPorItemSubcategoria/proxItemSub_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class GetProductsItemSubCategory implements UseCase<List<ProductoModel>, ItemSubcategoryParams> {

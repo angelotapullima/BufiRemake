@@ -1,7 +1,7 @@
 import 'package:bufi_remake/core/config/colors.dart';
-import 'package:bufi_remake/features/Explorar/Company/presentation/pages/companyExplorer.dart';
-import 'package:bufi_remake/features/Explorar/ServicesCategory/presentation/pages/servicesCategory.dart';
-import 'package:bufi_remake/features/presentation/Explorar/pages/productsCategory.dart';
+import 'package:bufi_remake/features/presentation/Explorar/pages/CompanyExplorer/companyExplorer.dart';
+import 'package:bufi_remake/features/presentation/Explorar/pages/ServicesCategory/servicesCategory.dart';
+import 'package:bufi_remake/features/presentation/Explorar/pages/ProductsCategory/productsCategory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';

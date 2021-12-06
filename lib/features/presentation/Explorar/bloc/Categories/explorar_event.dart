@@ -1,4 +1,6 @@
-part of 'explorar_bloc.dart';
+
+
+
 
 abstract class ExplorarEvent extends Equatable {
   @override

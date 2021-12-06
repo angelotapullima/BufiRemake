@@ -1,6 +1,6 @@
 
 
-import 'package:bufi_remake/features/Explorar/Productos/productosXItemSubcategoria/domain/entities/productosEntities.dart';
+import 'package:bufi_remake/features/domain/entities/Explorar/productosEntities.dart';
 
 class ProductoModel extends ProductosEntities{
 
