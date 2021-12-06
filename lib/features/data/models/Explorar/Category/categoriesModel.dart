@@ -2,7 +2,7 @@
 
 
 
-import 'package:bufi_remake/features/domain/entities/Explorar/categoriesEntities.dart';
+import 'package:bufi_remake/features/domain/entities/Explorer/categoriesEntities.dart';
 
 class CategoriesModel extends CategoriesEntities {
 

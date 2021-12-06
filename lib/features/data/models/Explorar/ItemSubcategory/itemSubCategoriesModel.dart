@@ -1,7 +1,7 @@
 
 
 
-import 'package:bufi_remake/features/domain/entities/Explorar/itemSubCategoriesEntities.dart';
+import 'package:bufi_remake/features/domain/entities/Explorer/itemSubCategoriesEntities.dart';
 
 class ItemSubCategoriesModel extends ItemSubCateriesEntities {
   ItemSubCategoriesModel({
