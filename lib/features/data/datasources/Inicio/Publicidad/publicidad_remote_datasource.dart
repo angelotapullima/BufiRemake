@@ -16,7 +16,9 @@ class PublicidadRemoteDataSourceImpl implements PublicidadRemoteDataSource {
     final List<PublicidadEntities> listPublicidad = [];
 
     final url = '$API_BASE_URL/api/Inicio/publicidad';
-    final response = await client!.post(Uri.parse(url), body: {});
+    final response = await client!.post(Uri.parse(url), body: {
+      'id_ciudad': '1',
+    });
     if (response.statusCode != 200) {
       throw ServerException();
     }

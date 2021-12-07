@@ -1,6 +1,7 @@
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/core/util/router.dart';
 import 'package:bufi_remake/features/presentation/Explorer/explorar_home.dart';
+import 'package:bufi_remake/features/presentation/Inicio/inicio_home.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:bufi_remake/src/pages/home_page.dart';
 import 'package:bufi_remake/src/pages/menu_page.dart';
@@ -24,12 +25,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-        providers: [
-          ChangeNotifierProvider<ChangeBottomExplorer>(
-            create: (_) => ChangeBottomExplorer(),
-          ),
-           
-        ],
+      providers: [
+        ChangeNotifierProvider<ChangeBottomExplorer>(
+          create: (_) => ChangeBottomExplorer(),
+        ),
+        ChangeNotifierProvider<ChangeBottomInicio>(
+          create: (_) => ChangeBottomInicio(),
+        ),
+      ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
         builder: () => MaterialApp(
@@ -90,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case MenuItems.card:
         return TarjetaPage();
       case MenuItems.home:
-        return HomePage();
+        return InicioPage();
       case MenuItems.explore:
         return ExplorarHome();
       default:

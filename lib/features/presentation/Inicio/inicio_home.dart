@@ -1,35 +1,35 @@
 import 'package:bufi_remake/core/config/colors.dart';
-import 'package:bufi_remake/features/presentation/Explorer/pages/CompanyExplorer/companyExplorer.dart';
-import 'package:bufi_remake/features/presentation/Explorer/pages/ServicesCategory/servicesCategory.dart';
-import 'package:bufi_remake/features/presentation/Explorer/pages/ProductsCategory/productsCategory.dart';
+import 'package:bufi_remake/features/presentation/Inicio/pages/Carrito/carrito_page.dart';
+import 'package:bufi_remake/features/presentation/Inicio/pages/Favoritos/favoritos_page.dart';
+import 'package:bufi_remake/features/presentation/Inicio/pages/Home/home_page.dart';
+import 'package:bufi_remake/features/presentation/Inicio/pages/Notificaciones/notificaciones_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-class ExplorarHome extends StatefulWidget {
-  const ExplorarHome({Key? key}) : super(key: key);
+class InicioPage extends StatefulWidget {
+  InicioPage({Key? key}) : super(key: key);
 
   @override
-  _ExplorarHomeState createState() => _ExplorarHomeState();
+  _InicioPageState createState() => _InicioPageState();
 }
 
-class _ExplorarHomeState extends State<ExplorarHome> {
+class _InicioPageState extends State<InicioPage> {
   List<Widget> pageList = [];
 
   @override
   void initState() {
-    pageList.add(ProductCategoryPage());
-    pageList.add(ServicesCategoryPage());
-    pageList.add(CompanyExplorer());
-    //pageList.add(UserPage());
-
+    pageList.add(HomePage());
+    pageList.add(FavoritosPage());
+    pageList.add(CarritoPage());
+    pageList.add(NotificacionesPage());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ChangeBottomExplorer>(context, listen: false);
+    final provider = Provider.of<ChangeBottomInicio>(context, listen: false);
     return Scaffold(
       backgroundColor: colorPrimary,
       body: ValueListenableBuilder<int>(
@@ -84,15 +84,11 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              height: ScreenUtil().setSp(35),
-                              width: ScreenUtil().setSp(35),
+                              height: ScreenUtil().setHeight(24),
+                              width: ScreenUtil().setWidth(24),
                               child: (value == 0)
-                                  ? SvgPicture.asset(
-                                      'assets/svg/tabExplorer/box_product_b.svg',
-                                    )
-                                  : SvgPicture.asset(
-                                      'assets/svg/tabExplorer/box_product_w.svg',
-                                    ), //Imagsset('assets/logo_largo.svg'),
+                                  ? SvgPicture.asset('assets/svg/tabInicio/home_b.svg')
+                                  : SvgPicture.asset('assets/svg/tabInicio/home_w.svg'),
                             ),
                           ],
                         ),
@@ -105,15 +101,11 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              height: ScreenUtil().setSp(35),
-                              width: ScreenUtil().setSp(35),
+                              height: ScreenUtil().setHeight(24),
+                              width: ScreenUtil().setWidth(24),
                               child: (value == 1)
-                                  ? SvgPicture.asset(
-                                      'assets/svg/tabExplorer/tool_services_b.svg',
-                                    )
-                                  : SvgPicture.asset(
-                                      'assets/svg/tabExplorer/tool_services_w.svg',
-                                    ), //Imagsset('assets/logo_largo.svg'),
+                                  ? SvgPicture.asset('assets/svg/tabInicio/heart_b.svg')
+                                  : SvgPicture.asset('assets/svg/tabInicio/heart_w.svg'),
                             ),
                           ],
                         ),
@@ -126,15 +118,28 @@ class _ExplorarHomeState extends State<ExplorarHome> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              height: ScreenUtil().setSp(35),
-                              width: ScreenUtil().setSp(35),
+                              height: ScreenUtil().setHeight(24),
+                              width: ScreenUtil().setWidth(24),
                               child: (value == 2)
-                                  ? SvgPicture.asset(
-                                      'assets/svg/tabExplorer/company_b.svg',
-                                    )
-                                  : SvgPicture.asset(
-                                      'assets/svg/tabExplorer/company_w.svg',
-                                    ), //Imagsset('assets/logo_largo.svg'),
+                                  ? SvgPicture.asset('assets/svg/tabInicio/shoping_car_b.svg')
+                                  : SvgPicture.asset('assets/svg/tabInicio/shoping_car_w.svg'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          provider.changePage(3);
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: ScreenUtil().setHeight(24),
+                              width: ScreenUtil().setWidth(24),
+                              child: (value == 3)
+                                  ? SvgPicture.asset('assets/svg/tabInicio/bell_b.svg')
+                                  : SvgPicture.asset('assets/svg/tabInicio/bell_w.svg'),
                             ),
                           ],
                         ),
@@ -151,7 +156,7 @@ class _ExplorarHomeState extends State<ExplorarHome> {
   }
 }
 
-class ChangeBottomExplorer extends ChangeNotifier {
+class ChangeBottomInicio extends ChangeNotifier {
   ValueNotifier<int> page = ValueNotifier(0);
   ValueNotifier<int> get _pagina => this.page;
 

@@ -53,6 +53,10 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   #use svg
   flutter_svg: ^0.21.0+1
+  #image cached
+  cached_network_image: ^3.2.0
+  #carousel
+  carousel_slider: ^4.0.0
     
 
 dev_dependencies:
@@ -74,6 +78,7 @@ flutter:
   assets:
     - assets/svg/
     - assets/svg/tabExplorer/
+    - assets/svg/tabInicio/
     - assets/img/
 
   # An image asset can refer to one or more resolution-specific "variants", see

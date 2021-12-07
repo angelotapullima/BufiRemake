@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/features/domain/entities/Inicio/publicidadEntities.dart';
 import 'package:bufi_remake/features/domain/usecases/Inicio/get_publicidad.dart';
-import 'package:bufi_remake/features/presentation/Explorer/bloc/Category/explorer_bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'publicidad_event.dart';
@@ -14,7 +13,7 @@ class PublicidadBloc extends Bloc<PublicidadEvent, PublicidadState> {
 
   @override
   Stream<PublicidadState> mapEventToState(PublicidadEvent event) async* {
-    if (event is GetCategoriesBlocEvent) {
+    if (event is GetPublicidadBlocEvent) {
       yield Loading();
       final result = await getPublicidad(PublicidadParams());
 
