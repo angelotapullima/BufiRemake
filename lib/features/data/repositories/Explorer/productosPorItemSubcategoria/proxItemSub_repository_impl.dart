@@ -1,46 +1,36 @@
-/* import 'package:bufi_remake/core/error/exceptions.dart';
+import 'package:bufi_remake/core/error/exceptions.dart';
 import 'package:bufi_remake/core/error/failures.dart';
 import 'package:bufi_remake/core/network/network_info.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productosXItemSubcategoria/data/datasources/proxItemSub_local_datasource.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productosXItemSubcategoria/data/datasources/proxItemSub_remote_datasource.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productosXItemSubcategoria/data/models/productoModel.dart';
-import 'package:bufi_remake/features/Explorar/Productos/productosXItemSubcategoria/domain/repositories/proxItemSub_repository.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/productosPorItemSubcategoria/proxItemSub_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Explorer/productosPorItemSubcategoria/proxItemSub_remote_datasource.dart';
+import 'package:bufi_remake/features/data/models/Explorer/ProductoPorItemSubcategoria/productoModel.dart';
+import 'package:bufi_remake/features/domain/repositories/Explorer/productosPorItemSubcategoria/proxItemSub_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class ProXItemSubRepositoryImpl implements ProXItemSubRepository {
-  final ProXItemSubLocalDataSourceImpl? proXItemSubLocalDataSourceImpl;
+  final ProXItemSubLocalDataSource? proXItemSubLocalDataSource;
   final ProXItemSubRemoteDataSource? proXItemSubRemoteDataSource;
   final NetworkInfo? networkInfo;
 
   ProXItemSubRepositoryImpl({
-    required this.proXItemSubLocalDataSourceImpl,
+    required this.proXItemSubLocalDataSource,
     required this.proXItemSubRemoteDataSource,
     required this.networkInfo,
   });
 
   @override
   Future<Either<Failure, List<ProductoModel>>> getProductosPorItemSubcategoria(String? idItemSubCat) async {
-    try {
-      final localListItemSubCategory = await proXItemSubLocalDataSourceImpl!.getProductosPorItemSubcategoria(idItemSubCat!);
-      return Right(localListItemSubCategory);
-    } on CacheException {
-      return Left(CacheFailure());
-    }
-  }
-
-  @override
-  Future<Either<Failure, List<ProductoModel>>> getProductosPorItemSubcategoriaPaginado(String? idItemSubCat, String? pagina) async {
     if (await networkInfo!.isConnected) {
       try {
-        final remoteListCategory = await proXItemSubRemoteDataSource!.getCategories();
+        final remoteListCategory = await proXItemSubRemoteDataSource!.getProductsForItemSub(idItemSubCat!);
 
-        return Right([]);
+        return Right(remoteListCategory);
       } on ServerException {
         return Left(ServerFailure());
       }
     } else {
       try {
-        final localListCategory = await proXItemSubLocalDataSourceImpl!.getProductosPorItemSubcategoria(idItemSubCat!);
+        final localListCategory = await proXItemSubLocalDataSource!.getProductosPorItemSubcategoria(idItemSubCat!);
         return Right(localListCategory);
       } on CacheException {
         return Left(CacheFailure());
@@ -48,4 +38,3 @@ class ProXItemSubRepositoryImpl implements ProXItemSubRepository {
     }
   }
 }
- */

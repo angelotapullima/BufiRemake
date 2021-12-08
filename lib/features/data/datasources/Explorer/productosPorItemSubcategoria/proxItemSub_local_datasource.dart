@@ -1,4 +1,4 @@
-/* import 'package:bufi_remake/features/data/models/Explorer/ProductoPorItemSubcategoria/productoModel.dart';
+import 'package:bufi_remake/features/data/models/Explorer/ProductoPorItemSubcategoria/productoModel.dart';
 import 'package:bufi_remake/core/database/databd_config.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -27,7 +27,7 @@ class ProXItemSubLocalDataSourceImpl implements ProXItemSubLocalDataSource {
           "'${producto.productoSize}', '${producto.productoStock}','${producto.productoMeasure}',"
           " '${producto.productoRating}','${producto.productoUpdated}', '${producto.productoStatus}', '${producto.productoFavourite}')");
     } catch (e) {
-      print("$e Error en la tabla Categoria ");
+      print("$e Error en la tabla insertProducts ");
     }
   }
 
@@ -46,4 +46,3 @@ class ProXItemSubLocalDataSourceImpl implements ProXItemSubLocalDataSource {
     }
   }
 }
- */

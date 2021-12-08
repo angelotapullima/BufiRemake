@@ -7,7 +7,7 @@ import 'package:bufi_remake/features/data/models/Explorer/ItemSubcategory/itemSu
 import 'package:bufi_remake/features/data/models/Explorer/SubCategory/subCategoriesModel.dart';
 import 'package:bufi_remake/features/domain/entities/Explorer/categoriesEntities.dart';
 import 'package:bufi_remake/features/presentation/Explorer/bloc/Category/explorer_bloc.dart';
-import 'package:bufi_remake/features/presentation/Explorer/pages/ProductosPorItemSubcategoria/productosPorItemSubcategoriaPage.dart';
+import 'package:bufi_remake/features/presentation/Explorer/pages/ProductosPorItemSubcategoria/productsForItemSubcatPage.dart';
 import 'package:bufi_remake/src/widgets/menu_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
