@@ -3,21 +3,27 @@ import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorer
 import 'package:bufi_remake/features/data/datasources/Explorer/Category/explorer_remote_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Explorer/ItemSubcategory/itemSubCategory_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Explorer/Subcategory/subCategory_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Inicio/Publicidad/publicidad_local_datasource.dart';
+import 'package:bufi_remake/features/data/datasources/Inicio/Publicidad/publicidad_remote_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/Splash/splash_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/login/login_local_datasource.dart';
 import 'package:bufi_remake/features/data/datasources/login/login_remote_datasource.dart';
 import 'package:bufi_remake/features/data/repositories/Explorer/explorer_repository_impl.dart';
+import 'package:bufi_remake/features/data/repositories/Inicio/inicio_repository_impl.dart';
 import 'package:bufi_remake/features/data/repositories/Splash/splash_repository_impl.dart';
 import 'package:bufi_remake/features/data/repositories/login/login_repository_impl.dart';
 import 'package:bufi_remake/features/domain/repositories/Explorer/explorer_repository.dart';
+import 'package:bufi_remake/features/domain/repositories/Inicio/inicio_repository.dart';
 import 'package:bufi_remake/features/domain/repositories/Splash/splash_repository.dart';
 import 'package:bufi_remake/features/domain/repositories/login/login_repository.dart';
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_category.dart';
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_itemSubCategory.dart';
 import 'package:bufi_remake/features/domain/usecases/Explorer/get_subcategory.dart';
+import 'package:bufi_remake/features/domain/usecases/Inicio/get_publicidad.dart';
 import 'package:bufi_remake/features/domain/usecases/Splash/fetch_token.dart';
 import 'package:bufi_remake/features/domain/usecases/login/login_user.dart';
 import 'package:bufi_remake/features/presentation/Explorer/bloc/Category/explorer_bloc.dart';
+import 'package:bufi_remake/features/presentation/Inicio/blocs/publicidad/publicidad_bloc.dart';
 import 'package:bufi_remake/features/presentation/Splash/bloc/splas_bloc/splash_bloc.dart';
 import 'package:bufi_remake/features/presentation/login/blocs/user_login/user_login_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -58,6 +64,13 @@ Future<void> init() async {
     ),
   );
 
+  //Publicidad
+  sl.registerFactory(
+    () => PublicidadBloc(
+      getPublicidad: sl(),
+    ),
+  );
+
   //###################################
   //Use cases
 
@@ -71,6 +84,13 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GetCategory(explorerRepository: sl()));
   sl.registerLazySingleton(() => GetSubCategory(explorerRepository: sl()));
   sl.registerLazySingleton(() => GetItemSubCategory(explorerRepository: sl()));
+
+  //Publicidad
+  sl.registerLazySingleton(
+    () => GetPublicidad(
+      publicidadRepository: sl(),
+    ),
+  );
 
   //##################################
   //Repositories
@@ -99,6 +119,15 @@ Future<void> init() async {
       explorarLocalDataSource: sl(),
       itemSubCategoryLocalDataSource: sl(),
       explorarRemoteDataSource: sl(),
+      networkInfo: sl(),
+    ),
+  );
+
+  //Publicidad
+  sl.registerLazySingleton<InicioRepository>(
+    () => InicioRepositoryImpl(
+      publicidadLocalDataSource: sl(),
+      publicidadRemoteDataSource: sl(),
       networkInfo: sl(),
     ),
   );
@@ -138,6 +167,17 @@ Future<void> init() async {
 
   sl.registerLazySingleton<ExplorarRemoteDataSource>(
     () => ExplorarLocalDataSourceImplDataSourceImpl(client: sl()),
+  );
+
+//Publicidad
+
+  sl.registerLazySingleton<PublicidadLocalDataSource>(
+    () => PublicidadLocalDataSourceImpl(),
+  );
+  sl.registerLazySingleton<PublicidadRemoteDataSource>(
+    () => PublicidadRemoteDataSourceImpl(
+      client: sl(),
+    ),
   );
 
   //########################################################################
