@@ -1,8 +1,7 @@
-
-import 'package:bufi_remake/features/presentation/Splash/pages/splash.dart';
-import 'package:bufi_remake/features/presentation/login/page/login.dart';
 import 'package:bufi_remake/main.dart';
-import 'package:flutter/material.dart'; 
+import 'package:bufi_remake/src/pages/loginPage.dart';
+import 'package:bufi_remake/src/pages/splash.dart';
+import 'package:flutter/material.dart';
 import 'constants.dart';
 
 class Routers {
@@ -12,9 +11,9 @@ class Routers {
         return MaterialPageRoute(builder: (_) => LoginPage());
       case HOME_ROUTE:
         return MaterialPageRoute(builder: (_) => MyHomePage());
-        case SPLASH_ROUTE:
+      case SPLASH_ROUTE:
         return MaterialPageRoute(builder: (_) => Splash());
-       
+
       default:
         return MaterialPageRoute(builder: (_) => LoginPage());
     }

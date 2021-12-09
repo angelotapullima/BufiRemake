@@ -27,12 +27,10 @@ dependencies:
 
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-  # Service locator
-  get_it: ^7.2.0
+   
   # Bloc for state management
   flutter_bloc: ^7.3.3
-  provider:
-  # Value equality
+  provider: 
   equatable: ^2.0.3
   # Functional programming thingies
   dartz: ^0.10.0

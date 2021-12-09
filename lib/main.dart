@@ -1,7 +1,6 @@
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/core/util/router.dart';
-import 'package:bufi_remake/features/presentation/Explorer/explorar_home.dart';
-import 'package:bufi_remake/features/presentation/Inicio/inicio_home.dart';
+import 'package:bufi_remake/src/pages/Explorar/explorar_home.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:bufi_remake/src/pages/home_page.dart';
 import 'package:bufi_remake/src/pages/menu_page.dart';
@@ -11,12 +10,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 //import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
-import 'injection_container.dart' as di; //Dependency injector
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await di.init(); //Inject all the dependencies and wait for it is done (i.e. UI won't built until all the dependencies are injected)
-  //_setupLogging();
+  
   runApp(MyApp());
 }
 
@@ -29,9 +26,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ChangeBottomExplorer>(
           create: (_) => ChangeBottomExplorer(),
         ),
-        ChangeNotifierProvider<ChangeBottomInicio>(
-          create: (_) => ChangeBottomInicio(),
-        ),
+        
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),
@@ -93,9 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case MenuItems.card:
         return TarjetaPage();
       case MenuItems.home:
-        return InicioPage();
+        return TarjetaPage();
       case MenuItems.explore:
-        return ExplorarHome();
+        return TarjetaPage();
       default:
         return HomePage();
     }
