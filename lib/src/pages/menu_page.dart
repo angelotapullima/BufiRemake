@@ -1,8 +1,6 @@
 import 'package:bufi_remake/core/config/colors.dart';
-import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:bufi_remake/src/pages/logout_page.dart';
-import 'package:bufi_remake/src/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
