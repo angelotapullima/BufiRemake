@@ -13,7 +13,7 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   runApp(MyApp());
 }
 
@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<ChangeBottomExplorer>(
           create: (_) => ChangeBottomExplorer(),
         ),
-        
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

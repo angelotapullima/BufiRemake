@@ -1,7 +1,8 @@
 import 'package:bufi_remake/core/config/colors.dart';
-import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
+import 'package:bufi_remake/src/pages/logout_page.dart';
+import 'package:bufi_remake/src/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,7 +40,7 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final widgets = MenuItems.all
         .map(
-          (item) => construirItem(item,context),
+          (item) => construirItem(item, context),
         )
         .toList();
 
@@ -99,8 +100,10 @@ class MenuPage extends StatelessWidget {
                 SizedBox(
                   height: ScreenUtil().setHeight(20),
                 ),
-                Column(children: widgets,)
-                
+                Column(
+                  children: widgets,
+                )
+
                 //...MenuItems.all.map(construirItem).toList(),
                 // Spacer(
                 //   flex: 2,
@@ -113,12 +116,33 @@ class MenuPage extends StatelessWidget {
     );
   }
 
-  Widget construirItem(MenuItem item,BuildContext context) {
+  Widget construirItem(MenuItem item, BuildContext context) {
     return InkWell(
       onTap: () {
         if (item.orden == 9) {
-          StorageManager.deleteAllData();
-          Navigator.pushNamedAndRemoveUntil(context, LOGIN_ROUTE, (r) => false);
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              opaque: false,
+              pageBuilder: (context, animation, secondaryAnimation) {
+                return LogoutPage();
+              },
+              // transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              //   var begin = Offset(0.0, 1.0);
+              //   var end = Offset.zero;
+              //   var curve = Curves.ease;
+
+              //   var tween = Tween(begin: begin, end: end).chain(
+              //     CurveTween(curve: curve),
+              //   );
+
+              //   return SlideTransition(
+              //     position: animation.drive(tween),
+              //     child: child,
+              //   );
+              // },
+            ),
+          );
         } else {
           print(item.orden);
           onSelectItem!(item);
