@@ -1,6 +1,7 @@
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:bufi_remake/src/pages/logout_page.dart';
+import 'package:bufi_remake/src/widgets/info_user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -54,39 +55,7 @@ class MenuPage extends StatelessWidget {
                 SizedBox(
                   height: ScreenUtil().setHeight(8),
                 ),
-                Container(
-                  height: ScreenUtil().setHeight(80),
-                  width: ScreenUtil().setWidth(80),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  height: ScreenUtil().setHeight(24),
-                ),
-                Text(
-                  'BufeoTec',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: ScreenUtil().setSp(18),
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: -0.017,
-                  ),
-                ),
-                SizedBox(
-                  height: ScreenUtil().setHeight(14),
-                ),
-                Text(
-                  'bufeotec@gmail.com',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: ScreenUtil().setSp(14),
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: -0.017,
-                  ),
-                ),
-
+                InfoUser(),
                 SizedBox(
                   height: ScreenUtil().setHeight(22),
                 ),

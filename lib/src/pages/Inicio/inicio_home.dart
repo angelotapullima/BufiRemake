@@ -1,4 +1,8 @@
-/* import 'package:bufi_remake/core/config/colors.dart';
+import 'package:bufi_remake/core/config/colors.dart';
+import 'package:bufi_remake/src/pages/Inicio/carrito/carrito_page.dart';
+import 'package:bufi_remake/src/pages/Inicio/favorito/favorito_page.dart';
+import 'package:bufi_remake/src/pages/Inicio/home/home_page.dart';
+import 'package:bufi_remake/src/pages/Inicio/notificaciones/notificaciones_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -162,4 +166,3 @@ class ChangeBottomInicio extends ChangeNotifier {
     notifyListeners();
   }
 }
- */

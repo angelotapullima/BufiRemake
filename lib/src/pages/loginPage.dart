@@ -245,6 +245,10 @@ class _LoginPageState extends State<LoginPage> {
                 builder: (context, snapshot) {
                   return ShowLoadding(
                     active: _controller.loadding,
+                    h: double.infinity,
+                    w: double.infinity,
+                    fondo: Colors.black.withOpacity(.3),
+                    colorText: Colors.black,
                   );
                 }),
           ],
