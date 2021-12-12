@@ -1,6 +1,5 @@
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/core/util/utils.dart';
-import 'package:bufi_remake/core/widgets/custom_snak_bar.dart';
 import 'package:bufi_remake/src/api/login_api.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:flutter/material.dart';
