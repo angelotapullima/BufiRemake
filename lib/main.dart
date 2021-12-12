@@ -1,18 +1,20 @@
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/core/util/router.dart';
+import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/pages/Explorar/explorar_home.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
-import 'package:bufi_remake/src/pages/home_page.dart';
+import 'package:bufi_remake/src/pages/Inicio/inicio_home.dart';
 import 'package:bufi_remake/src/pages/menu_page.dart';
 import 'package:bufi_remake/src/pages/tarjeta_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
-//import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
+import 'injection_container.dart' as di;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
+  await di.init();
 
   runApp(MyApp());
 }
@@ -21,22 +23,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<ChangeBottomExplorer>(
-          create: (_) => ChangeBottomExplorer(),
-        ),
-      ],
-      child: ScreenUtilInit(
-        designSize: const Size(375, 812),
-        builder: () => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Bufi',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
+    return ProviderBloc(
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ChangeBottomInicio>(
+            create: (_) => ChangeBottomInicio(),
           ),
-          onGenerateRoute: Routers.generateRoute,
-          initialRoute: SPLASH_ROUTE,
+          ChangeNotifierProvider<ChangeBottomExplorer>(
+            create: (_) => ChangeBottomExplorer(),
+          ),
+        ],
+        child: ScreenUtilInit(
+          designSize: const Size(375, 812),
+          builder: () => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Bufi',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            onGenerateRoute: Routers.generateRoute,
+            initialRoute: SPLASH_ROUTE,
+          ),
         ),
       ),
     );
@@ -87,11 +94,11 @@ class _MyHomePageState extends State<MyHomePage> {
       case MenuItems.card:
         return TarjetaPage();
       case MenuItems.home:
-        return TarjetaPage();
+        return InicioPage();
       case MenuItems.explore:
         return TarjetaPage();
       default:
-        return HomePage();
+        return InicioPage();
     }
   }
 }

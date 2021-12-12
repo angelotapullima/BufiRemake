@@ -1,5 +1,5 @@
+import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
 import 'package:bufi_remake/core/util/constants.dart';
-import 'package:bufi_remake/src/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 
 class Splash extends StatefulWidget {
@@ -13,7 +13,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
-      String? token = await Preferences.readData('token');
+      String? token = await StorageManager.readData('token');
       if (token == null || token.isEmpty) {
         Navigator.pushNamed(context, LOGIN_ROUTE);
       } else {

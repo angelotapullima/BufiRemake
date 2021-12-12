@@ -1,6 +1,5 @@
+import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
 import 'package:bufi_remake/core/util/constants.dart';
-import 'package:bufi_remake/core/util/utils.dart';
-import 'package:bufi_remake/src/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -89,7 +88,7 @@ class _LogoutPageState extends State<LogoutPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          Preferences.deleteAllData();
+                          StorageManager.deleteAllData();
                           Navigator.pushNamedAndRemoveUntil(context, LOGIN_ROUTE, (r) => false);
                         },
                         child: Text(
@@ -114,10 +113,9 @@ class _LogoutPageState extends State<LogoutPage> {
   }
 
   void firstName() async {
-    String? nomb = await Preferences.readData('personName');
+    String? nomb = await StorageManager.readData('personName');
     if (nomb!.length > 0) {
       var nombres = nomb.split(' ');
-      print(nombres[0]);
       nombre = nombres[0];
       setState(() {});
     }
