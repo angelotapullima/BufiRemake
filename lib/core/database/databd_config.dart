@@ -38,7 +38,7 @@ class DatabaseHelper {
       'imagenItemSubCategory TEXT,'
       'idSubCategory TEXT)';
 
-  static const String tableProductoSql = 'CREATE TABLE Producto ('
+  static const String tableProductoSql = 'CREATE TABLE Producto('
       'idProducto VARCHAR  PRIMARY KEY,'
       'idSubsidiary VARCHAR,'
       'idGood VARCHAR,'
@@ -69,4 +69,37 @@ class DatabaseHelper {
       'publicidadDateTime TEXT,'
       'publicidadEstado TEXT,'
       'idPago TEXT)';
+
+  static const String tablePantallaPrincipalSql = 'CREATE TABLE PantallaPrincipal('
+      'idPantalla VARCHAR PRIMARY KEY,'
+      'nombre VARCHAR,'
+      'tipo VARCHAR'
+      ')';
+
+  static const String tableProductosPantallaPrincipalSql = 'CREATE TABLE ProductosPantallaPrincipal('
+      'idProducto VARCHAR PRIMARY KEY,'
+      'idPantalla VARCHAR'
+      ')';
+
+  static const String tableCompanySql = 'CREATE TABLE Company('
+      'idCompany VARCHAR PRIMARY KEY,'
+      'idUser VARCHAR,'
+      'idCity VARCHAR,'
+      'idCategory VARCHAR,'
+      'companyName VARCHAR,'
+      'companyRuc VARCHAR,'
+      'companyImage VARCHAR,'
+      'companyType VARCHAR,'
+      'companyShortcode VARCHAR,'
+      'companyDeliveryPropio VARCHAR,'
+      'companyDelivery VARCHAR,'
+      'companyEntrega VARCHAR,'
+      'companyTarjeta VARCHAR,'
+      'companyVerified VARCHAR,'
+      'companyRating VARCHAR,'
+      'companyCreatedAt VARCHAR,'
+      'companyJoin VARCHAR,'
+      'companyStatus VARCHAR,'
+      'miNegocio VARCHAR,'
+      ')';
 }
