@@ -26,4 +26,17 @@ class ProductosPantallaPrincipalDatabase {
       return [];
     }
   }
+
+  Future<List<ProductosPantallaPrincipalModel>> getProductosPantallaPrincipalByIdPantalla(String idPantalla) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<ProductosPantallaPrincipalModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM ProductosPantallaPrincipal WHERE idPantalla='$idPantalla' ORDER BY cast(idProducto as int)");
+      if (maps.length > 0) list = ProductosPantallaPrincipalModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      print('Error el la base de datos productos pantalla principal al listar: $e');
+      return [];
+    }
+  }
 }

@@ -1,5 +1,4 @@
 import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
-import 'package:bufi_remake/core/util/constants.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

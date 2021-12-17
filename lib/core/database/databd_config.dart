@@ -16,6 +16,9 @@ class DatabaseHelper {
       db.execute(tableSubCategorySql);
       db.execute(tableProductoSql);
       db.execute(tablePublicidadSql);
+      db.execute(tablePantallaPrincipalSql);
+      db.execute(tableProductosPantallaPrincipalSql);
+      db.execute(tableCompanySql);
       //db.execute(VehiclesLocalDataSourceImpl.tableSql); */
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
@@ -100,6 +103,6 @@ class DatabaseHelper {
       'companyCreatedAt VARCHAR,'
       'companyJoin VARCHAR,'
       'companyStatus VARCHAR,'
-      'miNegocio VARCHAR,'
+      'miNegocio VARCHAR'
       ')';
 }

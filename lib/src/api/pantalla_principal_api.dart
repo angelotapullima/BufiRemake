@@ -38,7 +38,7 @@ class PantallaPrincipalApi {
           pantallaPrincipalModel.idPantalla = dataSecciones['id'].toString();
           await pantallaPrincipalDatabase.insertPantalla(pantallaPrincipalModel);
 
-          for (var x = 0; x < dataSecciones['productos'].length; i++) {
+          for (var x = 0; x < dataSecciones['productos'].length; x++) {
             var dataProductos = dataSecciones['productos'][x];
 
             ProductoModel productoModel = ProductoModel();
@@ -103,6 +103,7 @@ class PantallaPrincipalApi {
 
             ProductosPantallaPrincipalModel productosPantallaModel = ProductosPantallaPrincipalModel();
             productosPantallaModel.idProducto = dataProductos['id_subsidiarygood'];
+
             productosPantallaModel.idPantalla = pantallaPrincipalModel.idPantalla;
             await productosPantallaPrincipalDatabase.insertProductosPantalla(productosPantallaModel);
           }

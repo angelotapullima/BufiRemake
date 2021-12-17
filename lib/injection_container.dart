@@ -9,9 +9,11 @@ final sl = GetIt.instance;
 
 Future<void> init() async {
   // Use cases
-  sl.registerLazySingleton(() => ProviderBloc(
-        child: sl(),
-      ));
+  sl.registerLazySingleton(
+    () => ProviderBloc(
+      child: sl(),
+    ),
+  );
   //! Core
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 

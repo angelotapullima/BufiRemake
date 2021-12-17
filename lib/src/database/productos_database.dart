@@ -39,7 +39,20 @@ class ProductosDatabase {
     try {
       final Database db = await dbprovider.getDatabase();
       List<ProductoModel> list = [];
-      List<Map> maps = await db.rawQuery("SELECT * FROM Producto WHERE idProducto ='$idProducto'");
+      List<Map> maps = await db.rawQuery("SELECT * FROM Producto WHERE idProducto ='$idProducto' ORDER BY cast(idProducto as int)");
+      if (maps.length > 0) list = ProductoModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      print('Error al consultar en la base de datos Productos: $e');
+      return [];
+    }
+  }
+
+  Future<List<ProductoModel>> getProductosByIdItemSubCategoria(String idItemSubcategory) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<ProductoModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM Producto WHERE idItemsubcategory ='$idItemSubcategory' ORDER BY cast(idProducto as int)");
       if (maps.length > 0) list = ProductoModel.fromJsonList(maps);
       return list;
     } catch (e) {
