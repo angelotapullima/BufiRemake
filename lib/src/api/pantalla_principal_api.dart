@@ -36,7 +36,9 @@ class PantallaPrincipalApi {
           pantallaPrincipalModel.nombre = dataSecciones['titulo'].toString();
           pantallaPrincipalModel.tipo = dataSecciones['tipo'].toString();
           pantallaPrincipalModel.idPantalla = dataSecciones['id'].toString();
-          await pantallaPrincipalDatabase.insertPantalla(pantallaPrincipalModel);
+          if (pantallaPrincipalModel.nombre != null) {
+            await pantallaPrincipalDatabase.insertPantalla(pantallaPrincipalModel);
+          }
 
           for (var x = 0; x < dataSecciones['productos'].length; x++) {
             var dataProductos = dataSecciones['productos'][x];
@@ -105,7 +107,9 @@ class PantallaPrincipalApi {
             productosPantallaModel.idProducto = dataProductos['id_subsidiarygood'];
 
             productosPantallaModel.idPantalla = pantallaPrincipalModel.idPantalla;
-            await productosPantallaPrincipalDatabase.insertProductosPantalla(productosPantallaModel);
+            if (dataSecciones['titulo'] != null) {
+              await productosPantallaPrincipalDatabase.insertProductosPantalla(productosPantallaModel);
+            }
           }
         }
         return 1;
