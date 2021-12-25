@@ -1,6 +1,5 @@
 library starwars.app_constants;
 
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 //Dashboard

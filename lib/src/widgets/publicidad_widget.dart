@@ -3,7 +3,6 @@ import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/models/publicidad_model.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -62,22 +61,6 @@ class PublicidadWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            // Positioned(
-                            //   left: 0,
-                            //   right: 0,
-                            //   bottom: 0,
-                            //   child: Container(
-                            //     padding: EdgeInsets.symmetric(
-                            //       horizontal: ScreenUtil().setWidth(10),
-                            //       vertical: ScreenUtil().setHeight(10),
-                            //     ),
-                            //     color: Colors.black.withOpacity(0.5),
-                            //     child: Text(
-                            //       snapshot.data[x].publicidadTitulo,
-                            //       style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(15)),
-                            //     ),
-                            //   ),
-                            // )
                           ],
                         ),
                       ),

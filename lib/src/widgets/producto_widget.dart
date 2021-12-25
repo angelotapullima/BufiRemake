@@ -1,5 +1,4 @@
 import 'package:bufi_remake/core/config/colors.dart';
-import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/models/productos_model.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -129,7 +128,7 @@ class ProductoWidget extends StatelessWidget {
                   child: Container(
                     height: ScreenUtil().setHeight(20),
                     width: ScreenUtil().setWidth(20),
-                    child: SvgPicture.asset('assets/svg/tabInicio/heart_w.svg'),
+                    child: SvgPicture.asset((producto.productoFavourite == '1') ? 'assets/svg/heart_white.svg' : 'assets/svg/tabInicio/heart_w.svg'),
                   ),
                 ),
               ),

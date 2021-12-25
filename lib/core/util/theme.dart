@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class CustomColor {
@@ -14,10 +12,8 @@ class CustomColor {
 
 class CustomTheme {
   static ThemeData mainTheme = ThemeData(
-    // Default brightness and colors.
     brightness: Brightness.light,
     primaryColor: CustomColor.logoBlue,
-    accentColor: Colors.cyan[600],
 
     // Default font family.
     fontFamily: 'Roboto',
@@ -25,18 +21,18 @@ class CustomTheme {
     // Default TextTheme. Use this to specify the default
     // text styling for headlines, titles, bodies of text, and etc.
     textTheme: TextTheme(
-      headline: TextStyle(
+      headline1: TextStyle(
         fontSize: 20.0,
         fontWeight: FontWeight.bold,
         color: CustomColor.fontBlack,
       ),
-      title: TextStyle(
-        fontSize: 18.0,
-        fontWeight: FontWeight.bold,
-        color: CustomColor.fontBlack,
-      ),
-      body1: TextStyle(fontSize: 16.0, color: CustomColor.fontBlack),
-      body2: TextStyle(fontSize: 16.0, color: CustomColor.hintColor),
+      // title: TextStyle(
+      //   fontSize: 18.0,
+      //   fontWeight: FontWeight.bold,
+      //   color: CustomColor.fontBlack,
+      // ),
+      bodyText1: TextStyle(fontSize: 16.0, color: CustomColor.fontBlack),
+      bodyText2: TextStyle(fontSize: 16.0, color: CustomColor.hintColor),
       button: TextStyle(
         color: CustomColor.white,
         fontFamily: 'Roboto',

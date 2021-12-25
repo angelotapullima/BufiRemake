@@ -5,8 +5,7 @@ class CustomSnackBar {
   final ScaffoldState? scaffoldState;
   final Key? key;
 
-  CustomSnackBar({this.key, this.scaffoldKey, this.scaffoldState})
-      : assert(scaffoldState != null || scaffoldKey != null);
+  CustomSnackBar({this.key, this.scaffoldKey, this.scaffoldState}) : assert(scaffoldState != null || scaffoldKey != null);
 
   void showErrorSnackBar(final msg) {
     showSnackBar(text: "Error: $msg", color: Colors.red[400]!);
