@@ -3,6 +3,7 @@ import 'package:bufi_remake/core/util/router.dart';
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/pages/Explorar/explorar_home.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
+import 'package:bufi_remake/src/pages/Explorar/tabs/ProductCategoryPage.dart';
 import 'package:bufi_remake/src/pages/Inicio/inicio_home.dart';
 import 'package:bufi_remake/src/pages/menu_page.dart';
 import 'package:bufi_remake/src/pages/tarjeta_page.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<ChangeBottomExplorer>(
             create: (_) => ChangeBottomExplorer(),
+          ),
+          ChangeNotifierProvider<ChangePageProductos>(
+            create: (_) => ChangePageProductos(),
           ),
         ],
         child: ScreenUtilInit(
@@ -96,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case MenuItems.home:
         return InicioPage();
       case MenuItems.explore:
-        return TarjetaPage();
+        return ExplorarHome();
       default:
         return InicioPage();
     }

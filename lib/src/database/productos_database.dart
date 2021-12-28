@@ -60,4 +60,41 @@ class ProductosDatabase {
       return [];
     }
   }
+
+  Future<void> upDateProductos(ProductoModel producto) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      await db.rawUpdate("UPDATE Producto SET idSubsidiary= '${producto.idSubsidiary}',"
+          "idGood='${producto.idGood}',"
+          "idItemsubcategory='${producto.idItemsubcategory}',"
+          "productoName='${producto.productoName}',"
+          "productoPrice='${producto.productoPrice}',"
+          "productoCurrency='${producto.productoCurrency}',"
+          "productoImage='${producto.productoImage}',"
+          "productoCharacteristics='${producto.productoCharacteristics}',"
+          "productoBrand='${producto.productoBrand}',"
+          "productoModel='${producto.productoModel}',"
+          "productoType= '${producto.productoType}',"
+          "productoSize='${producto.productoSize}',"
+          "productoStock='${producto.productoStock}',"
+          "productoMeasure='${producto.productoMeasure}',"
+          "productoRating='${producto.productoRating}',"
+          "productoUpdated= '${producto.productoUpdated}',"
+          "productoStatus='${producto.productoStatus}',"
+          "productoFavourite= '${producto.productoFavourite}' "
+          "WHERE idProducto='${producto.idProducto}'");
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> updatePoint(String idProducto, String point) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      await db.rawUpdate("UPDATE Producto SET productoFavourite='$point' "
+          "WHERE idProducto='$idProducto'");
+    } catch (e) {
+      print(e);
+    }
+  }
 }

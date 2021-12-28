@@ -56,7 +56,6 @@ class DatabaseHelper {
       'productoType VARCHAR,'
       'productoSize VARCHAR,'
       'productoStock VARCHAR,'
-      'productoStock_status VARCHAR,'
       'productoMeasure VARCHAR,'
       'productoRating VARCHAR,'
       'productoUpdated VARCHAR,'

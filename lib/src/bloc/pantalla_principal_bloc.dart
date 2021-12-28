@@ -58,6 +58,7 @@ class PantallaPrincipalBloc {
                 productoModel.productoRating = productosDB[x].productoRating;
                 productoModel.productoUpdated = productosDB[x].productoUpdated;
                 productoModel.productoStatus = productosDB[x].productoStatus;
+                productoModel.productoFavourite = productosDB[x].productoFavourite;
 
                 listaProductos.add(productoModel);
               }
@@ -66,7 +67,7 @@ class PantallaPrincipalBloc {
         }
         pantallaPrincipalModel.productos = listaProductos;
 
-        if (pantallaPrincipalModel.nombre != null) {
+        if (pantallaPrincipalModel.nombre != null && pantallaPrincipalModel.nombre != 'null') {
           listFinal.add(pantallaPrincipalModel);
         }
       }
