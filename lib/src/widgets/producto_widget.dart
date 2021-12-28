@@ -1,4 +1,5 @@
 import 'package:bufi_remake/core/config/colors.dart';
+import 'package:bufi_remake/core/util/utils.dart';
 import 'package:bufi_remake/src/models/productos_model.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -113,7 +114,9 @@ class ProductoWidget extends StatelessWidget {
             top: 0,
             left: 0,
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                actualizarPoint(context, producto, (producto.productoFavourite == '1') ? '0' : '1');
+              },
               child: Container(
                 height: ScreenUtil().setHeight(50),
                 width: ScreenUtil().setWidth(50),
