@@ -19,6 +19,7 @@ class DatabaseHelper {
       db.execute(tablePantallaPrincipalSql);
       db.execute(tableProductosPantallaPrincipalSql);
       db.execute(tableCompanySql);
+      db.execute(tableSubsidiarySql);
       //db.execute(VehiclesLocalDataSourceImpl.tableSql); */
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
@@ -103,5 +104,22 @@ class DatabaseHelper {
       'companyJoin VARCHAR,'
       'companyStatus VARCHAR,'
       'miNegocio VARCHAR'
+      ')';
+  static const String tableSubsidiarySql = 'CREATE TABLE Subsidiary('
+      'idSubsidiary VARCHAR PRIMARY KEY,'
+      'idCompany VARCHAR,'
+      'subsidiaryName VARCHAR,'
+      'subsidiaryDescription VARCHAR,'
+      'subsidiaryAddress VARCHAR,'
+      'subsidiaryImg VARCHAR,'
+      'subsidiaryCellphone VARCHAR,'
+      'subsidiaryCellphone2 VARCHAR,'
+      'subsidiaryEmail VARCHAR,'
+      'subsidiaryCoordX VARCHAR,'
+      'subsidiaryCoordY VARCHAR,'
+      'subsidiaryOpeningHours VARCHAR,'
+      'subsidiaryPrincipal VARCHAR,'
+      'subsidiaryStatus VARCHAR,'
+      'subsidiaryFavourite VARCHAR'
       ')';
 }
