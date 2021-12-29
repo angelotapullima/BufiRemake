@@ -33,6 +33,8 @@ class SubsidiaryModel {
     this.subsidiaryFavourite,
   });
 
+  static List<SubsidiaryModel> fromJsonList(List<dynamic> json) => json.map((i) => SubsidiaryModel.fromJson(i)).toList();
+
   factory SubsidiaryModel.fromJson(Map<String, dynamic> json) => SubsidiaryModel(
         idSubsidiary: json["idSubsidiary"],
         idCompany: json["idCompany"],

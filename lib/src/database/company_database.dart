@@ -9,7 +9,7 @@ class CompanyDatabase {
       final Database db = await dbprovider.getDatabase();
       await db.rawInsert("INSERT OR REPLACE INTO Company(idCompany,idUser,idCity,idCategory,companyName,companyRuc,"
           "companyImage,companyType,companyShortcode,companyDeliveryPropio,companyDelivery,companyEntrega,companyTarjeta,"
-          "companyVerified,companyRating,companyCreatedAt,companyJoin,companyStatus,miNegocio)"
+          "companyVerified,companyRating,companyCreatedAt,companyJoin,companyStatus,miNegocio) "
           "VALUES('${company.idCompany}', '${company.idUser}', '${company.idCity}', '${company.idCategory}', "
           "'${company.companyName}', '${company.companyRuc}', '${company.companyImage}', '${company.companyType}', "
           "'${company.companyShortcode}', '${company.companyDeliveryPropio}','${company.companyDelivery}', '${company.companyEntrega}', "
@@ -24,7 +24,7 @@ class CompanyDatabase {
     try {
       final Database db = await dbprovider.getDatabase();
       List<CompanyModel> list = [];
-      List<Map> maps = await db.rawQuery("SELECT * FROM Company ORDER BY idCompany");
+      List<Map> maps = await db.rawQuery("SELECT * FROM Company ORDER BY cast(idCompany as int)");
       if (maps.length > 0) list = CompanyModel.fromJsonList(maps);
       return list;
     } catch (e) {
