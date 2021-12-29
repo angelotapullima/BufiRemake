@@ -71,7 +71,7 @@ class PublicidadWidget extends StatelessWidget {
                     height: ScreenUtil().setHeight(160),
                     onPageChanged: (index, page) {},
                     enlargeCenterPage: true,
-                    autoPlay: true,
+                    autoPlay: false,
                     autoPlayCurve: Curves.fastOutSlowIn,
                     autoPlayInterval: Duration(seconds: 6),
                     autoPlayAnimationDuration: Duration(milliseconds: 2000),
