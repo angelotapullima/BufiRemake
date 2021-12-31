@@ -20,6 +20,8 @@ class DatabaseHelper {
       db.execute(tableProductosPantallaPrincipalSql);
       db.execute(tableCompanySql);
       db.execute(tableSubsidiarySql);
+      db.execute(tableCarritoSql);
+      db.execute(tableBienesSql);
       //db.execute(VehiclesLocalDataSourceImpl.tableSql); */
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }
@@ -138,5 +140,11 @@ class DatabaseHelper {
       'stock VARCHAR,'
       'cantidad VARCHAR,'
       'estadoSeleccionado VARCHAR'
+      ')';
+
+  static const String tableBienesSql = 'CREATE TABLE Bienes('
+      'idGood VARCHAR PRIMARY KEY,'
+      'goodName VARCHAR ,'
+      'goodSynonyms VARCHAR'
       ')';
 }
