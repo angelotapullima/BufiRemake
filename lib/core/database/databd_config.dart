@@ -122,4 +122,21 @@ class DatabaseHelper {
       'subsidiaryStatus VARCHAR,'
       'subsidiaryFavourite VARCHAR'
       ')';
+
+  static const String tableCarritoSql = 'CREATE TABLE Carrito('
+      'idCarrito INTEGER PRIMARY KEY AUTOINCREMENT,'
+      'idSubsidiarygood VARCHAR ,'
+      'idSubsidiary VARCHAR,'
+      'nombre VARCHAR,'
+      'precio VARCHAR,'
+      'marca VARCHAR,'
+      'modelo VARCHAR,'
+      'talla VARCHAR,'
+      'image VARCHAR,'
+      'moneda VARCHAR,'
+      'caracteristicas VARCHAR,'
+      'stock VARCHAR,'
+      'cantidad VARCHAR,'
+      'estadoSeleccionado VARCHAR'
+      ')';
 }
