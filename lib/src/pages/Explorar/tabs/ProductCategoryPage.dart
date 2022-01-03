@@ -1,8 +1,10 @@
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/models/category_model.dart';
+import 'package:bufi_remake/src/models/item_sub_category_model.dart';
 import 'package:bufi_remake/src/models/sub_category_model.dart';
 import 'package:bufi_remake/src/pages/Explorar/tabs/products/category_products_page.dart';
 import 'package:bufi_remake/src/pages/Explorar/tabs/products/item_sub_category_page.dart';
+import 'package:bufi_remake/src/pages/Explorar/tabs/products/products_page.dart';
 import 'package:bufi_remake/src/pages/Explorar/tabs/products/sub_category_products_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +24,7 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
     pageList.add(CategoryProductsPage());
     pageList.add(SubCategoryProductsPage());
     pageList.add(ItemSubCategoryProductsPage());
+    pageList.add(ProductosPage());
 
     super.initState();
   }
@@ -50,6 +53,8 @@ class ChangePageProductos extends ChangeNotifier {
   ValueNotifier<String> get titulo => this.title;
   ValueNotifier<String> title2 = ValueNotifier('');
   ValueNotifier<String> get titulo2 => this.title2;
+  ValueNotifier<String> title3 = ValueNotifier('');
+  ValueNotifier<String> get titulo3 => this.title3;
 
   void changePage(int index) {
     print('index $index');
@@ -76,6 +81,17 @@ class ChangePageProductos extends ChangeNotifier {
 
     final cateogryBloc = ProviderBloc.category(context);
     cateogryBloc.obtenerItemsubcategories(subcategory.idSubCategory.toString());
+    notifyListeners();
+  }
+
+  void changePageProducts(int index, ItemSubCategoryModel itemsubcategory, BuildContext context) {
+    print('index $index');
+    page.value = index;
+
+    title3.value = itemsubcategory.nameItemSubCategory.toString();
+
+    final productosBloc = ProviderBloc.producto(context);
+    productosBloc.obtenerProductosByItemSubcategory(itemsubcategory.idItemSubCategory.toString());
     notifyListeners();
   }
 }

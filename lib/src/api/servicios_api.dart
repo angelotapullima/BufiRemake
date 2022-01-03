@@ -2,29 +2,26 @@ import 'dart:convert';
 
 import 'package:bufi_remake/core/sharedpreferences/storage_manager.dart';
 import 'package:bufi_remake/core/util/constants.dart';
-import 'package:bufi_remake/src/database/bienes_database.dart';
 import 'package:bufi_remake/src/database/company_database.dart';
 import 'package:bufi_remake/src/database/item_sub_category_database.dart';
-import 'package:bufi_remake/src/database/productos_database.dart';
+import 'package:bufi_remake/src/database/servicios_database.dart';
 import 'package:bufi_remake/src/database/sub_category_database.dart';
 import 'package:bufi_remake/src/database/subsidiary_database.dart';
-import 'package:bufi_remake/src/models/bienes_model.dart';
 import 'package:bufi_remake/src/models/company_model.dart';
 import 'package:bufi_remake/src/models/item_sub_category_model.dart';
-import 'package:bufi_remake/src/models/productos_model.dart';
+import 'package:bufi_remake/src/models/servicio_model.dart';
 import 'package:bufi_remake/src/models/sub_category_model.dart';
 import 'package:bufi_remake/src/models/subsidiary_model.dart';
 import 'package:http/http.dart' as http;
 
-class BienesApi {
-  final bienesDatabase = BienesDatabase();
+class ServiciosApi {
+  final servicioDatabase = ServiciosDatabase();
   final subcategoryDatabase = SubCategoryDatabase();
   final itemsubcategoryDatabase = ItemSubCategoryDatabase();
   final companyDatabase = CompanyDatabase();
-  final productoDatabase = ProductosDatabase();
   final subsidiaryDatabase = SubsidiaryDatabase();
 
-  Future<void> obtenerBienesPorCity() async {
+  Future<void> obtenerServiciosPorCiudad() async {
     try {
       final url = '$API_BASE_URL/api/Inicio/listar_bienes_por_id_ciudad';
       final response = await http.post(Uri.parse(url), body: {
@@ -34,16 +31,8 @@ class BienesApi {
       final decodedData = json.decode(response.body);
       String? idUser = await StorageManager.readData('idUser');
 
-      for (var i = 0; i < decodedData["bienes"].length; i++) {
-        var data = decodedData["bienes"][i];
-
-        //Almacenamiento de Bienes
-        BienesModel bien = BienesModel();
-        bien.idGood = data["id_good"];
-        bien.goodName = data["good_name"];
-        bien.goodSynonyms = data["good_synonyms"];
-        await bienesDatabase.insertBienes(bien);
-
+      for (var i = 0; i < decodedData["servicios"].length; i++) {
+        var data = decodedData["servicios"][i];
         //Almacenamiento de SubCategory
         SubCategoryModel subcategory = SubCategoryModel();
         subcategory.idCategory = data["id_subcategory"];
@@ -88,36 +77,6 @@ class BienesApi {
         }
         await companyDatabase.insertCompany(company);
 
-        //Almacenamiento Productos
-        ProductoModel productoModel = ProductoModel();
-        productoModel.idProducto = data["id_subsidiarygood"];
-        productoModel.idSubsidiary = data["id_subsidiary"];
-        productoModel.idGood = data["id_good"];
-        productoModel.idItemsubcategory = data['id_itemsubcategory'];
-        productoModel.productoName = data['subsidiary_good_name'];
-        productoModel.productoPrice = data['subsidiary_good_price'];
-        productoModel.productoCurrency = data['subsidiary_good_currency'];
-        productoModel.productoImage = data['subsidiary_good_image'];
-        productoModel.productoCharacteristics = data['subsidiary_good_characteristics'];
-        productoModel.productoBrand = data['subsidiary_good_brand'];
-        productoModel.productoModel = data['subsidiary_good_model'];
-        productoModel.productoType = data['subsidiary_good_type'];
-        productoModel.productoSize = data['subsidiary_good_size'];
-        productoModel.productoStock = data['subsidiary_good_stock'];
-        productoModel.productoMeasure = data['subsidiary_good_stock_measure'];
-        productoModel.productoRating = data['subsidiary_good_rating'];
-        productoModel.productoUpdated = data['subsidiary_good_updated'];
-        productoModel.productoStatus = data['subsidiary_good_status'];
-
-        var productList = await productoDatabase.getProductosByIdProducto(data["id_subsidiarygood"]);
-
-        if (productList.length > 0) {
-          productoModel.productoFavourite = productList[0].productoFavourite;
-        } else {
-          productoModel.productoFavourite = '0';
-        }
-        await productoDatabase.insertProductos(productoModel);
-
         //Almacenamiento Subsidiary
 
         SubsidiaryModel subsidiary = SubsidiaryModel();
@@ -146,6 +105,31 @@ class BienesApi {
         }
 
         await subsidiaryDatabase.insertSubsidiary(subsidiary);
+
+        //Almacenamiento de servicios
+        ServicioModel servicio = ServicioModel();
+        servicio.idServicio = data["id_subsidiaryservice"];
+        servicio.idSubsidiary = data["id_subsidiary"];
+        servicio.idService = data["id_service"];
+        servicio.idItemsubcategory = data["id_itemsubcategory"];
+        servicio.servicioName = data["subsidiary_service_name"];
+        servicio.servicioDescription = data["subsidiary_service_description"];
+        servicio.servicioPrice = data["subsidiary_service_price"];
+        servicio.servicioCurrency = data["subsidiary_service_currency"];
+        servicio.servicioImage = data["subsidiary_service_image"];
+        servicio.servicioRating = data["subsidiary_service_rating"];
+        servicio.servicioUpdated = data["subsidiary_service_updated"];
+        servicio.servicioStatus = data["subsidiary_service_status"];
+
+        final listServicio = await servicioDatabase.getServiciosPorIdServicio(data["id_subsidiaryservice"]);
+
+        if (listServicio.length > 0) {
+          servicio.servicioFavourite = listServicio[0].servicioFavourite;
+        } else {
+          servicio.servicioFavourite = "0";
+        }
+
+        await servicioDatabase.insertServicios(servicio);
       }
     } catch (e) {
       print(e);

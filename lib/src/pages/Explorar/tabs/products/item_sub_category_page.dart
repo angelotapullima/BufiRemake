@@ -70,29 +70,34 @@ class ItemSubCategoryProductsPage extends StatelessWidget {
                     itemBuilder: (_, index) {
                       return Column(
                         children: [
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: ScreenUtil().setWidth(24),
-                              vertical: ScreenUtil().setHeight(16),
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    '${datos[index].nameItemSubCategory}',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: ScreenUtil().setSp(16),
-                                      fontWeight: FontWeight.w400,
+                          InkWell(
+                            onTap: () {
+                              provider.changePageProducts(3, datos[index], context);
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: ScreenUtil().setWidth(24),
+                                vertical: ScreenUtil().setHeight(16),
+                              ),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      '${datos[index].nameItemSubCategory}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: ScreenUtil().setSp(16),
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: colorIcon,
-                                  size: ScreenUtil().setSp(18),
-                                )
-                              ],
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: colorIcon,
+                                    size: ScreenUtil().setSp(18),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           Divider(
