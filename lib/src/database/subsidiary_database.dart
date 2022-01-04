@@ -58,4 +58,27 @@ class SubsidiaryDatabase {
       return [];
     }
   }
+
+  Future<List<SubsidiaryModel>> getSubsidiaryFavoritos() async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<SubsidiaryModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM Subsidiary WHERE subsidiaryFavourite ='1' ORDER BY cast(idSubsidiary as int)");
+      if (maps.length > 0) list = SubsidiaryModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      print('Error al consultar en la base de datos Productos: $e');
+      return [];
+    }
+  }
+
+  Future<void> updatePoint(String idSubsidiary, String point) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      await db.rawUpdate("UPDATE Subsidiary SET subsidiaryFavourite='$point' "
+          "WHERE idSubsidiary='$idSubsidiary'");
+    } catch (e) {
+      print(e);
+    }
+  }
 }

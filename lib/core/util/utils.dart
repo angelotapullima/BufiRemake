@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/database/productos_database.dart';
+import 'package:bufi_remake/src/database/subsidiary_database.dart';
 import 'package:bufi_remake/src/models/productos_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -42,9 +43,14 @@ void showToast2(String? texto, Color color) {
   Fluttertoast.showToast(msg: "$texto", toastLength: Toast.LENGTH_LONG, timeInSecForIosWeb: 3, backgroundColor: color, textColor: Colors.white);
 }
 
-void actualizarPoint(BuildContext context, ProductoModel producto, String point) async {
+void actualizarPointProducto(BuildContext context, ProductoModel producto, String point) async {
   final _productoDatabase = ProductosDatabase();
+  final _subsidiaryDatabase = SubsidiaryDatabase();
   await _productoDatabase.updatePoint(producto.idProducto.toString(), point);
+  await _subsidiaryDatabase.updatePoint(producto.idSubsidiary.toString(), point);
   final pantallaBloc = ProviderBloc.pantalla(context);
+  final favoritoBloc = ProviderBloc.favoritos(context);
+
   pantallaBloc.obtenerPantallaPrincipal();
+  favoritoBloc.update();
 }

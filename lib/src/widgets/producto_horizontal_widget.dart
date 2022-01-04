@@ -8,16 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ProductoWidget extends StatelessWidget {
-  const ProductoWidget({Key? key, required this.producto}) : super(key: key);
+class ProductoHorizontalWidget extends StatelessWidget {
+  const ProductoHorizontalWidget({Key? key, required this.producto}) : super(key: key);
   final ProductoModel producto;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(8)),
-      height: ScreenUtil().setHeight(310),
-      width: ScreenUtil().setWidth(200),
+      margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(24), vertical: ScreenUtil().setHeight(16)),
+      height: ScreenUtil().setHeight(172),
       decoration: BoxDecoration(
         color: colorSecond,
         borderRadius: BorderRadius.circular(20),
@@ -49,13 +48,13 @@ class ProductoWidget extends StatelessWidget {
                 left: ScreenUtil().setHeight(16),
                 right: ScreenUtil().setHeight(16),
               ),
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: ScreenUtil().setHeight(180),
-                    width: ScreenUtil().setWidth(168),
+                    height: ScreenUtil().setHeight(140),
+                    width: ScreenUtil().setWidth(130),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: CachedNetworkImage(
@@ -82,50 +81,41 @@ class ProductoWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: ScreenUtil().setHeight(16),
+                    width: ScreenUtil().setWidth(16),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  Column(
                     children: [
-                      Container(
-                        height: ScreenUtil().setHeight(30),
-                        width: ScreenUtil().setWidth(30),
-                        child: SvgPicture.asset('assets/svg/bufi_coin.svg'),
-                      ),
                       Text(
-                        '${producto.productoPrice}',
+                        "${producto.productoName} ${producto.productoBrand}",
+                        textAlign: TextAlign.start,
                         style: TextStyle(
-                          color: colorBlueText,
+                          color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: ScreenUtil().setSp(16),
                         ),
                       ),
+                      SizedBox(
+                        height: ScreenUtil().setHeight(16),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: ScreenUtil().setHeight(30),
+                            width: ScreenUtil().setWidth(30),
+                            child: SvgPicture.asset('assets/svg/bufi_coin.svg'),
+                          ),
+                          Text(
+                            '${producto.productoPrice}',
+                            style: TextStyle(
+                              color: colorBlueText,
+                              fontWeight: FontWeight.w600,
+                              fontSize: ScreenUtil().setSp(16),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
-                  ),
-                  SizedBox(
-                    height: ScreenUtil().setHeight(16),
-                  ),
-                  Expanded(
-                    child: Text(
-                      '${producto.productoName}',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: ScreenUtil().setSp(16),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Text(
-                      '${producto.productoBrand}',
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: ScreenUtil().setSp(16),
-                      ),
-                    ),
                   ),
                 ],
               ),
@@ -177,7 +167,7 @@ class ProductoWidget extends StatelessWidget {
                   child: Container(
                     height: ScreenUtil().setHeight(20),
                     width: ScreenUtil().setWidth(20),
-                    child: SvgPicture.asset('assets/svg/tabInicio/shoping_car_w.svg'),
+                    child: SvgPicture.asset('assets/svg/message-circle.svg'),
                   ),
                 ),
               ),
