@@ -4,6 +4,7 @@ import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/pages/Explorar/explorar_home.dart';
 import 'package:bufi_remake/src/models/menu_items.dart';
 import 'package:bufi_remake/src/pages/Explorar/tabs/ProductCategoryPage.dart';
+import 'package:bufi_remake/src/pages/Explorar/tabs/ServicesCategoryPage.dart';
 import 'package:bufi_remake/src/pages/Inicio/inicio_home.dart';
 import 'package:bufi_remake/src/pages/menu_page.dart';
 import 'package:bufi_remake/src/pages/tarjeta_page.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider<ChangePageProductos>(
             create: (_) => ChangePageProductos(),
+          ),
+          ChangeNotifierProvider<ChangePageServices>(
+            create: (_) => ChangePageServices(),
           ),
         ],
         child: ScreenUtilInit(

@@ -23,7 +23,7 @@ class ServiciosApi {
 
   Future<void> obtenerServiciosPorCiudad() async {
     try {
-      final url = '$API_BASE_URL/api/Inicio/listar_bienes_por_id_ciudad';
+      final url = '$API_BASE_URL/api/Inicio/listar_servicios_por_id_ciudad';
       final response = await http.post(Uri.parse(url), body: {
         'id_ciudad': '1',
       });

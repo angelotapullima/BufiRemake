@@ -108,7 +108,14 @@ class ItemSubCategoryProductsPage extends StatelessWidget {
                       );
                     });
               } else {
-                return Text('Sin itemsubcategorías');
+                return Center(
+                  child: Text(
+                    'Sin item subcategorías',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                );
               }
             } else {
               return ShowLoadding(

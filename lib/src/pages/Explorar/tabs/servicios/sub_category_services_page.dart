@@ -1,35 +1,37 @@
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
-import 'package:bufi_remake/src/models/category_model.dart';
-import 'package:bufi_remake/src/pages/Explorar/tabs/ProductCategoryPage.dart';
-import 'package:bufi_remake/src/widgets/menu_widget.dart';
+import 'package:bufi_remake/src/models/sub_category_model.dart';
+import 'package:bufi_remake/src/pages/Explorar/tabs/ServicesCategoryPage.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class CategoryProductsPage extends StatelessWidget {
-  const CategoryProductsPage({Key? key}) : super(key: key);
+class SubCategoryServicesPage extends StatelessWidget {
+  const SubCategoryServicesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ChangePageProductos>(context, listen: false);
+    final provider = Provider.of<ChangePageServices>(context, listen: false);
     final categoryBloc = ProviderBloc.category(context);
-    categoryBloc.obtenerCategories();
     return Scaffold(
       backgroundColor: colorPrimary,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: colorPrimary,
-        title: Text(
-          'Productos',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: ScreenUtil().setSp(18),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        title: ValueListenableBuilder<String>(
+            valueListenable: provider.titulo,
+            builder: (_, value, __) {
+              return Text(
+                value,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: ScreenUtil().setSp(18),
+                  fontWeight: FontWeight.w600,
+                ),
+              );
+            }),
         actions: [
           Container(
             height: ScreenUtil().setHeight(40),
@@ -42,11 +44,24 @@ class CategoryProductsPage extends StatelessWidget {
         ],
         elevation: 0,
         centerTitle: true,
-        leading: MenuWidget(),
+        leading: InkWell(
+          onTap: () {
+            provider.changePage(0);
+            categoryBloc.cleanStreamSubCategoryService();
+          },
+          child: Container(
+            padding: EdgeInsets.only(
+              left: ScreenUtil().setWidth(24),
+            ),
+            height: ScreenUtil().setHeight(45),
+            width: ScreenUtil().setWidth(45),
+            child: SvgPicture.asset('assets/svg/back.svg'),
+          ),
+        ),
       ),
       body: StreamBuilder(
-          stream: categoryBloc.categoryStream,
-          builder: (context, AsyncSnapshot<List<CategoryModel>> snapshot) {
+          stream: categoryBloc.subcategoryServiceStream,
+          builder: (context, AsyncSnapshot<List<SubCategoryModel>> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data!.length > 0) {
                 var datos = snapshot.data!;
@@ -57,7 +72,7 @@ class CategoryProductsPage extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              provider.changePageSubCategory(1, datos[index], context);
+                              provider.changePageItemSubCategory(2, datos[index], context);
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(
@@ -68,7 +83,7 @@ class CategoryProductsPage extends StatelessWidget {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      '${datos[index].categoryName}',
+                                      '${datos[index].nameSubCategory}',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: ScreenUtil().setSp(16),
@@ -95,7 +110,7 @@ class CategoryProductsPage extends StatelessWidget {
               } else {
                 return Center(
                   child: Text(
-                    'Sin categorías',
+                    'Sin subcategorías',
                     style: TextStyle(
                       color: Colors.white,
                     ),

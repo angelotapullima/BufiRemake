@@ -22,6 +22,7 @@ class DatabaseHelper {
       db.execute(tableSubsidiarySql);
       db.execute(tableCarritoSql);
       db.execute(tableBienesSql);
+      db.execute(tableServiciosSql);
       //db.execute(VehiclesLocalDataSourceImpl.tableSql); */
     }, version: 1, onDowngrade: onDatabaseDowngradeDelete);
   }

@@ -17,4 +17,8 @@ class ServiciosBloc {
     await servicioApi.obtenerServiciosPorCiudad();
     _servicioController.sink.add(await servicioApi.servicioDatabase.getServiciosPorIdItemSubCategoria(id));
   }
+
+  void clearServicios() async {
+    _servicioController.sink.add([]);
+  }
 }

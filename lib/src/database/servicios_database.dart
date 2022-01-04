@@ -12,8 +12,8 @@ class ServiciosDatabase {
           "servicioRating, servicioUpdated,servicioStatus,servicioFavourite) "
           "VALUES('${servicio.idServicio}', '${servicio.idSubsidiary}','${servicio.idService}',"
           "'${servicio.idItemsubcategory}','${servicio.servicioName}','${servicio.servicioDescription}',"
-          "'${servicio.servicioCurrency}', '${servicio.servicioImage}',"
-          " '${servicio.servicioRating}','${servicio.servicioUpdated}', '${servicio.servicioStatus}', '${servicio.servicioFavourite}')");
+          "'${servicio.servicioPrice}','${servicio.servicioCurrency}', '${servicio.servicioImage}',"
+          "'${servicio.servicioRating}','${servicio.servicioUpdated}', '${servicio.servicioStatus}', '${servicio.servicioFavourite}')");
     } catch (e) {
       print(e);
     }

@@ -1,29 +1,28 @@
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/models/category_model.dart';
-import 'package:bufi_remake/src/pages/Explorar/tabs/ProductCategoryPage.dart';
-import 'package:bufi_remake/src/widgets/menu_widget.dart';
+import 'package:bufi_remake/src/pages/Explorar/tabs/ServicesCategoryPage.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class CategoryProductsPage extends StatelessWidget {
-  const CategoryProductsPage({Key? key}) : super(key: key);
+class CategoryServicesPage extends StatelessWidget {
+  const CategoryServicesPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ChangePageProductos>(context, listen: false);
+    final provider = Provider.of<ChangePageServices>(context, listen: false);
     final categoryBloc = ProviderBloc.category(context);
-    categoryBloc.obtenerCategories();
+    categoryBloc.obtenerCategoriesService();
     return Scaffold(
       backgroundColor: colorPrimary,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: colorPrimary,
         title: Text(
-          'Productos',
+          'Servicios',
           style: TextStyle(
             color: Colors.white,
             fontSize: ScreenUtil().setSp(18),
@@ -42,10 +41,9 @@ class CategoryProductsPage extends StatelessWidget {
         ],
         elevation: 0,
         centerTitle: true,
-        leading: MenuWidget(),
       ),
       body: StreamBuilder(
-          stream: categoryBloc.categoryStream,
+          stream: categoryBloc.categoryServiceStream,
           builder: (context, AsyncSnapshot<List<CategoryModel>> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data!.length > 0) {

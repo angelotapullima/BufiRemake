@@ -1,21 +1,21 @@
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
-import 'package:bufi_remake/src/models/productos_model.dart';
-import 'package:bufi_remake/src/pages/Explorar/tabs/ProductCategoryPage.dart';
-import 'package:bufi_remake/src/widgets/prducto_widget_2.dart';
+import 'package:bufi_remake/src/models/servicio_model.dart';
+import 'package:bufi_remake/src/pages/Explorar/tabs/ServicesCategoryPage.dart';
+import 'package:bufi_remake/src/widgets/servicio_widget_2.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class ProductosPage extends StatelessWidget {
-  const ProductosPage({Key? key}) : super(key: key);
+class ServiciosPage extends StatelessWidget {
+  const ServiciosPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<ChangePageProductos>(context, listen: false);
-    final productosBloc = ProviderBloc.producto(context);
+    final provider = Provider.of<ChangePageServices>(context, listen: false);
+    final serviciosBloc = ProviderBloc.servicios(context);
     return Scaffold(
       backgroundColor: colorPrimary,
       appBar: AppBar(
@@ -48,7 +48,7 @@ class ProductosPage extends StatelessWidget {
         leading: InkWell(
           onTap: () {
             provider.changePage(2);
-            productosBloc.cleanProductos();
+            serviciosBloc.clearServicios();
           },
           child: Container(
             padding: EdgeInsets.only(
@@ -61,8 +61,8 @@ class ProductosPage extends StatelessWidget {
         ),
       ),
       body: StreamBuilder(
-          stream: productosBloc.productosItemSubcategoryStream,
-          builder: (context, AsyncSnapshot<List<ProductoModel>> snapshot) {
+          stream: serviciosBloc.servicioStream,
+          builder: (context, AsyncSnapshot<List<ServicioModel>> snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data!.length > 0) {
                 var datos = snapshot.data!;
@@ -76,15 +76,15 @@ class ProductosPage extends StatelessWidget {
                     ),
                     itemBuilder: (_, index) {
                       return LayoutBuilder(builder: (context, constraints) {
-                        return ProductoWidget2(
-                          producto: datos[index],
+                        return ServicioWidget2(
+                          servicio: datos[index],
                         );
                       });
                     });
               } else {
                 return Center(
                   child: Text(
-                    'Sin productos',
+                    'Sin servicios',
                     style: TextStyle(
                       color: Colors.white,
                     ),
