@@ -2,7 +2,7 @@ import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/models/productos_model.dart';
 import 'package:bufi_remake/src/pages/Explorar/tabs/ProductCategoryPage.dart';
-import 'package:bufi_remake/src/widgets/prducto_widget_2.dart';
+import 'package:bufi_remake/src/widgets/producto_widget.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -76,8 +76,11 @@ class ProductosPage extends StatelessWidget {
                     ),
                     itemBuilder: (_, index) {
                       return LayoutBuilder(builder: (context, constraints) {
-                        return ProductoWidget2(
-                          producto: datos[index],
+                        return Padding(
+                          padding: EdgeInsets.symmetric(vertical: ScreenUtil().setHeight(4)),
+                          child: ProductoWidget(
+                            producto: datos[index],
+                          ),
                         );
                       });
                     });

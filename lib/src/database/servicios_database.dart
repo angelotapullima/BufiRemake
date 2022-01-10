@@ -42,4 +42,28 @@ class ServiciosDatabase {
       return [];
     }
   }
+
+  Future<void> updatePoint(String idServicio, String point) async {
+    print(idServicio);
+    try {
+      final Database db = await dbprovider.getDatabase();
+      await db.rawUpdate("UPDATE Servicios SET servicioFavourite='$point' "
+          "WHERE idServicio='$idServicio'");
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<List<ServicioModel>> getServiciosFavoritos() async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<ServicioModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM Servicios WHERE servicioFavourite ='1' ORDER BY cast(idServicio as int)");
+      if (maps.length > 0) list = ServicioModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      print('Error al consultar en la base de datos Servicios: $e');
+      return [];
+    }
+  }
 }

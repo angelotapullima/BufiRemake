@@ -8,16 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ServicioWidget2 extends StatelessWidget {
-  const ServicioWidget2({Key? key, required this.servicio}) : super(key: key);
+class ServiciosHorizontalWidget extends StatelessWidget {
+  const ServiciosHorizontalWidget({Key? key, required this.servicio}) : super(key: key);
   final ServicioModel servicio;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(8)),
-      height: ScreenUtil().setHeight(310),
-      width: ScreenUtil().setWidth(200),
+      margin: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(24), vertical: ScreenUtil().setHeight(16)),
+      height: ScreenUtil().setHeight(172),
       decoration: BoxDecoration(
         color: colorSecond,
         borderRadius: BorderRadius.circular(20),
@@ -32,13 +31,13 @@ class ServicioWidget2 extends StatelessWidget {
                 left: ScreenUtil().setHeight(16),
                 right: ScreenUtil().setHeight(16),
               ),
-              child: Column(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    height: ScreenUtil().setHeight(138),
-                    width: ScreenUtil().setWidth(124),
+                    height: ScreenUtil().setHeight(140),
+                    width: ScreenUtil().setWidth(130),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(15),
                       child: CachedNetworkImage(
@@ -51,7 +50,7 @@ class ServicioWidget2 extends StatelessWidget {
                           fondo: Colors.transparent,
                         )),
                         errorWidget: (context, url, error) => Icon(Icons.error),
-                        // imageUrl: 'https://productoftheyearusa.com/wp-content/uploads/2016/03/McN_POY_20158281.jpg',
+                        //imageUrl: 'https://productoftheyearusa.com/wp-content/uploads/2016/03/McN_POY_20158281.jpg',
                         imageUrl: '$API_BASE_URL/${servicio.servicioImage}',
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
@@ -65,46 +64,52 @@ class ServicioWidget2 extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: ScreenUtil().setHeight(18),
+                    width: ScreenUtil().setWidth(16),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  Column(
                     children: [
-                      Container(
-                        height: ScreenUtil().setHeight(30),
-                        width: ScreenUtil().setWidth(30),
-                        child: SvgPicture.asset('assets/svg/bufi_coin.svg'),
-                      ),
                       Text(
-                        '${servicio.servicioPrice}',
+                        "${servicio.servicioName}",
+                        textAlign: TextAlign.start,
                         style: TextStyle(
-                          color: colorBlueText,
+                          color: Colors.white,
                           fontWeight: FontWeight.w600,
                           fontSize: ScreenUtil().setSp(16),
                         ),
                       ),
+                      SizedBox(
+                        height: ScreenUtil().setHeight(16),
+                      ),
+                      Text(
+                        '${servicio.servicioDescription}',
+                        style: TextStyle(
+                          color: colorIcon,
+                          fontWeight: FontWeight.w400,
+                          fontSize: ScreenUtil().setSp(14),
+                        ),
+                      ),
+                      SizedBox(
+                        height: ScreenUtil().setHeight(16),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: ScreenUtil().setHeight(30),
+                            width: ScreenUtil().setWidth(30),
+                            child: SvgPicture.asset('assets/svg/bufi_coin.svg'),
+                          ),
+                          Text(
+                            '${servicio.servicioPrice}',
+                            style: TextStyle(
+                              color: colorBlueText,
+                              fontWeight: FontWeight.w600,
+                              fontSize: ScreenUtil().setSp(16),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
-                  ),
-                  SizedBox(
-                    height: ScreenUtil().setHeight(16),
-                  ),
-                  Text(
-                    '${servicio.servicioName}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: ScreenUtil().setSp(16),
-                    ),
-                  ),
-                  Text(
-                    '${servicio.servicioDescription}',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: ScreenUtil().setSp(16),
-                    ),
                   ),
                 ],
               ),
@@ -132,6 +137,31 @@ class ServicioWidget2 extends StatelessWidget {
                     height: ScreenUtil().setHeight(20),
                     width: ScreenUtil().setWidth(20),
                     child: SvgPicture.asset((servicio.servicioFavourite == '1') ? 'assets/svg/heart_white.svg' : 'assets/svg/tabInicio/heart_w.svg'),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            right: 0,
+            child: InkWell(
+              onTap: () {},
+              child: Container(
+                height: ScreenUtil().setHeight(50),
+                width: ScreenUtil().setWidth(50),
+                decoration: BoxDecoration(
+                  color: colorBlueText,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
+                child: Center(
+                  child: Container(
+                    height: ScreenUtil().setHeight(20),
+                    width: ScreenUtil().setWidth(20),
+                    child: SvgPicture.asset('assets/svg/message-circle.svg'),
                   ),
                 ),
               ),

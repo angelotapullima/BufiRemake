@@ -2,8 +2,10 @@ import 'dart:math';
 
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/database/productos_database.dart';
+import 'package:bufi_remake/src/database/servicios_database.dart';
 import 'package:bufi_remake/src/database/subsidiary_database.dart';
 import 'package:bufi_remake/src/models/productos_model.dart';
+import 'package:bufi_remake/src/models/servicio_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -50,7 +52,22 @@ void actualizarPointProducto(BuildContext context, ProductoModel producto, Strin
   await _subsidiaryDatabase.updatePoint(producto.idSubsidiary.toString(), point);
   final pantallaBloc = ProviderBloc.pantalla(context);
   final favoritoBloc = ProviderBloc.favoritos(context);
+  final productosBloc = ProviderBloc.producto(context);
 
   pantallaBloc.obtenerPantallaPrincipal();
+  productosBloc.obtenerProductosByItemSubcategory(producto.idItemsubcategory.toString());
+  favoritoBloc.update();
+}
+
+void actualizarPointServicio(BuildContext context, ServicioModel servicio, String point) async {
+  print('Presionar Servicio favorito');
+  final _servicioDatabase = ServiciosDatabase();
+  final _subsidiaryDatabase = SubsidiaryDatabase();
+  await _servicioDatabase.updatePoint(servicio.idServicio.toString(), point);
+  await _subsidiaryDatabase.updatePoint(servicio.idSubsidiary.toString(), point);
+  final favoritoBloc = ProviderBloc.favoritos(context);
+  final servicesBloc = ProviderBloc.servicios(context);
+
+  servicesBloc.obtenerServiciosPorIdItemSubcategory(servicio.idItemsubcategory.toString());
   favoritoBloc.update();
 }

@@ -85,7 +85,6 @@ class ChangePageServices extends ChangeNotifier {
   }
 
   void changePageServices(int index, ItemSubCategoryModel itemsubcategory, BuildContext context) {
-    print('index $index');
     page.value = index;
 
     title3.value = itemsubcategory.nameItemSubCategory.toString();

@@ -149,7 +149,7 @@ class DatabaseHelper {
       'goodSynonyms VARCHAR'
       ')';
   static const String tableServiciosSql = 'CREATE TABLE Servicios('
-      'idservicio VARCHAR PRIMARY KEY,'
+      'idServicio VARCHAR PRIMARY KEY,'
       'idSubsidiary VARCHAR,'
       'idService VARCHAR,'
       'idItemsubcategory VARCHAR,'
