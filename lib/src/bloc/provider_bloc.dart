@@ -5,6 +5,7 @@ import 'package:bufi_remake/src/bloc/pantalla_principal_bloc.dart';
 import 'package:bufi_remake/src/bloc/productos_bloc.dart';
 import 'package:bufi_remake/src/bloc/publicidad_bloc.dart';
 import 'package:bufi_remake/src/bloc/servicios_bloc.dart';
+import 'package:bufi_remake/src/bloc/subsidiary_bloc.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProviderBloc extends InheritedWidget {
@@ -15,6 +16,7 @@ class ProviderBloc extends InheritedWidget {
   final productosBloc = ProductosBloc();
   final serviciosBloc = ServiciosBloc();
   final favoritosBloc = FavoritosBloc();
+  final subsidiaryBloc = SubsidiaryBloc();
   ProviderBloc({required Widget child}) : super(child: child);
 
   @override
@@ -46,5 +48,9 @@ class ProviderBloc extends InheritedWidget {
 
   static FavoritosBloc favoritos(BuildContext context) {
     return (context.dependOnInheritedWidgetOfExactType<ProviderBloc>())!.favoritosBloc;
+  }
+
+  static SubsidiaryBloc subsidiary(BuildContext context) {
+    return (context.dependOnInheritedWidgetOfExactType<ProviderBloc>())!.subsidiaryBloc;
   }
 }

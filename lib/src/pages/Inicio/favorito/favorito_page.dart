@@ -93,9 +93,10 @@ class _FavoritosPageState extends State<FavoritosPage> {
               ),
             ),
             Expanded(
-                child: TabBarView(
-              children: pageList,
-            ))
+              child: TabBarView(
+                children: pageList,
+              ),
+            ),
           ],
         )),
       ),

@@ -1,31 +1,33 @@
+import 'package:bufi_remake/src/models/subsidiary_model.dart';
+
 class CompanyModel {
-  CompanyModel({
-    this.idCompany,
-    this.idUser,
-    this.idCity,
-    this.idCategory,
-    this.companyName,
-    this.companyRuc,
-    this.companyImage,
-    this.companyType,
-    this.companyShortcode,
-    this.companyDeliveryPropio,
-    this.companyDelivery,
-    this.companyEntrega,
-    this.companyTarjeta,
-    this.companyVerified,
-    this.companyRating,
-    this.companyCreatedAt,
-    this.companyJoin,
-    this.companyStatus,
-    this.companyMt,
-    this.cityName,
-    this.distancia,
-    this.miNegocio,
-    this.cell,
-    this.direccion,
-    this.favourite,
-  });
+  CompanyModel(
+      {this.idCompany,
+      this.idUser,
+      this.idCity,
+      this.idCategory,
+      this.companyName,
+      this.companyRuc,
+      this.companyImage,
+      this.companyType,
+      this.companyShortcode,
+      this.companyDeliveryPropio,
+      this.companyDelivery,
+      this.companyEntrega,
+      this.companyTarjeta,
+      this.companyVerified,
+      this.companyRating,
+      this.companyCreatedAt,
+      this.companyJoin,
+      this.companyStatus,
+      this.companyMt,
+      this.cityName,
+      this.distancia,
+      this.miNegocio,
+      this.cell,
+      this.direccion,
+      this.favourite,
+      this.sucursalPrincipal});
 
   String? idCompany;
   String? idUser;
@@ -53,6 +55,7 @@ class CompanyModel {
   String? favourite;
   String? cell;
   String? direccion;
+  SubsidiaryModel? sucursalPrincipal;
 
   static List<CompanyModel> fromJsonList(List<dynamic> json) => json.map((i) => CompanyModel.fromJson(i)).toList();
 

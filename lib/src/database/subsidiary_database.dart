@@ -59,6 +59,19 @@ class SubsidiaryDatabase {
     }
   }
 
+  Future<List<SubsidiaryModel>> getSubsidiaryPrincipalByIdCompany(String idCompany) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<SubsidiaryModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM Subsidiary WHERE idCompany='$idCompany' AND subsidiaryPrincipal='1'");
+      if (maps.length > 0) list = SubsidiaryModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      print(e);
+      return [];
+    }
+  }
+
   Future<List<SubsidiaryModel>> getSubsidiaryFavoritos() async {
     try {
       final Database db = await dbprovider.getDatabase();

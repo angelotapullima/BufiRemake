@@ -2,6 +2,7 @@ import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
 import 'package:bufi_remake/src/models/company_model.dart';
+import 'package:bufi_remake/src/pages/Negocio/detalle_negocio.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,25 @@ class CompanyExplorer extends StatelessWidget {
                       return Column(
                         children: [
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  transitionDuration: const Duration(milliseconds: 100),
+                                  pageBuilder: (context, animation, secondaryAnimation) {
+                                    return DetalleNegocioPage(
+                                      idNegocio: datos[index].idCompany.toString(),
+                                    );
+                                  },
+                                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: child,
+                                    );
+                                  },
+                                ),
+                              );
+                            },
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: ScreenUtil().setWidth(24),
