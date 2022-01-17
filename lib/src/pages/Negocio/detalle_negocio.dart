@@ -25,9 +25,7 @@ class _DetalleNegocioPageState extends State<DetalleNegocioPage> with TickerProv
   TabController? tabcontroller;
   @override
   void initState() {
-    pageList.add(InformacionCompany(
-      idCompany: widget.idNegocio,
-    ));
+    pageList.add(InformacionCompany());
     pageList.add(SubsidiariesPage(
       idCompany: widget.idNegocio,
     ));

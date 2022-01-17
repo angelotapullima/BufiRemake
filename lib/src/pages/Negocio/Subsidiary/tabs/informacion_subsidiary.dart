@@ -1,22 +1,22 @@
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/src/bloc/provider_bloc.dart';
-import 'package:bufi_remake/src/models/company_model.dart';
+import 'package:bufi_remake/src/models/subsidiary_model.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class InformacionCompany extends StatelessWidget {
-  const InformacionCompany({Key? key}) : super(key: key);
+class InformacionSubsidiaryPage extends StatelessWidget {
+  const InformacionSubsidiaryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final companyBloc = ProviderBloc.company(context);
+    final subsidiaryBloc = ProviderBloc.subsidiary(context);
     return StreamBuilder(
-        stream: companyBloc.companyIdStream,
-        builder: (_, AsyncSnapshot<List<CompanyModel>> snapshot) {
+        stream: subsidiaryBloc.subsidiaryIdStream,
+        builder: (_, AsyncSnapshot<List<SubsidiaryModel>> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.length > 0) {
-              var company = snapshot.data![0];
+              var subsidiary = snapshot.data![0];
               return Column(
                 children: [
                   Container(
@@ -29,9 +29,9 @@ class InformacionCompany extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        (company.sucursalPrincipal!.subsidiaryDescription != 'null')
+                        (subsidiary.subsidiaryDescription != 'null' && subsidiary.subsidiaryDescription != '')
                             ? Text(
-                                '${company.sucursalPrincipal!.subsidiaryDescription}',
+                                '${subsidiary.subsidiaryDescription}',
                                 style: TextStyle(
                                   color: colorIcon,
                                   fontSize: ScreenUtil().setSp(14),
@@ -54,7 +54,7 @@ class InformacionCompany extends StatelessWidget {
                           height: ScreenUtil().setHeight(8),
                         ),
                         Text(
-                          '${company.sucursalPrincipal!.subsidiaryOpeningHours}',
+                          '${subsidiary.subsidiaryOpeningHours}',
                           style: TextStyle(
                             color: colorIcon,
                             fontSize: ScreenUtil().setSp(14),
@@ -64,78 +64,66 @@ class InformacionCompany extends StatelessWidget {
                         SizedBox(
                           height: ScreenUtil().setHeight(16),
                         ),
-                        (company.companyTarjeta == '1')
-                            ? Row(
-                                children: [
-                                  Icon(
-                                    Icons.credit_card,
-                                    color: colorBlueText,
-                                    size: ScreenUtil().setWidth(16),
-                                  ),
-                                  SizedBox(
-                                    width: ScreenUtil().setWidth(11),
-                                  ),
-                                  Text(
-                                    'Acepta pago por tarjeta',
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.phone,
+                              color: colorBlueText,
+                              size: ScreenUtil().setWidth(16),
+                            ),
+                            SizedBox(
+                              width: ScreenUtil().setWidth(11),
+                            ),
+                            (subsidiary.subsidiaryCellphone != '' && subsidiary.subsidiaryCellphone != 'null')
+                                ? Text(
+                                    '${subsidiary.subsidiaryCellphone} - ',
                                     style: TextStyle(
                                       color: colorIcon,
                                       fontSize: ScreenUtil().setSp(14),
                                       fontWeight: FontWeight.w500,
                                     ),
-                                  ),
-                                ],
-                              )
-                            : Container(),
-                        SizedBox(
-                          height: (company.companyTarjeta == '1') ? ScreenUtil().setHeight(8) : 0,
+                                  )
+                                : Container(),
+                            // SizedBox(
+                            //   width: ScreenUtil().setWidth(8),
+                            // ),
+                            (subsidiary.subsidiaryCellphone2 != '' && subsidiary.subsidiaryCellphone2 != 'null')
+                                ? Text(
+                                    '${subsidiary.subsidiaryCellphone2}',
+                                    style: TextStyle(
+                                      color: colorIcon,
+                                      fontSize: ScreenUtil().setSp(14),
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  )
+                                : Container(),
+                          ],
                         ),
-                        (company.companyDeliveryPropio == '1')
-                            ? Row(
-                                children: [
-                                  Icon(
-                                    Icons.delivery_dining,
-                                    color: colorBlueText,
-                                    size: ScreenUtil().setWidth(16),
-                                  ),
-                                  SizedBox(
-                                    width: ScreenUtil().setWidth(11),
-                                  ),
-                                  Text(
-                                    'Delivery propio',
-                                    style: TextStyle(
-                                      color: colorIcon,
-                                      fontSize: ScreenUtil().setSp(14),
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : Container(),
                         SizedBox(
-                          height: (company.companyDeliveryPropio == '1') ? ScreenUtil().setHeight(8) : 0,
+                          height: ScreenUtil().setHeight(8),
                         ),
-                        (company.companyDelivery == '1')
-                            ? Row(
-                                children: [
-                                  Icon(
-                                    Icons.delivery_dining_rounded,
-                                    color: colorBlueText,
-                                    size: ScreenUtil().setWidth(16),
-                                  ),
-                                  SizedBox(
-                                    width: ScreenUtil().setWidth(11),
-                                  ),
-                                  Text(
-                                    'Delivery terceros',
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.email,
+                              color: colorBlueText,
+                              size: ScreenUtil().setWidth(16),
+                            ),
+                            SizedBox(
+                              width: ScreenUtil().setWidth(11),
+                            ),
+                            (subsidiary.subsidiaryEmail != '' && subsidiary.subsidiaryEmail != 'null')
+                                ? Text(
+                                    '${subsidiary.subsidiaryEmail}',
                                     style: TextStyle(
                                       color: colorIcon,
                                       fontSize: ScreenUtil().setSp(14),
                                       fontWeight: FontWeight.w500,
                                     ),
-                                  ),
-                                ],
-                              )
-                            : Container(),
+                                  )
+                                : Container(),
+                          ],
+                        ),
                       ],
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:bufi_remake/core/config/colors.dart';
 import 'package:bufi_remake/core/util/constants.dart';
 import 'package:bufi_remake/src/models/subsidiary_model.dart';
+import 'package:bufi_remake/src/pages/Negocio/Subsidiary/detalle_subsidiary.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,32 @@ class SubsidiaryWidget extends StatelessWidget {
       child: Stack(
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return DetalleSubsidiaryPage(
+                      idSubsidiary: subsidiary.idSubsidiary.toString(),
+                    );
+                  },
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                    var begin = Offset(0.0, 1.0);
+                    var end = Offset.zero;
+                    var curve = Curves.ease;
+
+                    var tween = Tween(begin: begin, end: end).chain(
+                      CurveTween(curve: curve),
+                    );
+
+                    return SlideTransition(
+                      position: animation.drive(tween),
+                      child: child,
+                    );
+                  },
+                ),
+              );
+            },
             child: Container(
               margin: EdgeInsets.only(
                 top: ScreenUtil().setWidth(16),

@@ -11,9 +11,13 @@ class ProductosBloc {
   final _productosItemSubCategoryController = BehaviorSubject<List<ProductoModel>>();
   Stream<List<ProductoModel>> get productosItemSubcategoryStream => _productosItemSubCategoryController.stream;
 
+  final _productosBySubsidiaryController = BehaviorSubject<List<ProductoModel>>();
+  Stream<List<ProductoModel>> get productosBySubsidiaryStream => _productosBySubsidiaryController.stream;
+
   dispose() {
     _productosController.close();
     _productosItemSubCategoryController.close();
+    _productosBySubsidiaryController.close();
   }
 
   void obtenerTodosProductos() async {
@@ -26,6 +30,12 @@ class ProductosBloc {
     _productosItemSubCategoryController.sink.add(await bienesApi.productoDatabase.getProductosByIdItemSubCategoria(idItemSubcategory));
     await bienesApi.obtenerBienesPorCity();
     _productosItemSubCategoryController.sink.add(await bienesApi.productoDatabase.getProductosByIdItemSubCategoria(idItemSubcategory));
+  }
+
+  void obtenerProductosByIdSucursal(String idSucursal) async {
+    _productosBySubsidiaryController.sink.add(await bienesApi.productoDatabase.getProductosByIdSubsidiary(idSucursal));
+    await bienesApi.listarProductosBySucursal(idSucursal);
+    _productosBySubsidiaryController.sink.add(await bienesApi.productoDatabase.getProductosByIdSubsidiary(idSucursal));
   }
 
   void cleanProductos() {

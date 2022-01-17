@@ -83,39 +83,41 @@ class ProductoHorizontalWidget extends StatelessWidget {
                   SizedBox(
                     width: ScreenUtil().setWidth(16),
                   ),
-                  Column(
-                    children: [
-                      Text(
-                        "${producto.productoName} ${producto.productoBrand}",
-                        textAlign: TextAlign.start,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: ScreenUtil().setSp(16),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          "${producto.productoName} ${producto.productoBrand}",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: ScreenUtil().setSp(16),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: ScreenUtil().setHeight(16),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: ScreenUtil().setHeight(30),
-                            width: ScreenUtil().setWidth(30),
-                            child: SvgPicture.asset('assets/svg/bufi_coin.svg'),
-                          ),
-                          Text(
-                            '${producto.productoPrice}',
-                            style: TextStyle(
-                              color: colorBlueText,
-                              fontWeight: FontWeight.w600,
-                              fontSize: ScreenUtil().setSp(16),
+                        SizedBox(
+                          height: ScreenUtil().setHeight(16),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: ScreenUtil().setHeight(30),
+                              width: ScreenUtil().setWidth(30),
+                              child: SvgPicture.asset('assets/svg/bufi_coin.svg'),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Text(
+                              '${producto.productoPrice}',
+                              style: TextStyle(
+                                color: colorBlueText,
+                                fontWeight: FontWeight.w600,
+                                fontSize: ScreenUtil().setSp(16),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

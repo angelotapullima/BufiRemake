@@ -151,4 +151,119 @@ class BienesApi {
       print(e);
     }
   }
+
+  Future<Null> listarProductosBySucursal(String idSucursal) async {
+    try {
+      final productosPorSucursal = await productoDatabase.getProductosByIdSubsidiary(idSucursal);
+
+      double mayor = 0;
+      double mayor2 = 0;
+      double menor = 0;
+      if (productosPorSucursal.length > 0) {
+        for (var i = 0; i < productosPorSucursal.length; i++) {
+          if (double.parse(productosPorSucursal[i].idProducto.toString()) > mayor) {
+            mayor = double.parse(productosPorSucursal[i].idProducto.toString());
+          }
+        }
+      }
+      mayor2 = mayor;
+
+      if (productosPorSucursal.length > 0) {
+        for (var x = 0; x < productosPorSucursal.length; x++) {
+          if (double.parse(productosPorSucursal[x].idProducto.toString()) < mayor2) {
+            menor = double.parse(productosPorSucursal[x].idProducto.toString());
+            mayor2 = menor;
+          } else {
+            menor = mayor2;
+          }
+        }
+      }
+
+      final response = await http.post(Uri.parse('$API_BASE_URL/api/Negocio/listar_productos_por_sucursal'), body: {
+        'id_sucursal': idSucursal,
+        'limite_sup': mayor.toString(),
+        'limite_inf': menor.toString(),
+        'id_ciudad': '1',
+      });
+
+      final decodedData = json.decode(response.body);
+
+      if (decodedData['results'].length > 0) {
+        for (var i = 0; i < decodedData['results'].length; i++) {
+          //SubsidiaryGoodModel
+          ProductoModel productoModel = ProductoModel();
+          productoModel.idProducto = decodedData['results'][i]["id_subsidiarygood"];
+          productoModel.idSubsidiary = decodedData['results'][i]["id_subsidiary"];
+          productoModel.idGood = decodedData['results'][i]["id_good"];
+          productoModel.idItemsubcategory = decodedData['results'][i]['id_itemsubcategory'];
+          productoModel.productoName = decodedData['results'][i]['subsidiary_good_name'];
+          productoModel.productoPrice = decodedData['results'][i]['subsidiary_good_price'];
+          productoModel.productoCurrency = decodedData['results'][i]['subsidiary_good_currency'];
+          productoModel.productoImage = decodedData['results'][i]['subsidiary_good_image'];
+          productoModel.productoCharacteristics = decodedData['results'][i]['subsidiary_good_characteristics'];
+          productoModel.productoBrand = decodedData['results'][i]['subsidiary_good_brand'];
+          productoModel.productoModel = decodedData['results'][i]['subsidiary_good_model'];
+          productoModel.productoType = decodedData['results'][i]['subsidiary_good_type'];
+          productoModel.productoSize = decodedData['results'][i]['subsidiary_good_size'];
+          productoModel.productoStock = decodedData['results'][i]['subsidiary_good_stock'];
+          productoModel.productoMeasure = decodedData['results'][i]['subsidiary_good_stock_measure'];
+          productoModel.productoRating = decodedData['results'][i]['subsidiary_good_rating'];
+          productoModel.productoUpdated = decodedData['results'][i]['subsidiary_good_updated'];
+          productoModel.productoStatus = decodedData['results'][i]['subsidiary_good_status'];
+
+          var productList = await productoDatabase.getProductosByIdGood(decodedData['results'][i]['id_subsidiarygood']);
+
+          if (productList.length > 0) {
+            productoModel.productoFavourite = productList[0].productoFavourite;
+          } else {
+            productoModel.productoFavourite = '0';
+          }
+          await productoDatabase.insertProductos(productoModel);
+
+          SubsidiaryModel submodel = SubsidiaryModel();
+          submodel.idCompany = decodedData['results'][i]["id_company"];
+          submodel.idSubsidiary = decodedData['results'][i]["id_subsidiary"];
+          submodel.subsidiaryName = decodedData['results'][i]['subsidiary_name'];
+          submodel.subsidiaryAddress = decodedData['results'][i]['subsidiary_address'];
+          submodel.subsidiaryCellphone = decodedData['results'][i]['subsidiary_cellphone'];
+          submodel.subsidiaryCellphone2 = decodedData['results'][i]['subsidiary_cellphone_2'];
+          submodel.subsidiaryEmail = decodedData['results'][i]['subsidiary_email'];
+          submodel.subsidiaryCoordX = decodedData['results'][i]['subsidiary_coord_x'];
+          submodel.subsidiaryCoordY = decodedData['results'][i]['subsidiary_coord_y'];
+          submodel.subsidiaryOpeningHours = decodedData['results'][i]['subsidiary_opening_hours'];
+          submodel.subsidiaryPrincipal = decodedData['results'][i]['subsidiary_principal'];
+          submodel.subsidiaryStatus = decodedData['results'][i]['subsidiary_status'];
+          submodel.subsidiaryImg = decodedData['results'][i]['subsidiary_img'];
+
+          final list = await subsidiaryDatabase.getSubsidiaryByIdSubsidiary(decodedData['results'][i]["id_subsidiary"]);
+
+          if (list.length > 0) {
+            submodel.subsidiaryFavourite = list[0].subsidiaryFavourite;
+            //Subsidiary
+          } else {
+            submodel.subsidiaryFavourite = "0";
+          }
+
+          await subsidiaryDatabase.insertSubsidiary(submodel);
+
+          //BienesModel
+          BienesModel goodmodel = BienesModel();
+          goodmodel.idGood = decodedData['results'][i]['id_good'];
+          goodmodel.goodName = decodedData['results'][i]['good_name'];
+          goodmodel.goodSynonyms = decodedData['results'][i]['good_synonyms'];
+          await bienesDatabase.insertBienes(goodmodel);
+
+          //ItemSubCategoriaModel
+          ItemSubCategoryModel itemSubCategoriaModel = ItemSubCategoryModel();
+          itemSubCategoriaModel.idSubCategory = decodedData['results'][i]['id_subcategory'];
+          itemSubCategoriaModel.idItemSubCategory = decodedData['results'][i]['itemsubcategory_name'];
+          itemSubCategoriaModel.nameItemSubCategory = decodedData['results'][i]['itemsubcategory_name'];
+          itemSubCategoriaModel.imagenItemSubCategory = decodedData['results'][i]['itemsubcategory_img'];
+          await itemsubcategoryDatabase.insertItemSubCategories(itemSubCategoriaModel);
+        }
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 }

@@ -56,6 +56,7 @@ void actualizarPointProducto(BuildContext context, ProductoModel producto, Strin
 
   pantallaBloc.obtenerPantallaPrincipal();
   productosBloc.obtenerProductosByItemSubcategory(producto.idItemsubcategory.toString());
+  productosBloc.obtenerProductosByIdSucursal(producto.idSubsidiary.toString());
   favoritoBloc.update();
 }
 

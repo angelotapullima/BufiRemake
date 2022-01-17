@@ -19,7 +19,7 @@ class CompanyBloc {
 
   void obtenerNegocioById(String id) async {
     _companyIdController.sink.add(await getCompanyById(id));
-    companyApi.obtenerCompanyById(id);
+    await companyApi.obtenerCompanyById(id);
     _companyIdController.sink.add(await getCompanyById(id));
   }
 

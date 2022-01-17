@@ -61,6 +61,32 @@ class ProductosDatabase {
     }
   }
 
+  Future<List<ProductoModel>> getProductosByIdSubsidiary(String idSubsidiary) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<ProductoModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM Producto WHERE idSubsidiary ='$idSubsidiary' ORDER BY cast(idProducto as int)");
+      if (maps.length > 0) list = ProductoModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      print('Error al consultar en la base de datos Productos: $e');
+      return [];
+    }
+  }
+
+  Future<List<ProductoModel>> getProductosByIdGood(String idGood) async {
+    try {
+      final Database db = await dbprovider.getDatabase();
+      List<ProductoModel> list = [];
+      List<Map> maps = await db.rawQuery("SELECT * FROM Producto WHERE idGood ='$idGood' ORDER BY cast(idProducto as int)");
+      if (maps.length > 0) list = ProductoModel.fromJsonList(maps);
+      return list;
+    } catch (e) {
+      print('Error al consultar en la base de datos Productos: $e');
+      return [];
+    }
+  }
+
   Future<List<ProductoModel>> getProductosFavoritos() async {
     try {
       final Database db = await dbprovider.getDatabase();
