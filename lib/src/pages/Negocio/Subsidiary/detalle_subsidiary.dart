@@ -7,6 +7,7 @@ import 'package:bufi_remake/src/pages/Negocio/Subsidiary/tabs/productos_subsidia
 import 'package:bufi_remake/src/pages/Negocio/Subsidiary/tabs/resenhas_subsidiary.dart';
 import 'package:bufi_remake/src/pages/Negocio/Subsidiary/tabs/servicios_subsidiary.dart';
 import 'package:bufi_remake/src/widgets/show_loading.dart';
+import 'package:bufi_remake/src/widgets/sliver_header_delegate.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class _DetalleSubsidiaryPageState extends State<DetalleSubsidiaryPage> with Tick
   List<Widget> pageList = [];
   final List<Widget> listTexto = [];
   TabController? tabcontroller;
+  ScrollController con = ScrollController();
   @override
   void initState() {
     pageList.add(InformacionSubsidiaryPage());
@@ -54,138 +56,152 @@ class _DetalleSubsidiaryPageState extends State<DetalleSubsidiaryPage> with Tick
               var subsidiary = snapshot.data![0];
               return Stack(
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: ScreenUtil().setHeight(352),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(40),
-                            bottomLeft: Radius.circular(40),
-                          ),
-                          child: CachedNetworkImage(
-                            placeholder: (context, url) => Container(
-                              width: ScreenUtil().setWidth(60),
-                              height: ScreenUtil().setHeight(60),
-                              child: SvgPicture.asset(
-                                'assets/svg/bufi.svg',
-                              ),
-                            ),
-                            errorWidget: (context, url, error) => Container(
-                              child: Container(
-                                width: ScreenUtil().setWidth(60),
-                                height: ScreenUtil().setHeight(60),
-                                child: SvgPicture.asset(
-                                  'assets/svg/bufi.svg',
-                                ),
-                              ),
-                            ),
-                            imageUrl: '$API_BASE_URL/${subsidiary.subsidiaryImg}',
-                            imageBuilder: (context, imageProvider) => Container(
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: imageProvider,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: ScreenUtil().setHeight(24),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(24)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '${subsidiary.subsidiaryName}',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: ScreenUtil().setSp(18),
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: ScreenUtil().setHeight(22),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(24)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.location_on_outlined,
-                                  color: colorBlueText,
-                                  size: ScreenUtil().setWidth(16),
-                                ),
-                                SizedBox(
-                                  width: ScreenUtil().setWidth(11),
-                                ),
-                                Text(
-                                  '${subsidiary.subsidiaryAddress}',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: ScreenUtil().setSp(14),
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              'VER EN EL MAPA',
-                              style: TextStyle(
-                                color: colorBlueText,
-                                fontSize: ScreenUtil().setSp(12),
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: ScreenUtil().setHeight(90),
-                        child: AppBar(
-                          automaticallyImplyLeading: false,
-                          backgroundColor: colorPrimary,
-                          elevation: 0,
-                          bottom: ButtonsTabBar(
-                              controller: tabcontroller,
-                              unselectedBackgroundColor: colorPrimary,
-                              duration: 250,
-                              height: ScreenUtil().setHeight(50),
-                              contentPadding: EdgeInsets.symmetric(
-                                horizontal: ScreenUtil().setWidth(4),
-                              ),
-                              unselectedLabelStyle: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500,
-                                fontSize: ScreenUtil().setSp(16),
-                              ),
-                              decoration: BoxDecoration(
-                                  color: colorPrimary,
-                                  border: Border(
-                                    bottom: BorderSide(
-                                      color: colorBlueImageBorder,
-                                      width: 1.5,
+                  CustomScrollView(
+                    controller: con,
+                    slivers: [
+                      SliverPersistentHeader(
+                        floating: false,
+                        delegate: SliverCustomHeaderDelegate(
+                            maxHeight: ScreenUtil().setHeight(530),
+                            minHeight: ScreenUtil().setHeight(530),
+                            child: Container(
+                              child: Column(
+                                children: [
+                                  Container(
+                                    height: ScreenUtil().setHeight(352),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        bottomRight: Radius.circular(40),
+                                        bottomLeft: Radius.circular(40),
+                                      ),
+                                      child: CachedNetworkImage(
+                                        placeholder: (context, url) => Container(
+                                          width: ScreenUtil().setWidth(60),
+                                          height: ScreenUtil().setHeight(60),
+                                          child: SvgPicture.asset(
+                                            'assets/svg/bufi.svg',
+                                          ),
+                                        ),
+                                        errorWidget: (context, url, error) => Container(
+                                          child: Container(
+                                            width: ScreenUtil().setWidth(60),
+                                            height: ScreenUtil().setHeight(60),
+                                            child: SvgPicture.asset(
+                                              'assets/svg/bufi.svg',
+                                            ),
+                                          ),
+                                        ),
+                                        imageUrl: '$API_BASE_URL/${subsidiary.subsidiaryImg}',
+                                        imageBuilder: (context, imageProvider) => Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  )),
-                              labelStyle: TextStyle(
-                                color: colorBlueImageBorder,
-                                fontWeight: FontWeight.w600,
-                                fontSize: ScreenUtil().setSp(16),
+                                  ),
+                                  SizedBox(
+                                    height: ScreenUtil().setHeight(24),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(24)),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '${subsidiary.subsidiaryName}',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: ScreenUtil().setSp(18),
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: ScreenUtil().setHeight(22),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(24)),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.location_on_outlined,
+                                              color: colorBlueText,
+                                              size: ScreenUtil().setWidth(16),
+                                            ),
+                                            SizedBox(
+                                              width: ScreenUtil().setWidth(11),
+                                            ),
+                                            Text(
+                                              '${subsidiary.subsidiaryAddress}',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: ScreenUtil().setSp(14),
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          'VER EN EL MAPA',
+                                          style: TextStyle(
+                                            color: colorBlueText,
+                                            fontSize: ScreenUtil().setSp(12),
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    height: ScreenUtil().setHeight(90),
+                                    child: AppBar(
+                                      automaticallyImplyLeading: false,
+                                      backgroundColor: colorPrimary,
+                                      elevation: 0,
+                                      bottom: ButtonsTabBar(
+                                          controller: tabcontroller,
+                                          unselectedBackgroundColor: colorPrimary,
+                                          duration: 250,
+                                          height: ScreenUtil().setHeight(50),
+                                          contentPadding: EdgeInsets.symmetric(
+                                            horizontal: ScreenUtil().setWidth(4),
+                                          ),
+                                          unselectedLabelStyle: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: ScreenUtil().setSp(16),
+                                          ),
+                                          decoration: BoxDecoration(
+                                              color: colorPrimary,
+                                              border: Border(
+                                                bottom: BorderSide(
+                                                  color: colorBlueImageBorder,
+                                                  width: 1.5,
+                                                ),
+                                              )),
+                                          labelStyle: TextStyle(
+                                            color: colorBlueImageBorder,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: ScreenUtil().setSp(16),
+                                          ),
+                                          tabs: listTexto),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              tabs: listTexto),
-                        ),
+                            )),
                       ),
-                      Expanded(
+                      SliverFillRemaining(
+                        hasScrollBody: true,
                         child: TabBarView(
                           controller: tabcontroller,
                           children: pageList,
